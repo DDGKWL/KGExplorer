@@ -1,0 +1,791 @@
+{
+  "schema_version": "news-llm-verdicts-1",
+  "model": "deepseek-chat",
+  "generated_at": "2026-10-08T09:14:08Z",
+  "verdicts": {
+    "event:all-meeting-03c45110c7f05770::participants::report:03c45110c7f05770:geopolitical_entity:iran;report:03c45110c7f05770:organization:iranian-officials;report:03c45110c7f05770:organization:u-s-officials;report:03c45110c7f05770:person:donald-trump;report:0727d2b370c41dbe:geopolitical_entity:iran;report:0727d2b370c41dbe:organization:iranian-officials;report:0727d2b370c41dbe:organization:u-s-officials;report:0727d2b370c41dbe:person:donald-trump;report:0727d2b370c41dbe:person:iranian-mediators;report:0727d2b370c41dbe:person:steve-witkoff;report:331cf0c5185b0edb:geopolitical_entity:iran;report:331cf0c5185b0edb:organization:iranian-officials;report:331cf0c5185b0edb:organization:iranian-officials;report:331cf0c5185b0edb:organization:iranian-officials;report:331cf0c5185b0edb:person:donald-trump;report:331cf0c5185b0edb:person:donald-trump;report:331cf0c5185b0edb:person:jared-kushner;report:331cf0c5185b0edb:person:steve-witkoff;report:98f89a64bd317099:organization:iranian-officials;report:98f89a64bd317099:organization:u-s-officials;report:98f89a64bd317099:person:iranian-mediators;report:98f89a64bd317099:person:iranian-mediators;report:98f89a64bd317099:person:jared-kushner;report:98f89a64bd317099:person:steve-witkoff;report:b226471683dff88c:organization:iranian-officials;report:b226471683dff88c:organization:iranian-officials;report:b226471683dff88c:organization:iranian-officials;report:b226471683dff88c:organization:u-s-officials;report:b226471683dff88c:person:jared-kushner;report:b226471683dff88c:person:steve-witkoff;report:f84991fecc6541e0:organization:iranian-officials;report:f84991fecc6541e0:organization:iranian-officials;report:f84991fecc6541e0:organization:iranian-officials;report:f84991fecc6541e0:organization:u-s-officials;report:f84991fecc6541e0:person:jared-kushner;report:f84991fecc6541e0:person:steve-witkoff;report:febeb7bcfc18dc18:geopolitical_entity:iran;report:febeb7bcfc18dc18:organization:iranian-officials;report:febeb7bcfc18dc18:organization:iranian-officials;report:febeb7bcfc18dc18:organization:iranian-officials;report:febeb7bcfc18dc18:organization:u-s-officials;report:febeb7bcfc18dc18:person:donald-trump;report:febeb7bcfc18dc18:person:jared-kushner;report:febeb7bcfc18dc18:person:steve-witkoff": {
+      "verdict": "consistent",
+      "reason": "各来源均指美伊官员会面，参与者为美方官员（含Witkoff、Kushner）与伊朗官员，仅详略和别名差异，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "participants",
+      "judged_at": "2026-10-06T02:57:43Z"
+    },
+    "event:all-meeting-03c45110c7f05770::actions::report:03c45110c7f05770:meets;report:03c45110c7f05770:threatens;report:0727d2b370c41dbe:meets;report:0727d2b370c41dbe:meets;report:0727d2b370c41dbe:threatens;report:331cf0c5185b0edb:meets;report:331cf0c5185b0edb:meets;report:331cf0c5185b0edb:meets;report:331cf0c5185b0edb:threatens;report:98f89a64bd317099:meets;report:98f89a64bd317099:meets;report:98f89a64bd317099:meets;report:b226471683dff88c:meets;report:b226471683dff88c:meets;report:b226471683dff88c:meets;report:f84991fecc6541e0:meets;report:f84991fecc6541e0:meets;report:f84991fecc6541e0:meets;report:febeb7bcfc18dc18:meets;report:febeb7bcfc18dc18:meets;report:febeb7bcfc18dc18:meets;report:febeb7bcfc18dc18:threatens": {
+      "verdict": "consistent",
+      "reason": "各来源均报道美伊官员会面，部分同时提及特朗普威胁言论，属同一事件的不同详略表述，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "actions",
+      "judged_at": "2026-10-06T02:57:44Z"
+    },
+    "event:all-meeting-03c45110c7f05770::time::report:03c45110c7f05770:09-21;report:03c45110c7f05770:09-21;report:0727d2b370c41dbe:2026-09-22;report:0727d2b370c41dbe:2026-09-22;report:0727d2b370c41dbe:2026-09-22;report:331cf0c5185b0edb:09-22;report:331cf0c5185b0edb:09-22;report:331cf0c5185b0edb:09-22;report:331cf0c5185b0edb:09-22;report:98f89a64bd317099:2026-09-22;report:98f89a64bd317099:2026-09-22;report:98f89a64bd317099:2026-09-22;report:b226471683dff88c:2026-09-22;report:b226471683dff88c:2026-09-22;report:b226471683dff88c:2026-09-22;report:f84991fecc6541e0:2026-09-22;report:f84991fecc6541e0:2026-09-22;report:f84991fecc6541e0:2026-09-22;report:febeb7bcfc18dc18:2026-09-22;report:febeb7bcfc18dc18:2026-09-22;report:febeb7bcfc18dc18:2026-09-22;report:febeb7bcfc18dc18:2026-09-22": {
+      "verdict": "consistent",
+      "reason": "各来源均指同一会晤，日期为9月21日或22日，属同一事件的时间表述差异，无实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "time",
+      "judged_at": "2026-10-06T02:57:44Z"
+    },
+    "event:all-meeting-03c45110c7f05770::cause::report:03c45110c7f05770:ending the war;report:03c45110c7f05770:ending the war;report:0727d2b370c41dbe:end the war;report:0727d2b370c41dbe:end the war;report:0727d2b370c41dbe:no deal to end the war;report:331cf0c5185b0edb:if a deal isn’t reached soon to end the nearly seven-month war;report:331cf0c5185b0edb:to end the nearly seven-month war;report:331cf0c5185b0edb:to end the nearly seven-month war;report:331cf0c5185b0edb:to end the nearly seven-month war;report:98f89a64bd317099:reviving fragile hopes for a new diplomatic off-ramp;report:98f89a64bd317099:reviving fragile hopes for a new diplomatic off-ramp;report:98f89a64bd317099:reviving fragile hopes for a new diplomatic off-ramp;report:b226471683dff88c:to discuss ending the war;report:b226471683dff88c:to discuss ending the war;report:b226471683dff88c:to discuss ending the war;report:f84991fecc6541e0:ending war, opening strait of hormuz;report:f84991fecc6541e0:ending war, opening strait of hormuz;report:f84991fecc6541e0:ending war, opening strait of hormuz;report:febeb7bcfc18dc18:if a deal isn’t reached soon to end the war;report:febeb7bcfc18dc18:to discuss ending the war;report:febeb7bcfc18dc18:to discuss ending the war;report:febeb7bcfc18dc18:to discuss ending the war": {
+      "verdict": "consistent",
+      "reason": "各来源均称美伊官员会晤旨在结束战争，aljazeera补充开放霍尔木兹海峡，属详略差异，无实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "cause",
+      "judged_at": "2026-10-06T02:57:45Z"
+    },
+    "event:all-meeting-03c45110c7f05770::manner::report:03c45110c7f05770:in a u.n. speech;report:03c45110c7f05770:shortly after trump's u.n. speech;report:0727d2b370c41dbe:lengthy talks;report:0727d2b370c41dbe:lengthy talks;report:0727d2b370c41dbe:quickly;report:331cf0c5185b0edb:during his address to the u.n. general assembly;report:331cf0c5185b0edb:on the sidelines of the annual gathering of world leaders;report:331cf0c5185b0edb:on the sidelines of the annual gathering of world leaders;report:331cf0c5185b0edb:on the sidelines of the annual gathering of world leaders;report:98f89a64bd317099:three-hour meeting;report:98f89a64bd317099:through mediators shuttling between each delegation;report:98f89a64bd317099:through mediators shuttling between each delegation;report:b226471683dff88c:three hours;report:b226471683dff88c:three hours;report:b226471683dff88c:three hours;report:f84991fecc6541e0:three hours;report:f84991fecc6541e0:three hours;report:f84991fecc6541e0:three hours;report:febeb7bcfc18dc18:for about three hours;report:febeb7bcfc18dc18:quickly;report:febeb7bcfc18dc18:through mediators;report:febeb7bcfc18dc18:through mediators": {
+      "verdict": "consistent",
+      "reason": "各来源均描述美伊官员在联大期间会晤，时长约三小时、经中间人穿梭传话，属详略与措辞差异，无实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "manner",
+      "judged_at": "2026-10-06T02:57:46Z"
+    },
+    "event:all-meeting-03c45110c7f05770::result::report:03c45110c7f05770:a very good meeting;report:0727d2b370c41dbe:annihilation of iran;report:0727d2b370c41dbe:constructive and promising discussions;report:0727d2b370c41dbe:constructive and promising discussions;report:331cf0c5185b0edb:a very good meeting;report:331cf0c5185b0edb:a very good meeting;report:331cf0c5185b0edb:a very good meeting;report:331cf0c5185b0edb:annihilation of the islamic republic;report:98f89a64bd317099:constructive and promising talks;report:98f89a64bd317099:constructive and promising talks;report:98f89a64bd317099:very productive meeting; another planned;report:b226471683dff88c:a very good meeting;report:b226471683dff88c:a very good meeting;report:b226471683dff88c:a very good meeting;report:f84991fecc6541e0:a very good meeting, a very productive meeting;report:f84991fecc6541e0:a very good meeting, a very productive meeting;report:f84991fecc6541e0:a very good meeting, a very productive meeting;report:febeb7bcfc18dc18:a very good meeting;report:febeb7bcfc18dc18:a very good meeting;report:febeb7bcfc18dc18:a very good meeting;report:febeb7bcfc18dc18:annihilation of the islamic republic": {
+      "verdict": "consistent",
+      "reason": "各来源均称美伊官员会晤，评价为“非常好/富有成效”，并提及特朗普威胁“消灭伊朗”，属同义详略差异，无实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "result",
+      "judged_at": "2026-10-06T02:42:54Z"
+    },
+    "event:all-meeting-03c45110c7f05770::attributed_to::report:03c45110c7f05770:trump;report:03c45110c7f05770:trump;report:0727d2b370c41dbe:steve witkoff;report:0727d2b370c41dbe:steve witkoff;report:0727d2b370c41dbe:trump;report:331cf0c5185b0edb:trump;report:331cf0c5185b0edb:trump;report:331cf0c5185b0edb:trump;report:331cf0c5185b0edb:trump;report:98f89a64bd317099:trump;report:98f89a64bd317099:witkoff;report:98f89a64bd317099:witkoff;report:b226471683dff88c:trump;report:b226471683dff88c:trump;report:b226471683dff88c:trump;report:f84991fecc6541e0:trump;report:f84991fecc6541e0:trump;report:f84991fecc6541e0:trump;report:febeb7bcfc18dc18:trump;report:febeb7bcfc18dc18:trump;report:febeb7bcfc18dc18:trump;report:febeb7bcfc18dc18:trump": {
+      "verdict": "consistent",
+      "reason": "各来源均将消息来源归于特朗普，部分补充维特科夫等具体官员，属详略差异，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "attributed_to",
+      "judged_at": "2026-10-06T02:42:55Z"
+    },
+    "event:all-meeting-03c45110c7f05770::roles::report:03c45110c7f05770:geopolitical_entity:iran::target;report:03c45110c7f05770:organization:iranian-officials::participant;report:03c45110c7f05770:organization:u-s-officials::participant;report:03c45110c7f05770:person:donald-trump::assailant;report:0727d2b370c41dbe:geopolitical_entity:iran::target;report:0727d2b370c41dbe:organization:iranian-officials::participant;report:0727d2b370c41dbe:organization:u-s-officials::participant;report:0727d2b370c41dbe:person:donald-trump::assailant;report:0727d2b370c41dbe:person:iranian-mediators::participant;report:0727d2b370c41dbe:person:steve-witkoff::participant;report:331cf0c5185b0edb:geopolitical_entity:iran::target;report:331cf0c5185b0edb:organization:iranian-officials::participant;report:331cf0c5185b0edb:organization:iranian-officials::participant;report:331cf0c5185b0edb:organization:iranian-officials::participant;report:331cf0c5185b0edb:person:donald-trump::assailant;report:331cf0c5185b0edb:person:donald-trump::participant;report:331cf0c5185b0edb:person:jared-kushner::participant;report:331cf0c5185b0edb:person:steve-witkoff::participant;report:98f89a64bd317099:organization:iranian-officials::participant;report:98f89a64bd317099:organization:u-s-officials::participant;report:98f89a64bd317099:person:iranian-mediators::participant;report:98f89a64bd317099:person:iranian-mediators::participant;report:98f89a64bd317099:person:jared-kushner::participant;report:98f89a64bd317099:person:steve-witkoff::participant;report:b226471683dff88c:organization:iranian-officials::participant;report:b226471683dff88c:organization:iranian-officials::participant;report:b226471683dff88c:organization:iranian-officials::participant;report:b226471683dff88c:organization:u-s-officials::participant;report:b226471683dff88c:person:jared-kushner::participant;report:b226471683dff88c:person:steve-witkoff::participant;report:f84991fecc6541e0:organization:iranian-officials::participant;report:f84991fecc6541e0:organization:iranian-officials::participant;report:f84991fecc6541e0:organization:iranian-officials::participant;report:f84991fecc6541e0:organization:u-s-officials::participant;report:f84991fecc6541e0:person:jared-kushner::participant;report:f84991fecc6541e0:person:steve-witkoff::participant;report:febeb7bcfc18dc18:geopolitical_entity:iran::target;report:febeb7bcfc18dc18:organization:iranian-officials::participant;report:febeb7bcfc18dc18:organization:iranian-officials::participant;report:febeb7bcfc18dc18:organization:iranian-officials::participant;report:febeb7bcfc18dc18:organization:u-s-officials::participant;report:febeb7bcfc18dc18:person:donald-trump::assailant;report:febeb7bcfc18dc18:person:jared-kushner::participant;report:febeb7bcfc18dc18:person:steve-witkoff::participant": {
+      "verdict": "consistent",
+      "reason": "各来源均指美伊官员会面，参与者为美方官员与伊朗官员，部分补充维特科夫、库什纳等具体人名，属详略差异，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "roles",
+      "judged_at": "2026-10-06T02:42:55Z"
+    },
+    "event:all-meeting-15d04444fe323b9b::participants::report:15d04444fe323b9b:organization:iranian-officials;report:15d04444fe323b9b:person:donald-trump;report:15d04444fe323b9b:person:iranian-mediators;report:15d04444fe323b9b:person:iranian-mediators;report:15d04444fe323b9b:person:jared-kushner;report:15d04444fe323b9b:person:steve-witkoff;report:24b6df75fabfd2a7:organization:iranian-officials;report:24b6df75fabfd2a7:person:donald-trump;report:24b6df75fabfd2a7:person:iranian-mediators;report:24b6df75fabfd2a7:person:iranian-mediators;report:24b6df75fabfd2a7:person:jared-kushner;report:24b6df75fabfd2a7:person:steve-witkoff;report:4dff38ca8442d0ff:geopolitical_entity:iran;report:4dff38ca8442d0ff:organization:iranian-officials;report:4dff38ca8442d0ff:person:donald-trump;report:4dff38ca8442d0ff:person:donald-trump;report:4dff38ca8442d0ff:person:iranian-mediators;report:4dff38ca8442d0ff:person:iranian-mediators;report:4dff38ca8442d0ff:person:jared-kushner;report:4dff38ca8442d0ff:person:steve-witkoff;report:96b5a86053c166d4:geopolitical_entity:iran;report:96b5a86053c166d4:organization:iranian-officials;report:96b5a86053c166d4:organization:iranian-officials;report:96b5a86053c166d4:person:donald-trump;report:96b5a86053c166d4:person:jared-kushner;report:96b5a86053c166d4:person:steve-witkoff": {
+      "verdict": "consistent",
+      "reason": "各来源均指特朗普与伊朗官员会面，参与者为美方特使与伊朗官员，仅详略差异，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-15d04444fe323b9b",
+      "attribute": "participants",
+      "judged_at": "2026-10-06T02:42:56Z"
+    },
+    "event:all-meeting-15d04444fe323b9b::actions::report:15d04444fe323b9b:meets;report:15d04444fe323b9b:meets;report:15d04444fe323b9b:meets;report:24b6df75fabfd2a7:meets;report:24b6df75fabfd2a7:meets;report:24b6df75fabfd2a7:meets;report:4dff38ca8442d0ff:meets;report:4dff38ca8442d0ff:meets;report:4dff38ca8442d0ff:meets;report:4dff38ca8442d0ff:threatens;report:96b5a86053c166d4:meets;report:96b5a86053c166d4:meets;report:96b5a86053c166d4:threatens": {
+      "verdict": "consistent",
+      "reason": "各来源均报道特朗普称美伊官员会面，动作一致，仅详略与附加表述差异，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-15d04444fe323b9b",
+      "attribute": "actions",
+      "judged_at": "2026-10-06T02:42:56Z"
+    },
+    "event:all-meeting-15d04444fe323b9b::time::report:15d04444fe323b9b:09-22;report:15d04444fe323b9b:09-22;report:15d04444fe323b9b:09-22;report:24b6df75fabfd2a7:09-22;report:24b6df75fabfd2a7:09-22;report:24b6df75fabfd2a7:09-22;report:4dff38ca8442d0ff:09-22;report:4dff38ca8442d0ff:09-22;report:4dff38ca8442d0ff:09-22;report:4dff38ca8442d0ff:09-22;report:96b5a86053c166d4:2026-09-22;report:96b5a86053c166d4:2026-09-22;report:96b5a86053c166d4:2026-09-22": {
+      "verdict": "consistent",
+      "reason": "各来源均指同一会面，日期均为9月22日，仅年份标注详略不同，无实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-15d04444fe323b9b",
+      "attribute": "time",
+      "judged_at": "2026-10-06T03:08:48Z"
+    },
+    "event:all-meeting-15d04444fe323b9b::place::report:15d04444fe323b9b:un headquarters;report:4dff38ca8442d0ff:un headquarters;report:4dff38ca8442d0ff:un headquarters;report:96b5a86053c166d4:un headquarters;report:96b5a86053c166d4:un headquarters;report:96b5a86053c166d4:un headquarters": {
+      "verdict": "consistent",
+      "reason": "各来源均指美伊官员在联合国大会期间于联合国总部会面，地点表述一致，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-15d04444fe323b9b",
+      "attribute": "place",
+      "judged_at": "2026-10-06T03:08:49Z"
+    },
+    "event:all-meeting-15d04444fe323b9b::cause::report:15d04444fe323b9b:to end nearly seven-month war;report:24b6df75fabfd2a7:trump's threat during u.n. speech;report:4dff38ca8442d0ff:to end nearly seven-month war;report:4dff38ca8442d0ff:to end nearly seven-month war;report:96b5a86053c166d4:if a deal isn’t reached soon to end the nearly seven-month war": {
+      "verdict": "consistent",
+      "reason": "各来源均指向同一原因：为结束近七个月的战争而会面，措辞详略不同但语义一致。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-15d04444fe323b9b",
+      "attribute": "cause",
+      "judged_at": "2026-10-06T03:08:50Z"
+    },
+    "event:all-meeting-15d04444fe323b9b::manner::report:15d04444fe323b9b:3 hours;report:24b6df75fabfd2a7:3 hours;report:4dff38ca8442d0ff:3 hours": {
+      "verdict": "consistent",
+      "reason": "三个来源均给出相同表述“3 hours”，证据文本一致，指向同一事实，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-15d04444fe323b9b",
+      "attribute": "manner",
+      "judged_at": "2026-10-06T03:08:50Z"
+    },
+    "event:all-meeting-15d04444fe323b9b::result::report:15d04444fe323b9b:a very productive meeting;report:15d04444fe323b9b:a very productive meeting;report:15d04444fe323b9b:a very productive meeting;report:24b6df75fabfd2a7:a very productive meeting;report:24b6df75fabfd2a7:a very productive meeting;report:4dff38ca8442d0ff:a very productive meeting;report:4dff38ca8442d0ff:a very productive meeting;report:4dff38ca8442d0ff:a very productive meeting": {
+      "verdict": "consistent",
+      "reason": "各来源均引用特朗普称与伊朗调解人举行'非常富有成效的会晤'，表述一致，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-15d04444fe323b9b",
+      "attribute": "result",
+      "judged_at": "2026-10-06T03:08:51Z"
+    },
+    "event:all-meeting-15d04444fe323b9b::roles::report:15d04444fe323b9b:organization:iranian-officials::participant;report:15d04444fe323b9b:person:donald-trump::participant;report:15d04444fe323b9b:person:iranian-mediators::participant;report:15d04444fe323b9b:person:iranian-mediators::participant;report:15d04444fe323b9b:person:jared-kushner::participant;report:15d04444fe323b9b:person:steve-witkoff::participant;report:24b6df75fabfd2a7:organization:iranian-officials::participant;report:24b6df75fabfd2a7:person:donald-trump::participant;report:24b6df75fabfd2a7:person:iranian-mediators::participant;report:24b6df75fabfd2a7:person:iranian-mediators::participant;report:24b6df75fabfd2a7:person:jared-kushner::participant;report:24b6df75fabfd2a7:person:steve-witkoff::participant;report:4dff38ca8442d0ff:geopolitical_entity:iran::target;report:4dff38ca8442d0ff:organization:iranian-officials::participant;report:4dff38ca8442d0ff:person:donald-trump::assailant;report:4dff38ca8442d0ff:person:donald-trump::participant;report:4dff38ca8442d0ff:person:iranian-mediators::participant;report:4dff38ca8442d0ff:person:iranian-mediators::participant;report:4dff38ca8442d0ff:person:jared-kushner::participant;report:4dff38ca8442d0ff:person:steve-witkoff::participant;report:96b5a86053c166d4:geopolitical_entity:iran::target;report:96b5a86053c166d4:organization:iranian-officials::participant;report:96b5a86053c166d4:organization:iranian-officials::participant;report:96b5a86053c166d4:person:donald-trump::assailant;report:96b5a86053c166d4:person:jared-kushner::participant;report:96b5a86053c166d4:person:steve-witkoff::participant": {
+      "verdict": "consistent",
+      "reason": "各来源均指特朗普方与伊朗官员会面，参与者表述详略不同但指向同一事件，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-15d04444fe323b9b",
+      "attribute": "roles",
+      "judged_at": "2026-10-06T03:08:52Z"
+    },
+    "event:all-detains-16ca1455320ae767::participants::report:16ca1455320ae767:person:abdel-fattah-el-sissi;report:16ca1455320ae767:person:cia-director-john-ratcliffe;report:16ca1455320ae767:person:israeli-military;report:16ca1455320ae767:person:israeli-military;report:16ca1455320ae767:person:palestinian-man;report:16ca1455320ae767:person:palestinians;report:266920b217f5ecee:person:abdel-fattah-el-sissi;report:266920b217f5ecee:person:cia-director-john-ratcliffe;report:266920b217f5ecee:person:israeli-military;report:266920b217f5ecee:person:palestinian-man;report:3013fddba1547002:person:abdel-fattah-el-sissi;report:3013fddba1547002:person:cia-director-john-ratcliffe;report:3013fddba1547002:person:israeli-military;report:3013fddba1547002:person:israeli-military;report:3013fddba1547002:person:palestinian-man;report:3013fddba1547002:person:palestinians;report:c30c22177a98cc55:person:el-sissi;report:c30c22177a98cc55:person:israeli-military;report:c30c22177a98cc55:person:palestinian-man;report:c30c22177a98cc55:person:ratcliffe": {
+      "verdict": "consistent",
+      "reason": "各来源参与者均为CIA局长、埃及总统、以军及被扣巴勒斯坦人，仅姓名详略差异，指向同一事实。",
+      "rule_status": "overlap",
+      "event_id": "event:all-detains-16ca1455320ae767",
+      "attribute": "participants",
+      "judged_at": "2026-10-06T03:08:52Z"
+    },
+    "event:all-detains-16ca1455320ae767::time::report:16ca1455320ae767:09-20;report:16ca1455320ae767:09-20;report:16ca1455320ae767:2026-09;report:266920b217f5ecee:2026-09;report:266920b217f5ecee:2026-09-19;report:3013fddba1547002:09-20;report:3013fddba1547002:09-20;report:3013fddba1547002:2026-09;report:c30c22177a98cc55:2026-09;report:c30c22177a98cc55:2026-09-20": {
+      "verdict": "conflict",
+      "reason": "twincities.com称日期为2026-09-19，其余来源均为09-20，具体日期存在实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-detains-16ca1455320ae767",
+      "attribute": "time",
+      "judged_at": "2026-10-06T03:08:53Z"
+    },
+    "event:all-detains-16ca1455320ae767::place::report:16ca1455320ae767:al-mughayyir, west bank;report:16ca1455320ae767:egypt;report:16ca1455320ae767:near neve tzuf, west bank;report:266920b217f5ecee:egypt;report:266920b217f5ecee:west bank;report:3013fddba1547002:al-mughayyir, west bank;report:3013fddba1547002:egypt;report:3013fddba1547002:ramallah, west bank;report:c30c22177a98cc55:egypt;report:c30c22177a98cc55:west bank": {
+      "verdict": "consistent",
+      "reason": "各来源均指向约旦河西岸同一事件，具体地点表述详略不同（如Neve Tzuf、Al-Mughayyir、Ramallah），无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-detains-16ca1455320ae767",
+      "attribute": "place",
+      "judged_at": "2026-10-06T03:08:54Z"
+    },
+    "event:all-detains-16ca1455320ae767::cause::report:16ca1455320ae767:during a counterterrorism operation;report:16ca1455320ae767:for shooting an israeli;report:3013fddba1547002:counterterrorism operation;report:3013fddba1547002:discussing iranian crisis and shipping navigation;report:3013fddba1547002:suspected shooting attack": {
+      "verdict": "consistent",
+      "reason": "两来源均称该巴勒斯坦男子因涉嫌枪击以色列人、在反恐行动中被拘押，表述一致，仅详略不同。",
+      "rule_status": "overlap",
+      "event_id": "event:all-detains-16ca1455320ae767",
+      "attribute": "cause",
+      "judged_at": "2026-10-06T03:08:55Z"
+    },
+    "event:all-detains-16ca1455320ae767::attributed_to::report:16ca1455320ae767:el-sissi's office;report:16ca1455320ae767:palestinian officials;report:266920b217f5ecee:el-sissi's office;report:c30c22177a98cc55:el-sissi's office": {
+      "verdict": "consistent",
+      "reason": "各来源均指向el-Sissi办公室，2news.com额外提及巴勒斯坦官员，属详略差异，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-detains-16ca1455320ae767",
+      "attribute": "attributed_to",
+      "judged_at": "2026-10-06T03:08:55Z"
+    },
+    "event:all-detains-16ca1455320ae767::attitude::report:16ca1455320ae767:neutral;report:16ca1455320ae767:neutral;report:16ca1455320ae767:neutral;report:3013fddba1547002:neutral;report:3013fddba1547002:neutral;report:3013fddba1547002:neutral;report:c30c22177a98cc55:neutral;report:c30c22177a98cc55:neutral": {
+      "verdict": "consistent",
+      "reason": "三家来源均以中性态度报道同一事件，内容为同源改写，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-detains-16ca1455320ae767",
+      "attribute": "attitude",
+      "judged_at": "2026-10-06T03:08:56Z"
+    },
+    "event:all-detains-16ca1455320ae767::roles::report:16ca1455320ae767:person:abdel-fattah-el-sissi::participant;report:16ca1455320ae767:person:cia-director-john-ratcliffe::participant;report:16ca1455320ae767:person:israeli-military::agent;report:16ca1455320ae767:person:israeli-military::agent;report:16ca1455320ae767:person:palestinian-man::patient;report:16ca1455320ae767:person:palestinians::patient;report:266920b217f5ecee:person:abdel-fattah-el-sissi::participant;report:266920b217f5ecee:person:cia-director-john-ratcliffe::participant;report:266920b217f5ecee:person:israeli-military::agent;report:266920b217f5ecee:person:palestinian-man::patient;report:3013fddba1547002:person:abdel-fattah-el-sissi::participant;report:3013fddba1547002:person:cia-director-john-ratcliffe::participant;report:3013fddba1547002:person:israeli-military::agent;report:3013fddba1547002:person:israeli-military::agent;report:3013fddba1547002:person:palestinian-man::patient;report:3013fddba1547002:person:palestinians::patient;report:c30c22177a98cc55:person:el-sissi::participant;report:c30c22177a98cc55:person:israeli-military::agent;report:c30c22177a98cc55:person:palestinian-man::patient;report:c30c22177a98cc55:person:ratcliffe::participant": {
+      "verdict": "consistent",
+      "reason": "各来源语义角色一致：以军为施事，巴勒斯坦男子为受事，CIA局长与埃及总统为参与者，仅姓名详略差异。",
+      "rule_status": "overlap",
+      "event_id": "event:all-detains-16ca1455320ae767",
+      "attribute": "roles",
+      "judged_at": "2026-10-06T03:08:57Z"
+    },
+    "event:all-meeting-1d06b3fa33c2f12a::participants::report:1d06b3fa33c2f12a:person:donald-trump;report:1d06b3fa33c2f12a:person:xi-jinping;report:1e07a5d3dd1aec7c:person:donald-trump;report:1e07a5d3dd1aec7c:person:xi-jinping;report:4387ef4229412af5:person:donald-trump;report:4387ef4229412af5:person:xi-jinping;report:5308309fc76758b8:person:donald-trump;report:5308309fc76758b8:person:xi-jinping;report:55bdb90e9c2b9bb7:geopolitical_entity:iran;report:55bdb90e9c2b9bb7:organization:iranian-officials;report:55bdb90e9c2b9bb7:person:donald-trump;report:55bdb90e9c2b9bb7:person:donald-trump;report:61950beea49937f2:geopolitical_entity:iran;report:61950beea49937f2:organization:iranian-officials;report:61950beea49937f2:person:donald-trump;report:61950beea49937f2:person:donald-trump;report:7f9175cf0b05af2d:person:donald-trump;report:7f9175cf0b05af2d:person:xi-jinping;report:7fa945b48c7bb71f:geopolitical_entity:united-states;report:7fa945b48c7bb71f:person:bahrain-representatives;report:7fa945b48c7bb71f:person:donald-trump;report:7fa945b48c7bb71f:person:donald-trump;report:7fa945b48c7bb71f:person:donald-trump;report:7fa945b48c7bb71f:person:donald-trump;report:7fa945b48c7bb71f:person:donald-trump;report:7fa945b48c7bb71f:person:donald-trump;report:7fa945b48c7bb71f:person:hossein-mohebbi;report:7fa945b48c7bb71f:person:kuwait-representatives;report:7fa945b48c7bb71f:person:oman-representatives;report:7fa945b48c7bb71f:person:qatar-representatives;report:7fa945b48c7bb71f:person:saudi-representatives;report:7fa945b48c7bb71f:person:uae-representatives;report:8d62326de8c2a6b4:person:donald-trump;report:8d62326de8c2a6b4:person:gulf-arab-leaders;report:a00f78b04b5275b0:person:donald-trump;report:a00f78b04b5275b0:person:xi-jinping;report:b2a34902d16c613c:person:donald-trump;report:b2a34902d16c613c:person:gulf-arab-leaders;report:c6d0d22d63c3dafe:geopolitical_entity:iran;report:c6d0d22d63c3dafe:organization:iranian-officials;report:c6d0d22d63c3dafe:person:donald-trump;report:c6d0d22d63c3dafe:person:donald-trump;report:ce511fed94afac59:person:donald-trump;report:ce511fed94afac59:person:xi-jinping;report:ecc7d49fc1c75975:organization:iranian-officials;report:ecc7d49fc1c75975:person:donald-trump;report:ecc7d49fc1c75975:person:donald-trump;report:ecc7d49fc1c75975:person:gulf-arab-leaders;report:ecc7d49fc1c75975:person:marco-rubio;report:ecc7d49fc1c75975:person:meeting-with-masoud-pezeshkian": {
+      "verdict": "conflict",
+      "reason": "多数来源指习近平与特朗普会面，但kob.com、weny.com、aljazeera.com的参与者为特朗普与伊朗/沙特等代表，指称不同对象，构成实质冲突。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-1d06b3fa33c2f12a",
+      "attribute": "participants",
+      "judged_at": "2026-10-06T03:08:58Z"
+    },
+    "event:all-meeting-1d06b3fa33c2f12a::actions::report:1d06b3fa33c2f12a:meets;report:1e07a5d3dd1aec7c:meets;report:4387ef4229412af5:meets;report:5308309fc76758b8:meets;report:55bdb90e9c2b9bb7:meets;report:55bdb90e9c2b9bb7:threatens;report:61950beea49937f2:meets;report:61950beea49937f2:threatens;report:7f9175cf0b05af2d:meets;report:7fa945b48c7bb71f:meets;report:7fa945b48c7bb71f:meets;report:7fa945b48c7bb71f:meets;report:7fa945b48c7bb71f:meets;report:7fa945b48c7bb71f:meets;report:7fa945b48c7bb71f:meets;report:7fa945b48c7bb71f:threatens;report:8d62326de8c2a6b4:meets;report:a00f78b04b5275b0:meets;report:b2a34902d16c613c:meets;report:c6d0d22d63c3dafe:meets;report:c6d0d22d63c3dafe:threatens;report:ce511fed94afac59:meets;report:ecc7d49fc1c75975:approves;report:ecc7d49fc1c75975:meets;report:ecc7d49fc1c75975:meets": {
+      "verdict": "conflict",
+      "reason": "多数来源称习近平在华盛顿会见特朗普，但kob.com、weny.com、aljazeera.com的表述实为特朗普会见伊朗官员或海湾代表，指称对象不同，构成实质冲突。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-1d06b3fa33c2f12a",
+      "attribute": "actions",
+      "judged_at": "2026-10-06T03:08:59Z"
+    },
+    "event:all-meeting-1d06b3fa33c2f12a::time::report:1d06b3fa33c2f12a:2026-09-23;report:1e07a5d3dd1aec7c:2026-09-23;report:4387ef4229412af5:2026-09;report:5308309fc76758b8:2026-09-23;report:55bdb90e9c2b9bb7:2026-09-22;report:55bdb90e9c2b9bb7:2026-09-22;report:61950beea49937f2:09-22;report:61950beea49937f2:09-22;report:7f9175cf0b05af2d:2026-09-23;report:7fa945b48c7bb71f:2026-09;report:7fa945b48c7bb71f:2026-09;report:7fa945b48c7bb71f:2026-09;report:7fa945b48c7bb71f:2026-09;report:7fa945b48c7bb71f:2026-09;report:7fa945b48c7bb71f:2026-09;report:7fa945b48c7bb71f:2026-09-22;report:8d62326de8c2a6b4:2026-09-22;report:a00f78b04b5275b0:2026-09-23;report:b2a34902d16c613c:2026-09-22;report:c6d0d22d63c3dafe:09-22;report:c6d0d22d63c3dafe:09-22;report:ce511fed94afac59:2026-09-24;report:ecc7d49fc1c75975:2026-09-22;report:ecc7d49fc1c75975:2026-09-22;report:ecc7d49fc1c75975:2026-09-22": {
+      "verdict": "consistent",
+      "reason": "多数来源指向2026-09-23（周三），abc.net.au仅精确到2026-09，属详略差异；kob等来源内容为美伊会晤，与习特会无关，不构成时间冲突。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-1d06b3fa33c2f12a",
+      "attribute": "time",
+      "judged_at": "2026-10-06T03:09:00Z"
+    },
+    "event:all-meeting-1d06b3fa33c2f12a::place::report:1d06b3fa33c2f12a:washington;report:1e07a5d3dd1aec7c:washington;report:4387ef4229412af5:washington dc;report:5308309fc76758b8:washington;report:7f9175cf0b05af2d:washington;report:a00f78b04b5275b0:washington;report:ce511fed94afac59:white house;report:ecc7d49fc1c75975:new york;report:ecc7d49fc1c75975:new york": {
+      "verdict": "conflict",
+      "reason": "多数来源称会面在华盛顿，straitstimes称在白宫（可视为华盛顿具体地点，尚可一致），但cp24称在纽约，与华盛顿实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-1d06b3fa33c2f12a",
+      "attribute": "place",
+      "judged_at": "2026-10-06T03:09:01Z"
+    },
+    "event:all-meeting-1d06b3fa33c2f12a::cause::report:5308309fc76758b8:bilateral discussions;report:55bdb90e9c2b9bb7:to end nearly seven-month war;report:55bdb90e9c2b9bb7:to end nearly seven-month war;report:61950beea49937f2:to end nearly seven-month war;report:61950beea49937f2:to end nearly seven-month war;report:7fa945b48c7bb71f:discuss war on iran;report:7fa945b48c7bb71f:discuss war on iran;report:7fa945b48c7bb71f:discuss war on iran;report:7fa945b48c7bb71f:discuss war on iran;report:7fa945b48c7bb71f:discuss war on iran;report:7fa945b48c7bb71f:discuss war on iran;report:7fa945b48c7bb71f:use new weapons systems;report:a00f78b04b5275b0:bilateral discussions;report:c6d0d22d63c3dafe:ending the nearly seven-month war;report:c6d0d22d63c3dafe:if a deal isn’t reached soon to end the nearly seven-month war;report:ce511fed94afac59:strengthen us-china ties;report:ecc7d49fc1c75975:ending the iran war;report:ecc7d49fc1c75975:ending the iran war": {
+      "verdict": "conflict",
+      "reason": "部分来源称习特会原因是双边讨论/加强中美关系，另一些却称是讨论结束伊朗战争，指称事件与对象实质不同。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-1d06b3fa33c2f12a",
+      "attribute": "cause",
+      "judged_at": "2026-10-06T03:09:02Z"
+    },
+    "event:all-meeting-1d06b3fa33c2f12a::manner::report:55bdb90e9c2b9bb7:three hours;report:61950beea49937f2:3 hours;report:a00f78b04b5275b0:in-person meeting;report:c6d0d22d63c3dafe:for about three hours;report:ce511fed94afac59:gala dinner;report:ecc7d49fc1c75975:shortly after un warning": {
+      "verdict": "conflict",
+      "reason": "多数来源证据实为美伊会谈时长，与习特会无关；asiaone称面对面会晤，straitstimes称晚宴，方式表述实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-1d06b3fa33c2f12a",
+      "attribute": "manner",
+      "judged_at": "2026-10-06T03:09:03Z"
+    },
+    "event:all-meeting-1d06b3fa33c2f12a::result::report:a00f78b04b5275b0:meeting held;report:ce511fed94afac59:no substantive deliverables expected;report:ecc7d49fc1c75975:a very good meeting": {
+      "verdict": "conflict",
+      "reason": "来源1称会晤举行，来源2称无实质成果预期，来源3引特朗普称'非常好的会晤'但实为美伊会晤，指称对象不同，实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-1d06b3fa33c2f12a",
+      "attribute": "result",
+      "judged_at": "2026-10-06T03:09:04Z"
+    },
+    "event:all-meeting-1d06b3fa33c2f12a::attributed_to::report:4387ef4229412af5:reuters;report:55bdb90e9c2b9bb7:trump;report:55bdb90e9c2b9bb7:trump;report:61950beea49937f2:trump;report:61950beea49937f2:trump;report:7fa945b48c7bb71f:mohebbi;report:7fa945b48c7bb71f:trump;report:7fa945b48c7bb71f:trump;report:7fa945b48c7bb71f:trump;report:7fa945b48c7bb71f:trump;report:7fa945b48c7bb71f:trump;report:7fa945b48c7bb71f:trump;report:a00f78b04b5275b0:xi jinping;report:c6d0d22d63c3dafe:trump;report:c6d0d22d63c3dafe:trump;report:ce511fed94afac59:bhagyashree garekar;report:ecc7d49fc1c75975:rubio;report:ecc7d49fc1c75975:trump": {
+      "verdict": "conflict",
+      "reason": "各来源对同一会晤的消息来源指称不同：有的称路透社，有的称习近平、特朗普、记者等，实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-1d06b3fa33c2f12a",
+      "attribute": "attributed_to",
+      "judged_at": "2026-10-06T03:09:04Z"
+    },
+    "event:all-meeting-1d06b3fa33c2f12a::roles::report:1d06b3fa33c2f12a:person:donald-trump::participant;report:1d06b3fa33c2f12a:person:xi-jinping::participant;report:1e07a5d3dd1aec7c:person:donald-trump::participant;report:1e07a5d3dd1aec7c:person:xi-jinping::participant;report:4387ef4229412af5:person:donald-trump::participant;report:4387ef4229412af5:person:xi-jinping::participant;report:5308309fc76758b8:person:donald-trump::participant;report:5308309fc76758b8:person:xi-jinping::participant;report:55bdb90e9c2b9bb7:geopolitical_entity:iran::target;report:55bdb90e9c2b9bb7:organization:iranian-officials::participant;report:55bdb90e9c2b9bb7:person:donald-trump::assailant;report:55bdb90e9c2b9bb7:person:donald-trump::participant;report:61950beea49937f2:geopolitical_entity:iran::target;report:61950beea49937f2:organization:iranian-officials::participant;report:61950beea49937f2:person:donald-trump::assailant;report:61950beea49937f2:person:donald-trump::participant;report:7f9175cf0b05af2d:person:donald-trump::participant;report:7f9175cf0b05af2d:person:xi-jinping::participant;report:7fa945b48c7bb71f:geopolitical_entity:united-states::target;report:7fa945b48c7bb71f:person:bahrain-representatives::participant;report:7fa945b48c7bb71f:person:donald-trump::participant;report:7fa945b48c7bb71f:person:donald-trump::participant;report:7fa945b48c7bb71f:person:donald-trump::participant;report:7fa945b48c7bb71f:person:donald-trump::participant;report:7fa945b48c7bb71f:person:donald-trump::participant;report:7fa945b48c7bb71f:person:donald-trump::participant;report:7fa945b48c7bb71f:person:hossein-mohebbi::assailant;report:7fa945b48c7bb71f:person:kuwait-representatives::participant;report:7fa945b48c7bb71f:person:oman-representatives::participant;report:7fa945b48c7bb71f:person:qatar-representatives::participant;report:7fa945b48c7bb71f:person:saudi-representatives::participant;report:7fa945b48c7bb71f:person:uae-representatives::participant;report:8d62326de8c2a6b4:person:donald-trump::participant;report:8d62326de8c2a6b4:person:gulf-arab-leaders::participant;report:a00f78b04b5275b0:person:donald-trump::participant;report:a00f78b04b5275b0:person:xi-jinping::participant;report:b2a34902d16c613c:person:donald-trump::participant;report:b2a34902d16c613c:person:gulf-arab-leaders::participant;report:c6d0d22d63c3dafe:geopolitical_entity:iran::target;report:c6d0d22d63c3dafe:organization:iranian-officials::participant;report:c6d0d22d63c3dafe:person:donald-trump::assailant;report:c6d0d22d63c3dafe:person:donald-trump::participant;report:ce511fed94afac59:person:donald-trump::participant;report:ce511fed94afac59:person:xi-jinping::participant;report:ecc7d49fc1c75975:organization:iranian-officials::participant;report:ecc7d49fc1c75975:person:donald-trump::participant;report:ecc7d49fc1c75975:person:donald-trump::participant;report:ecc7d49fc1c75975:person:gulf-arab-leaders::participant;report:ecc7d49fc1c75975:person:marco-rubio::agent;report:ecc7d49fc1c75975:person:meeting-with-masoud-pezeshkian::patient": {
+      "verdict": "conflict",
+      "reason": "多数来源指习近平与特朗普会面，但kob.com、weny.com、aljazeera.com的语义角色涉及伊朗、沙特等不同对象，与习特会事实不符。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-1d06b3fa33c2f12a",
+      "attribute": "roles",
+      "judged_at": "2026-10-06T03:09:05Z"
+    },
+    "event:all-meeting-1d495b348cf58613::participants::report:1d495b348cf58613:organization:leaders-from-saudi-arabia-the-united-arab-emirates-qatar-bahrain-kuwait-and-oman;report:1d495b348cf58613:person:donald-trump;report:4a8fb27010d08e5f:person:donald-trump;report:4a8fb27010d08e5f:person:xi-jinping;report:d1a96c9f9ccd562c:person:donald-trump;report:d1a96c9f9ccd562c:person:leaders-of-persian-gulf-arab-states": {
+      "verdict": "conflict",
+      "reason": "dailypioneer称参与者为习近平与特朗普，与另两源的特朗普及海湾国家领导人指称不同对象，实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-1d495b348cf58613",
+      "attribute": "participants",
+      "judged_at": "2026-10-06T03:09:06Z"
+    },
+    "event:all-meeting-1d495b348cf58613::time::report:1d495b348cf58613:09-23;report:4a8fb27010d08e5f:09-24;report:d1a96c9f9ccd562c:09-23": {
+      "verdict": "conflict",
+      "reason": "两来源称会晤在周二(09-23)，另一来源称周三(09-24)，时间指称实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-1d495b348cf58613",
+      "attribute": "time",
+      "judged_at": "2026-10-06T03:09:07Z"
+    },
+    "event:all-meeting-1d495b348cf58613::place::report:1d495b348cf58613:new york;report:4a8fb27010d08e5f:washington;report:d1a96c9f9ccd562c:new york": {
+      "verdict": "conflict",
+      "reason": "komu.com和wxow.com称会面在纽约，dailypioneer.com称在华盛顿，地点表述实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-1d495b348cf58613",
+      "attribute": "place",
+      "judged_at": "2026-10-06T03:09:07Z"
+    },
+    "event:all-meeting-1d495b348cf58613::cause::report:1d495b348cf58613:discuss the next phase of the war with iran;report:4a8fb27010d08e5f:bilateral discussions;report:d1a96c9f9ccd562c:discuss the next phase of the war with iran": {
+      "verdict": "conflict",
+      "reason": "komu与wxow称会晤目的是讨论对伊朗战争下一阶段，dailypioneer则称是双边讨论，归因与目的实质不同。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-1d495b348cf58613",
+      "attribute": "cause",
+      "judged_at": "2026-10-06T03:09:08Z"
+    },
+    "event:all-meeting-1d495b348cf58613::manner::report:4a8fb27010d08e5f:no stated manner": {
+      "verdict": "uncertain",
+      "reason": "唯一来源未提及会面方式，仅涉及无关的习特会内容，信息不足以判断。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-1d495b348cf58613",
+      "attribute": "manner",
+      "judged_at": "2026-10-06T03:09:08Z"
+    },
+    "event:all-meeting-1d495b348cf58613::result::report:4a8fb27010d08e5f:no stated result": {
+      "verdict": "uncertain",
+      "reason": "仅一来源称无结果，且证据内容与事件无关，其余来源无值，信息不足以判断。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-1d495b348cf58613",
+      "attribute": "result",
+      "judged_at": "2026-10-06T03:09:09Z"
+    },
+    "event:all-meeting-1d495b348cf58613::attributed_to::report:1d495b348cf58613:u.s. officials;report:4a8fb27010d08e5f:ap;report:d1a96c9f9ccd562c:us officials": {
+      "verdict": "conflict",
+      "reason": "dailypioneer.com的表述涉及习近平与特朗普会面，与海湾领导人会面事件无关，消息来源指称不同事件，构成冲突。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-1d495b348cf58613",
+      "attribute": "attributed_to",
+      "judged_at": "2026-10-06T03:09:10Z"
+    },
+    "event:all-meeting-1d495b348cf58613::roles::report:1d495b348cf58613:organization:leaders-from-saudi-arabia-the-united-arab-emirates-qatar-bahrain-kuwait-and-oman::participant;report:1d495b348cf58613:person:donald-trump::participant;report:4a8fb27010d08e5f:person:donald-trump::participant;report:4a8fb27010d08e5f:person:xi-jinping::participant;report:d1a96c9f9ccd562c:person:donald-trump::participant;report:d1a96c9f9ccd562c:person:leaders-of-persian-gulf-arab-states::participant": {
+      "verdict": "conflict",
+      "reason": "dailypioneer称特朗普与习近平会面，参与者为习近平；另两源称与海湾阿拉伯国家领导人会面，参与者不同，实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-1d495b348cf58613",
+      "attribute": "roles",
+      "judged_at": "2026-10-06T03:09:11Z"
+    },
+    "event:all-detains-2016d321952b0d3d::participants::report:2016d321952b0d3d:person:abdel-fattah-el-sissi;report:2016d321952b0d3d:person:cia-director-john-ratcliffe;report:2016d321952b0d3d:person:israeli-military;report:2016d321952b0d3d:person:palestinian-man;report:4cbbc51ee5a4e82c:person:abdel-fattah-el-sissi;report:4cbbc51ee5a4e82c:person:cia-director-john-ratcliffe;report:4cbbc51ee5a4e82c:person:israeli-military;report:4cbbc51ee5a4e82c:person:israeli-troops;report:4cbbc51ee5a4e82c:person:palestinian-man;report:4cbbc51ee5a4e82c:person:palestinians": {
+      "verdict": "consistent",
+      "reason": "两来源列出的参与者完全相同，均为CIA局长、埃及总统、以军及巴勒斯坦男子，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-detains-2016d321952b0d3d",
+      "attribute": "participants",
+      "judged_at": "2026-10-06T03:09:12Z"
+    },
+    "event:all-detains-2016d321952b0d3d::time::report:2016d321952b0d3d:2026-09;report:2016d321952b0d3d:2026-09-17;report:4cbbc51ee5a4e82c:09-17;report:4cbbc51ee5a4e82c:09-17;report:4cbbc51ee5a4e82c:09-17": {
+      "verdict": "consistent",
+      "reason": "两来源均指向2026年9月17日，月份与具体日期表述一致，无实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-detains-2016d321952b0d3d",
+      "attribute": "time",
+      "judged_at": "2026-10-06T03:09:12Z"
+    },
+    "event:all-detains-2016d321952b0d3d::place::report:2016d321952b0d3d:egypt;report:2016d321952b0d3d:west bank;report:4cbbc51ee5a4e82c:al-mughayyir, west bank;report:4cbbc51ee5a4e82c:egypt;report:4cbbc51ee5a4e82c:west bank": {
+      "verdict": "consistent",
+      "reason": "两来源均指向约旦河西岸，后者补充具体地点Al-Mughayyir，属详略差异，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-detains-2016d321952b0d3d",
+      "attribute": "place",
+      "judged_at": "2026-10-06T03:09:13Z"
+    },
+    "event:all-detains-2016d321952b0d3d::cause::report:2016d321952b0d3d:discuss iranian crisis resolution;report:2016d321952b0d3d:suspected shooting attack;report:4cbbc51ee5a4e82c:after shooting attack;report:4cbbc51ee5a4e82c:during counterterrorism operation": {
+      "verdict": "consistent",
+      "reason": "两来源均指向同一事件：该巴勒斯坦男子因涉嫌枪击袭击、在反恐行动中被以军拘留，表述为详略差异，无实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-detains-2016d321952b0d3d",
+      "attribute": "cause",
+      "judged_at": "2026-10-06T03:09:14Z"
+    },
+    "event:all-detains-2016d321952b0d3d::manner::report:2016d321952b0d3d:meeting;report:2016d321952b0d3d:search operation": {
+      "verdict": "uncertain",
+      "reason": "仅一个来源提供方式信息，另一来源无相关表述，无法比较是否一致或冲突。",
+      "rule_status": "overlap",
+      "event_id": "event:all-detains-2016d321952b0d3d",
+      "attribute": "manner",
+      "judged_at": "2026-10-06T03:09:14Z"
+    },
+    "event:all-detains-2016d321952b0d3d::result::report:2016d321952b0d3d:man detained;report:2016d321952b0d3d:meeting held": {
+      "verdict": "uncertain",
+      "reason": "仅一个来源提供结果信息，另一来源无相关表述，缺乏对比依据，无法判定一致性。",
+      "rule_status": "overlap",
+      "event_id": "event:all-detains-2016d321952b0d3d",
+      "attribute": "result",
+      "judged_at": "2026-10-06T03:09:15Z"
+    },
+    "event:all-detains-2016d321952b0d3d::attributed_to::report:2016d321952b0d3d:egyptian president's office;report:2016d321952b0d3d:israeli military;report:4cbbc51ee5a4e82c:palestinian officials": {
+      "verdict": "conflict",
+      "reason": "两来源对同一事件的消息来源分别归因于埃及总统办公室/以色列军方与巴勒斯坦官员，归因对象不同，构成实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-detains-2016d321952b0d3d",
+      "attribute": "attributed_to",
+      "judged_at": "2026-10-06T03:09:16Z"
+    },
+    "event:all-detains-2016d321952b0d3d::roles::report:2016d321952b0d3d:person:abdel-fattah-el-sissi::participant;report:2016d321952b0d3d:person:cia-director-john-ratcliffe::participant;report:2016d321952b0d3d:person:israeli-military::agent;report:2016d321952b0d3d:person:palestinian-man::patient;report:4cbbc51ee5a4e82c:person:abdel-fattah-el-sissi::participant;report:4cbbc51ee5a4e82c:person:cia-director-john-ratcliffe::participant;report:4cbbc51ee5a4e82c:person:israeli-military::agent;report:4cbbc51ee5a4e82c:person:israeli-troops::agent;report:4cbbc51ee5a4e82c:person:palestinian-man::patient;report:4cbbc51ee5a4e82c:person:palestinians::patient": {
+      "verdict": "consistent",
+      "reason": "两来源语义角色完全一致：以色列军方为施事，巴勒斯坦男子为受事，其余参与者表述相同，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-detains-2016d321952b0d3d",
+      "attribute": "roles",
+      "judged_at": "2026-10-06T03:09:17Z"
+    },
+    "event:all-meeting-2c18c46dd0d25b19::participants::report:2c18c46dd0d25b19:geopolitical_entity:iran;report:2c18c46dd0d25b19:organization:iranian-officials;report:2c18c46dd0d25b19:person:donald-trump;report:2c18c46dd0d25b19:person:donald-trump;report:2c18c46dd0d25b19:person:iranian-mediators;report:2c18c46dd0d25b19:person:iranian-mediators;report:2c18c46dd0d25b19:person:jared-kushner;report:2c18c46dd0d25b19:person:steve-witkoff;report:549ee85fb321100c:organization:iranian-officials;report:549ee85fb321100c:person:donald-trump;report:549ee85fb321100c:person:iranian-mediators;report:549ee85fb321100c:person:iranian-mediators;report:549ee85fb321100c:person:jared-kushner;report:549ee85fb321100c:person:steve-witkoff;report:6d67f88c7e041ff0:geopolitical_entity:iran;report:6d67f88c7e041ff0:organization:iranian-officials;report:6d67f88c7e041ff0:organization:u-s-officials;report:6d67f88c7e041ff0:person:donald-trump;report:eeae16e2ca5fa128:geopolitical_entity:iran;report:eeae16e2ca5fa128:organization:iranian-officials;report:eeae16e2ca5fa128:organization:u-s-officials;report:eeae16e2ca5fa128:person:donald-trump;report:eeae16e2ca5fa128:person:iranian-mediators;report:eeae16e2ca5fa128:person:iranian-mediators;report:eeae16e2ca5fa128:person:jared-kushner;report:eeae16e2ca5fa128:person:steve-witkoff": {
+      "verdict": "consistent",
+      "reason": "各来源均指特朗普与伊朗官员/调解人会面，参与者表述为详略差异，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-2c18c46dd0d25b19",
+      "attribute": "participants",
+      "judged_at": "2026-10-06T03:09:17Z"
+    },
+    "event:all-meeting-2c18c46dd0d25b19::actions::report:2c18c46dd0d25b19:meets;report:2c18c46dd0d25b19:meets;report:2c18c46dd0d25b19:meets;report:2c18c46dd0d25b19:threatens;report:549ee85fb321100c:meets;report:549ee85fb321100c:meets;report:549ee85fb321100c:meets;report:6d67f88c7e041ff0:meets;report:6d67f88c7e041ff0:threatens;report:eeae16e2ca5fa128:meets;report:eeae16e2ca5fa128:meets;report:eeae16e2ca5fa128:meets;report:eeae16e2ca5fa128:threatens": {
+      "verdict": "consistent",
+      "reason": "各来源均报道特朗普称美伊官员周二会面，并提及他此前在联大发出威胁，动作表述一致，仅详略不同。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-2c18c46dd0d25b19",
+      "attribute": "actions",
+      "judged_at": "2026-10-06T03:09:18Z"
+    },
+    "event:all-meeting-2c18c46dd0d25b19::time::report:2c18c46dd0d25b19:2026-09-22;report:2c18c46dd0d25b19:2026-09-22;report:2c18c46dd0d25b19:2026-09-22;report:2c18c46dd0d25b19:2026-09-22;report:549ee85fb321100c:09-22;report:549ee85fb321100c:09-22;report:549ee85fb321100c:09-22;report:6d67f88c7e041ff0:2026-09-22;report:6d67f88c7e041ff0:2026-09-22;report:eeae16e2ca5fa128:2026-09-22;report:eeae16e2ca5fa128:2026-09-22;report:eeae16e2ca5fa128:2026-09-22;report:eeae16e2ca5fa128:2026-09-22": {
+      "verdict": "consistent",
+      "reason": "各来源均指2026年9月22日（周二）美伊官员会面，日期表述一致，仅格式详略不同。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-2c18c46dd0d25b19",
+      "attribute": "time",
+      "judged_at": "2026-10-06T03:09:19Z"
+    },
+    "event:all-meeting-2c18c46dd0d25b19::place::report:2c18c46dd0d25b19:gulf cooperation council meeting;report:2c18c46dd0d25b19:gulf cooperation council meeting;report:2c18c46dd0d25b19:un headquarters;report:2c18c46dd0d25b19:un headquarters;report:549ee85fb321100c:gulf cooperation council meeting;report:549ee85fb321100c:gulf cooperation council meeting;report:549ee85fb321100c:un headquarters;report:6d67f88c7e041ff0:u.n. general assembly;report:eeae16e2ca5fa128:united nations": {
+      "verdict": "consistent",
+      "reason": "各来源均指向联合国大会/联合国总部同一地点，GCC会议为相关背景，无实质地点矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-2c18c46dd0d25b19",
+      "attribute": "place",
+      "judged_at": "2026-10-06T03:09:20Z"
+    },
+    "event:all-meeting-2c18c46dd0d25b19::cause::report:2c18c46dd0d25b19:peace deal momentum;report:2c18c46dd0d25b19:peace deal momentum;report:2c18c46dd0d25b19:to end nearly seven-month war;report:2c18c46dd0d25b19:trump's threat to annihilate iran;report:549ee85fb321100c:peace deal momentum;report:549ee85fb321100c:peace deal momentum;report:549ee85fb321100c:trump's threat during un speech;report:6d67f88c7e041ff0:to end nearly seven-month war;report:6d67f88c7e041ff0:to end nearly seven-month war;report:eeae16e2ca5fa128:to end nearly seven-month war;report:eeae16e2ca5fa128:to end nearly seven-month war": {
+      "verdict": "consistent",
+      "reason": "各来源均指向同一原因：特朗普在联大威胁若不能尽快达成结束近七个月战争的协议将摧毁伊朗，表述为详略差异，无实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-2c18c46dd0d25b19",
+      "attribute": "cause",
+      "judged_at": "2026-10-06T03:09:21Z"
+    },
+    "event:all-meeting-2c18c46dd0d25b19::manner::report:2c18c46dd0d25b19:3 hours;report:2c18c46dd0d25b19:during un speech;report:2c18c46dd0d25b19:very productive meeting;report:2c18c46dd0d25b19:very productive meeting;report:549ee85fb321100c:3 hours;report:6d67f88c7e041ff0:three hours;report:eeae16e2ca5fa128:shortly before meeting;report:eeae16e2ca5fa128:three hours;report:eeae16e2ca5fa128:very productive meeting;report:eeae16e2ca5fa128:very productive meeting": {
+      "verdict": "consistent",
+      "reason": "各来源均称会面持续约3小时，仅数字与英文表述差异，属同义改写，无实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-2c18c46dd0d25b19",
+      "attribute": "manner",
+      "judged_at": "2026-10-06T03:09:21Z"
+    },
+    "event:all-meeting-2c18c46dd0d25b19::result::report:2c18c46dd0d25b19:few details shared;report:2c18c46dd0d25b19:may annihilate iran;report:2c18c46dd0d25b19:momentum for peace deal;report:2c18c46dd0d25b19:momentum for peace deal;report:549ee85fb321100c:a very productive meeting;report:549ee85fb321100c:a very productive meeting;report:549ee85fb321100c:a very productive meeting;report:6d67f88c7e041ff0:a very good meeting": {
+      "verdict": "consistent",
+      "reason": "各来源均描述特朗普称美伊官员会晤，评价为'富有成效'或'非常好'，属同义详略差异，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-2c18c46dd0d25b19",
+      "attribute": "result",
+      "judged_at": "2026-10-06T03:09:22Z"
+    },
+    "event:all-meeting-2c18c46dd0d25b19::roles::report:2c18c46dd0d25b19:geopolitical_entity:iran::target;report:2c18c46dd0d25b19:organization:iranian-officials::participant;report:2c18c46dd0d25b19:person:donald-trump::assailant;report:2c18c46dd0d25b19:person:donald-trump::participant;report:2c18c46dd0d25b19:person:iranian-mediators::participant;report:2c18c46dd0d25b19:person:iranian-mediators::participant;report:2c18c46dd0d25b19:person:jared-kushner::participant;report:2c18c46dd0d25b19:person:steve-witkoff::participant;report:549ee85fb321100c:organization:iranian-officials::participant;report:549ee85fb321100c:person:donald-trump::participant;report:549ee85fb321100c:person:iranian-mediators::participant;report:549ee85fb321100c:person:iranian-mediators::participant;report:549ee85fb321100c:person:jared-kushner::participant;report:549ee85fb321100c:person:steve-witkoff::participant;report:6d67f88c7e041ff0:geopolitical_entity:iran::target;report:6d67f88c7e041ff0:organization:iranian-officials::participant;report:6d67f88c7e041ff0:organization:u-s-officials::participant;report:6d67f88c7e041ff0:person:donald-trump::assailant;report:eeae16e2ca5fa128:geopolitical_entity:iran::target;report:eeae16e2ca5fa128:organization:iranian-officials::participant;report:eeae16e2ca5fa128:organization:u-s-officials::participant;report:eeae16e2ca5fa128:person:donald-trump::assailant;report:eeae16e2ca5fa128:person:iranian-mediators::participant;report:eeae16e2ca5fa128:person:iranian-mediators::participant;report:eeae16e2ca5fa128:person:jared-kushner::participant;report:eeae16e2ca5fa128:person:steve-witkoff::participant": {
+      "verdict": "consistent",
+      "reason": "各来源均指特朗普与伊朗官员会面，参与者表述详略不同，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-2c18c46dd0d25b19",
+      "attribute": "roles",
+      "judged_at": "2026-10-06T03:09:23Z"
+    },
+    "event:all-meeting-301a8c33915390e6::time::report:301a8c33915390e6:2026-09-22;report:42f2f2fdd7bfa461:09-22;report:60527474ba6b6d82:2026-09-22;report:60527474ba6b6d82:2026-09-22;report:783065c3c9cd09be:2026-09-22;report:f97ebc6b177bff31:2026-09-22": {
+      "verdict": "consistent",
+      "reason": "各来源均指向同一会面，日期为2026年9月22日（周二），仅详略与格式差异，无实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-301a8c33915390e6",
+      "attribute": "time",
+      "judged_at": "2026-10-06T03:09:24Z"
+    },
+    "event:all-meeting-301a8c33915390e6::cause::report:301a8c33915390e6:russia's war on ukraine;report:42f2f2fdd7bfa461:ending russia's war in ukraine;report:60527474ba6b6d82:ending russia's war on ukraine;report:60527474ba6b6d82:ending russia's war on ukraine;report:783065c3c9cd09be:ending russia's war on ukraine;report:f97ebc6b177bff31:ending russia's war on ukraine": {
+      "verdict": "consistent",
+      "reason": "各来源均指特朗普会见泽连斯基旨在结束俄罗斯对乌克兰的战争，表述为同义改写，无实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-301a8c33915390e6",
+      "attribute": "cause",
+      "judged_at": "2026-10-06T03:09:25Z"
+    },
+    "event:all-meeting-301a8c33915390e6::manner::report:301a8c33915390e6:briefly addressed reporters before private talks;report:42f2f2fdd7bfa461:briefly addressed reporters before private talks;report:783065c3c9cd09be:briefly addressed reporters before heading behind closed doors;report:f97ebc6b177bff31:at the u.n. general assembly": {
+      "verdict": "consistent",
+      "reason": "各来源均描述特朗普与泽连斯基会面方式，'私下会谈前简短对记者讲话'与'闭门会谈'为同义详略差异，联大场合不矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-301a8c33915390e6",
+      "attribute": "manner",
+      "judged_at": "2026-10-06T03:09:26Z"
+    },
+    "event:all-meeting-301a8c33915390e6::result::report:301a8c33915390e6:trump suggests a ukraine deal could be close;report:42f2f2fdd7bfa461:no stated outcome;report:783065c3c9cd09be:trump suggested a ukraine deal could be close;report:f97ebc6b177bff31:hope for a deal to end the war": {
+      "verdict": "consistent",
+      "reason": "各来源均描述同一会晤，结果表述为特朗普暗示协议可能接近或泽连斯基表达希望，属详略与措辞差异，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-301a8c33915390e6",
+      "attribute": "result",
+      "judged_at": "2026-10-06T03:09:26Z"
+    },
+    "event:all-meeting-301a8c33915390e6::attributed_to::report:301a8c33915390e6:trump;report:42f2f2fdd7bfa461:associated press;report:783065c3c9cd09be:associated press;report:f97ebc6b177bff31:associated press": {
+      "verdict": "conflict",
+      "reason": "koaa.com称消息来源为Trump，其余来源均称Associated Press，对同一属性给出不同指称，属实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-301a8c33915390e6",
+      "attribute": "attributed_to",
+      "judged_at": "2026-10-06T03:09:27Z"
+    },
+    "event:all-meeting-3ee278b4dd73da39::attributed_to::report:3ee278b4dd73da39:us officials;report:9b54874ceee23e7e:two us officials": {
+      "verdict": "consistent",
+      "reason": "两来源均指同一消息来源，一为概括表述'US officials'，一为具体'两名美国官员'，属详略差异，无实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-3ee278b4dd73da39",
+      "attribute": "attributed_to",
+      "judged_at": "2026-10-06T03:09:28Z"
+    },
+    "event:all-deny-8727f49be8141d9f::participants::report:8727f49be8141d9f:geopolitical_entity:united-states;report:8727f49be8141d9f:person:esmail-baghaei;report:bc8066ef48bdb3e2:person:esmail-baghaei;report:bc8066ef48bdb3e2:person:message-from-us": {
+      "verdict": "consistent",
+      "reason": "两来源均指Esmail Baghaei否认美国传递信息，'United States'与'message from US'为同一事实的详略表述。",
+      "rule_status": "overlap",
+      "event_id": "event:all-deny-8727f49be8141d9f",
+      "attribute": "participants",
+      "judged_at": "2026-10-06T03:09:29Z"
+    },
+    "event:all-deny-8727f49be8141d9f::roles::report:8727f49be8141d9f:geopolitical_entity:united-states::patient;report:8727f49be8141d9f:person:esmail-baghaei::agent;report:bc8066ef48bdb3e2:person:esmail-baghaei::agent;report:bc8066ef48bdb3e2:person:message-from-us::patient": {
+      "verdict": "consistent",
+      "reason": "两来源均指Esmail Baghaei为否认者，患者分别为美国或来自美国的信息，语义指向同一否认事实，属详略差异。",
+      "rule_status": "overlap",
+      "event_id": "event:all-deny-8727f49be8141d9f",
+      "attribute": "roles",
+      "judged_at": "2026-10-06T03:09:30Z"
+    },
+    "event:all-meeting-03c45110c7f05770::participants::report:03c45110c7f05770:geopolitical_entity:iran;report:03c45110c7f05770:organization:iranian-officials;report:03c45110c7f05770:organization:u-s-officials;report:03c45110c7f05770:person:donald-trump;report:0727d2b370c41dbe:geopolitical_entity:iran;report:0727d2b370c41dbe:organization:iranian-officials;report:0727d2b370c41dbe:organization:iranian-officials;report:0727d2b370c41dbe:organization:u-s-officials;report:0727d2b370c41dbe:person:donald-trump;report:0727d2b370c41dbe:person:steve-witkoff;report:98f89a64bd317099:organization:iranian-officials;report:98f89a64bd317099:organization:iranian-officials;report:98f89a64bd317099:organization:iranian-officials;report:98f89a64bd317099:organization:u-s-officials;report:98f89a64bd317099:person:jared-kushner;report:98f89a64bd317099:person:steve-witkoff;report:b226471683dff88c:organization:iranian-officials;report:b226471683dff88c:organization:iranian-officials;report:b226471683dff88c:organization:iranian-officials;report:b226471683dff88c:organization:u-s-officials;report:b226471683dff88c:person:jared-kushner;report:b226471683dff88c:person:steve-witkoff;report:f84991fecc6541e0:organization:iranian-officials;report:f84991fecc6541e0:organization:iranian-officials;report:f84991fecc6541e0:organization:iranian-officials;report:f84991fecc6541e0:organization:u-s-officials;report:f84991fecc6541e0:person:jared-kushner;report:f84991fecc6541e0:person:steve-witkoff;report:febeb7bcfc18dc18:geopolitical_entity:iran;report:febeb7bcfc18dc18:organization:iranian-officials;report:febeb7bcfc18dc18:organization:iranian-officials;report:febeb7bcfc18dc18:organization:iranian-officials;report:febeb7bcfc18dc18:organization:u-s-officials;report:febeb7bcfc18dc18:person:donald-trump;report:febeb7bcfc18dc18:person:jared-kushner;report:febeb7bcfc18dc18:person:steve-witkoff": {
+      "verdict": "consistent",
+      "reason": "各来源均指美伊官员会面，参与者为美方官员（含维特科夫、库什纳）与伊朗官员，属详略差异，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "participants",
+      "judged_at": "2026-10-08T09:13:41Z"
+    },
+    "event:all-meeting-03c45110c7f05770::actions::report:03c45110c7f05770:meets;report:03c45110c7f05770:threatens;report:0727d2b370c41dbe:meets;report:0727d2b370c41dbe:meets;report:0727d2b370c41dbe:threatens;report:98f89a64bd317099:meets;report:98f89a64bd317099:meets;report:98f89a64bd317099:meets;report:b226471683dff88c:meets;report:b226471683dff88c:meets;report:b226471683dff88c:meets;report:f84991fecc6541e0:meets;report:f84991fecc6541e0:meets;report:f84991fecc6541e0:meets;report:febeb7bcfc18dc18:meets;report:febeb7bcfc18dc18:meets;report:febeb7bcfc18dc18:meets;report:febeb7bcfc18dc18:threatens": {
+      "verdict": "consistent",
+      "reason": "各来源均报道美伊官员会面，细节如时长、参与人略有差异，但核心动作一致，威胁言论为背景，不构成矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "actions",
+      "judged_at": "2026-10-08T09:13:42Z"
+    },
+    "event:all-meeting-03c45110c7f05770::time::report:03c45110c7f05770:09-21;report:03c45110c7f05770:09-21;report:0727d2b370c41dbe:2026-09-22;report:0727d2b370c41dbe:2026-09-22;report:0727d2b370c41dbe:2026-09-22;report:98f89a64bd317099:2026-09-22;report:98f89a64bd317099:2026-09-22;report:98f89a64bd317099:2026-09-22;report:b226471683dff88c:2026-09-22;report:b226471683dff88c:2026-09-22;report:b226471683dff88c:2026-09-22;report:f84991fecc6541e0:2026-09-22;report:f84991fecc6541e0:2026-09-22;report:f84991fecc6541e0:2026-09-22;report:febeb7bcfc18dc18:2026-09-22;report:febeb7bcfc18dc18:2026-09-22;report:febeb7bcfc18dc18:2026-09-22;report:febeb7bcfc18dc18:2026-09-22": {
+      "verdict": "conflict",
+      "reason": "2news.com称9月21日，其余来源均称2026年9月22日，日期实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "time",
+      "judged_at": "2026-10-08T09:13:43Z"
+    },
+    "event:all-meeting-03c45110c7f05770::cause::report:03c45110c7f05770:ending the war;report:03c45110c7f05770:ending the war;report:0727d2b370c41dbe:end the war;report:0727d2b370c41dbe:end the war;report:0727d2b370c41dbe:no deal to end the war;report:98f89a64bd317099:reviving fragile hopes for a new diplomatic off-ramp;report:98f89a64bd317099:reviving fragile hopes for a new diplomatic off-ramp;report:98f89a64bd317099:reviving fragile hopes for a new diplomatic off-ramp;report:b226471683dff88c:to discuss ending the war;report:b226471683dff88c:to discuss ending the war;report:b226471683dff88c:to discuss ending the war;report:f84991fecc6541e0:ending war, opening strait of hormuz;report:f84991fecc6541e0:ending war, opening strait of hormuz;report:f84991fecc6541e0:ending war, opening strait of hormuz;report:febeb7bcfc18dc18:if a deal isn’t reached soon to end the war;report:febeb7bcfc18dc18:to discuss ending the war;report:febeb7bcfc18dc18:to discuss ending the war;report:febeb7bcfc18dc18:to discuss ending the war": {
+      "verdict": "consistent",
+      "reason": "各来源均称美伊官员会晤旨在结束战争，部分提及重开霍尔木兹海峡或外交出路，属详略差异，无实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "cause",
+      "judged_at": "2026-10-08T09:13:44Z"
+    },
+    "event:all-meeting-03c45110c7f05770::manner::report:03c45110c7f05770:in a u.n. speech;report:03c45110c7f05770:shortly after trump's u.n. speech;report:0727d2b370c41dbe:lengthy talks;report:0727d2b370c41dbe:lengthy talks;report:0727d2b370c41dbe:quickly;report:98f89a64bd317099:three-hour meeting;report:98f89a64bd317099:through mediators shuttling between each delegation;report:98f89a64bd317099:through mediators shuttling between each delegation;report:b226471683dff88c:three hours;report:b226471683dff88c:three hours;report:b226471683dff88c:three hours;report:f84991fecc6541e0:three hours;report:f84991fecc6541e0:three hours;report:f84991fecc6541e0:three hours;report:febeb7bcfc18dc18:for about three hours;report:febeb7bcfc18dc18:quickly;report:febeb7bcfc18dc18:through mediators;report:febeb7bcfc18dc18:through mediators": {
+      "verdict": "consistent",
+      "reason": "各来源均描述美伊官员在联大期间会晤，时长约三小时、经中间人穿梭传话，属详略与措辞差异，无实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "manner",
+      "judged_at": "2026-10-08T09:13:44Z"
+    },
+    "event:all-meeting-03c45110c7f05770::result::report:03c45110c7f05770:a very good meeting;report:0727d2b370c41dbe:annihilation of iran;report:0727d2b370c41dbe:constructive and promising discussions;report:0727d2b370c41dbe:constructive and promising discussions;report:98f89a64bd317099:constructive and promising talks;report:98f89a64bd317099:constructive and promising talks;report:98f89a64bd317099:very productive meeting; another planned;report:b226471683dff88c:a very good meeting;report:b226471683dff88c:a very good meeting;report:b226471683dff88c:a very good meeting;report:f84991fecc6541e0:a very good meeting, a very productive meeting;report:f84991fecc6541e0:a very good meeting, a very productive meeting;report:f84991fecc6541e0:a very good meeting, a very productive meeting;report:febeb7bcfc18dc18:a very good meeting;report:febeb7bcfc18dc18:a very good meeting;report:febeb7bcfc18dc18:a very good meeting;report:febeb7bcfc18dc18:annihilation of the islamic republic": {
+      "verdict": "consistent",
+      "reason": "各来源均称美伊官员会晤，特朗普评价为“非常好/富有成效”，威胁“消灭伊朗”属背景言论，非对会晤结果的矛盾表述。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "result",
+      "judged_at": "2026-10-08T09:13:45Z"
+    },
+    "event:all-meeting-03c45110c7f05770::attributed_to::report:03c45110c7f05770:trump;report:03c45110c7f05770:trump;report:0727d2b370c41dbe:steve witkoff;report:0727d2b370c41dbe:steve witkoff;report:0727d2b370c41dbe:trump;report:98f89a64bd317099:trump;report:98f89a64bd317099:witkoff;report:98f89a64bd317099:witkoff;report:b226471683dff88c:trump;report:b226471683dff88c:trump;report:b226471683dff88c:trump;report:f84991fecc6541e0:trump;report:f84991fecc6541e0:trump;report:f84991fecc6541e0:trump;report:febeb7bcfc18dc18:trump;report:febeb7bcfc18dc18:trump;report:febeb7bcfc18dc18:trump;report:febeb7bcfc18dc18:trump": {
+      "verdict": "consistent",
+      "reason": "各来源均将消息来源归于特朗普，部分补充维特科夫等特使，属详略差异，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "attributed_to",
+      "judged_at": "2026-10-08T09:13:46Z"
+    },
+    "event:all-meeting-03c45110c7f05770::roles::report:03c45110c7f05770:geopolitical_entity:iran::target;report:03c45110c7f05770:organization:iranian-officials::participant;report:03c45110c7f05770:organization:u-s-officials::participant;report:03c45110c7f05770:person:donald-trump::assailant;report:0727d2b370c41dbe:geopolitical_entity:iran::target;report:0727d2b370c41dbe:organization:iranian-officials::participant;report:0727d2b370c41dbe:organization:iranian-officials::participant;report:0727d2b370c41dbe:organization:u-s-officials::participant;report:0727d2b370c41dbe:person:donald-trump::assailant;report:0727d2b370c41dbe:person:steve-witkoff::participant;report:98f89a64bd317099:organization:iranian-officials::participant;report:98f89a64bd317099:organization:iranian-officials::participant;report:98f89a64bd317099:organization:iranian-officials::participant;report:98f89a64bd317099:organization:u-s-officials::participant;report:98f89a64bd317099:person:jared-kushner::participant;report:98f89a64bd317099:person:steve-witkoff::participant;report:b226471683dff88c:organization:iranian-officials::participant;report:b226471683dff88c:organization:iranian-officials::participant;report:b226471683dff88c:organization:iranian-officials::participant;report:b226471683dff88c:organization:u-s-officials::participant;report:b226471683dff88c:person:jared-kushner::participant;report:b226471683dff88c:person:steve-witkoff::participant;report:f84991fecc6541e0:organization:iranian-officials::participant;report:f84991fecc6541e0:organization:iranian-officials::participant;report:f84991fecc6541e0:organization:iranian-officials::participant;report:f84991fecc6541e0:organization:u-s-officials::participant;report:f84991fecc6541e0:person:jared-kushner::participant;report:f84991fecc6541e0:person:steve-witkoff::participant;report:febeb7bcfc18dc18:geopolitical_entity:iran::target;report:febeb7bcfc18dc18:organization:iranian-officials::participant;report:febeb7bcfc18dc18:organization:iranian-officials::participant;report:febeb7bcfc18dc18:organization:iranian-officials::participant;report:febeb7bcfc18dc18:organization:u-s-officials::participant;report:febeb7bcfc18dc18:person:donald-trump::assailant;report:febeb7bcfc18dc18:person:jared-kushner::participant;report:febeb7bcfc18dc18:person:steve-witkoff::participant": {
+      "verdict": "consistent",
+      "reason": "各来源均指美伊官员会面，美方参与者表述为U.S. officials或具体特使Witkoff、Kushner，属详略差异，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "roles",
+      "judged_at": "2026-10-08T09:13:47Z"
+    },
+    "event:all-meeting-15d04444fe323b9b::participants::report:15d04444fe323b9b:organization:iranian-officials;report:15d04444fe323b9b:organization:iranian-officials;report:15d04444fe323b9b:organization:iranian-officials;report:15d04444fe323b9b:person:donald-trump;report:15d04444fe323b9b:person:jared-kushner;report:15d04444fe323b9b:person:steve-witkoff;report:c6d0d22d63c3dafe:geopolitical_entity:iran;report:c6d0d22d63c3dafe:organization:iranian-officials;report:c6d0d22d63c3dafe:person:donald-trump;report:c6d0d22d63c3dafe:person:donald-trump": {
+      "verdict": "consistent",
+      "reason": "两来源均称特朗普与伊朗官员会面，参与者核心一致；具体美方人员详略差异不构成实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-15d04444fe323b9b",
+      "attribute": "participants",
+      "judged_at": "2026-10-08T09:13:48Z"
+    },
+    "event:all-meeting-15d04444fe323b9b::actions::report:15d04444fe323b9b:meets;report:15d04444fe323b9b:meets;report:15d04444fe323b9b:meets;report:c6d0d22d63c3dafe:meets;report:c6d0d22d63c3dafe:threatens": {
+      "verdict": "consistent",
+      "reason": "两来源均报道特朗普称美伊官员周二会面，动作一致，仅详略差异，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-15d04444fe323b9b",
+      "attribute": "actions",
+      "judged_at": "2026-10-08T09:13:48Z"
+    },
+    "event:all-meeting-15d04444fe323b9b::place::report:15d04444fe323b9b:un headquarters": {
+      "verdict": "uncertain",
+      "reason": "仅一个来源提及地点为联合国总部，另一来源无地点信息，缺乏对比，无法判定一致性或冲突。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-15d04444fe323b9b",
+      "attribute": "place",
+      "judged_at": "2026-10-08T09:13:49Z"
+    },
+    "event:all-meeting-15d04444fe323b9b::cause::report:15d04444fe323b9b:to end nearly seven-month war;report:c6d0d22d63c3dafe:ending the nearly seven-month war;report:c6d0d22d63c3dafe:if a deal isn’t reached soon to end the nearly seven-month war": {
+      "verdict": "consistent",
+      "reason": "两来源均称会面原因是为结束近七个月的战争，表述一致，仅详略不同。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-15d04444fe323b9b",
+      "attribute": "cause",
+      "judged_at": "2026-10-08T09:13:50Z"
+    },
+    "event:all-meeting-15d04444fe323b9b::manner::report:15d04444fe323b9b:3 hours;report:c6d0d22d63c3dafe:for about three hours": {
+      "verdict": "consistent",
+      "reason": "两来源均称美伊官员周二会面约三小时，表述为同义详略差异，无实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-15d04444fe323b9b",
+      "attribute": "manner",
+      "judged_at": "2026-10-08T09:13:50Z"
+    },
+    "event:all-meeting-15d04444fe323b9b::result::report:15d04444fe323b9b:a very productive meeting;report:15d04444fe323b9b:a very productive meeting;report:15d04444fe323b9b:a very productive meeting": {
+      "verdict": "uncertain",
+      "reason": "仅一个来源给出结果表述，另一来源无相关值，缺乏对比信息，无法判定一致性或冲突。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-15d04444fe323b9b",
+      "attribute": "result",
+      "judged_at": "2026-10-08T09:13:51Z"
+    },
+    "event:all-meeting-15d04444fe323b9b::roles::report:15d04444fe323b9b:organization:iranian-officials::participant;report:15d04444fe323b9b:organization:iranian-officials::participant;report:15d04444fe323b9b:organization:iranian-officials::participant;report:15d04444fe323b9b:person:donald-trump::participant;report:15d04444fe323b9b:person:jared-kushner::participant;report:15d04444fe323b9b:person:steve-witkoff::participant;report:c6d0d22d63c3dafe:geopolitical_entity:iran::target;report:c6d0d22d63c3dafe:organization:iranian-officials::participant;report:c6d0d22d63c3dafe:person:donald-trump::assailant;report:c6d0d22d63c3dafe:person:donald-trump::participant": {
+      "verdict": "consistent",
+      "reason": "两来源均指特朗普与伊朗官员会面，语义角色一致；mykxlg额外标注assailant/target属同一事件框架，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-15d04444fe323b9b",
+      "attribute": "roles",
+      "judged_at": "2026-10-08T09:13:52Z"
+    },
+    "event:all-meeting-1d06b3fa33c2f12a::time::report:1d06b3fa33c2f12a:2026-09-23;report:4387ef4229412af5:2026-09;report:5308309fc76758b8:2026-09-23;report:7f9175cf0b05af2d:2026-09-23;report:a00f78b04b5275b0:2026-09-23;report:ce511fed94afac59:2026-09-24": {
+      "verdict": "conflict",
+      "reason": "多数来源称会面在2026-09-23（周三），但straitstimes称9月24日，具体日期存在实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-1d06b3fa33c2f12a",
+      "attribute": "time",
+      "judged_at": "2026-10-08T09:13:53Z"
+    },
+    "event:all-meeting-1d06b3fa33c2f12a::place::report:1d06b3fa33c2f12a:washington;report:4387ef4229412af5:washington dc;report:5308309fc76758b8:washington;report:7f9175cf0b05af2d:washington;report:a00f78b04b5275b0:washington;report:ce511fed94afac59:white house": {
+      "verdict": "consistent",
+      "reason": "华盛顿与白宫均指同一会面地点，白宫位于华盛顿，属详略/别名指称差异，无实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-1d06b3fa33c2f12a",
+      "attribute": "place",
+      "judged_at": "2026-10-08T09:13:53Z"
+    },
+    "event:all-meeting-1d06b3fa33c2f12a::cause::report:5308309fc76758b8:bilateral discussions;report:a00f78b04b5275b0:bilateral discussions;report:ce511fed94afac59:strengthen us-china ties": {
+      "verdict": "consistent",
+      "reason": "各表述均指习特会旨在双边讨论、加强中美关系，属同义详略差异，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-1d06b3fa33c2f12a",
+      "attribute": "cause",
+      "judged_at": "2026-10-08T09:13:55Z"
+    },
+    "event:all-meeting-1d06b3fa33c2f12a::manner::report:a00f78b04b5275b0:in-person meeting;report:ce511fed94afac59:gala dinner": {
+      "verdict": "consistent",
+      "reason": "两表述均指同一场会面，一为面对面会晤，一为晚宴环节，属详略差异，不矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-1d06b3fa33c2f12a",
+      "attribute": "manner",
+      "judged_at": "2026-10-08T09:13:56Z"
+    },
+    "event:all-meeting-1d06b3fa33c2f12a::result::report:a00f78b04b5275b0:meeting held;report:ce511fed94afac59:no substantive deliverables expected": {
+      "verdict": "consistent",
+      "reason": "两来源均确认会晤举行，一述事实一述预期结果，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-1d06b3fa33c2f12a",
+      "attribute": "result",
+      "judged_at": "2026-10-08T09:13:57Z"
+    },
+    "event:all-meeting-1d06b3fa33c2f12a::attributed_to::report:4387ef4229412af5:reuters;report:a00f78b04b5275b0:xi jinping;report:ce511fed94afac59:bhagyashree garekar": {
+      "verdict": "conflict",
+      "reason": "各来源对'消息来源'给出不同指称：Reuters、Xi Jinping、Bhagyashree Garekar，分别指通讯社、人物、记者，非同一对象。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-1d06b3fa33c2f12a",
+      "attribute": "attributed_to",
+      "judged_at": "2026-10-08T09:13:57Z"
+    },
+    "event:all-meeting-301a8c33915390e6::time::report:301a8c33915390e6:2026-09-22;report:42f2f2fdd7bfa461:09-22;report:60527474ba6b6d82:2026-09-22;report:60527474ba6b6d82:2026-09-22;report:f97ebc6b177bff31:2026-09-22": {
+      "verdict": "consistent",
+      "reason": "各来源均指向同一会面，日期为2026年9月22日（周二），仅详略与格式差异，无实质矛盾。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-301a8c33915390e6",
+      "attribute": "time",
+      "judged_at": "2026-10-08T09:13:58Z"
+    },
+    "event:all-meeting-301a8c33915390e6::cause::report:301a8c33915390e6:russia's war on ukraine;report:42f2f2fdd7bfa461:ending russia's war in ukraine;report:60527474ba6b6d82:ending russia's war on ukraine;report:60527474ba6b6d82:ending russia's war on ukraine;report:f97ebc6b177bff31:ending russia's war on ukraine": {
+      "verdict": "consistent",
+      "reason": "各来源均表述为结束俄罗斯对乌克兰的战争，属同义改写，指向同一事实。",
+      "rule_status": "differ",
+      "event_id": "event:all-meeting-301a8c33915390e6",
+      "attribute": "cause",
+      "judged_at": "2026-10-08T09:13:59Z"
+    },
+    "event:all-meeting-301a8c33915390e6::manner::report:301a8c33915390e6:briefly addressed reporters before private talks;report:42f2f2fdd7bfa461:briefly addressed reporters before private talks;report:f97ebc6b177bff31:at the u.n. general assembly": {
+      "verdict": "consistent",
+      "reason": "两表述分别描述会前简短答记者问和会面地点，均指同一场特朗普与泽连斯基的会晤，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-301a8c33915390e6",
+      "attribute": "manner",
+      "judged_at": "2026-10-08T09:14:00Z"
+    },
+    "event:all-meeting-301a8c33915390e6::result::report:301a8c33915390e6:trump suggests a ukraine deal could be close;report:42f2f2fdd7bfa461:no stated outcome;report:f97ebc6b177bff31:hope for a deal to end the war": {
+      "verdict": "consistent",
+      "reason": "三源均指同一会晤，结果表述为对达成协议/结束战争的希望或接近，属同义详略差异，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-301a8c33915390e6",
+      "attribute": "result",
+      "judged_at": "2026-10-08T09:14:00Z"
+    },
+    "event:all-meeting-301a8c33915390e6::attributed_to::report:301a8c33915390e6:trump;report:42f2f2fdd7bfa461:associated press;report:f97ebc6b177bff31:associated press": {
+      "verdict": "conflict",
+      "reason": "koaa.com称消息来源为Trump，另两家称Associated Press，指称不同来源，实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-301a8c33915390e6",
+      "attribute": "attributed_to",
+      "judged_at": "2026-10-08T09:14:01Z"
+    },
+    "event:all-meeting-8d62326de8c2a6b4::participants::report:8d62326de8c2a6b4:person:donald-trump;report:8d62326de8c2a6b4:person:gulf-arab-leaders;report:b2a34902d16c613c:person:donald-trump;report:b2a34902d16c613c:person:gulf-arab-leaders;report:ecc7d49fc1c75975:organization:iranian-officials;report:ecc7d49fc1c75975:person:donald-trump;report:ecc7d49fc1c75975:person:donald-trump;report:ecc7d49fc1c75975:person:gulf-arab-leaders;report:ecc7d49fc1c75975:person:marco-rubio;report:ecc7d49fc1c75975:person:meeting-with-masoud-pezeshkian": {
+      "verdict": "consistent",
+      "reason": "三源均指特朗普与海湾阿拉伯国家领导人会面，参与者一致；cp24额外提及伊朗官员属补充信息，不构成矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-8d62326de8c2a6b4",
+      "attribute": "participants",
+      "judged_at": "2026-10-08T09:14:02Z"
+    },
+    "event:all-meeting-8d62326de8c2a6b4::actions::report:8d62326de8c2a6b4:meets;report:b2a34902d16c613c:meets;report:ecc7d49fc1c75975:approves;report:ecc7d49fc1c75975:meets;report:ecc7d49fc1c75975:meets": {
+      "verdict": "consistent",
+      "reason": "三源均称特朗普将会见六个海湾阿拉伯国家领导人，动作一致，仅日期表述详略不同，无实质矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-8d62326de8c2a6b4",
+      "attribute": "actions",
+      "judged_at": "2026-10-08T09:14:03Z"
+    },
+    "event:all-meeting-8d62326de8c2a6b4::place::report:ecc7d49fc1c75975:new york;report:ecc7d49fc1c75975:new york": {
+      "verdict": "uncertain",
+      "reason": "仅一个来源称地点为纽约，其余来源未提供地点信息，无法交叉验证是否一致或冲突。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-8d62326de8c2a6b4",
+      "attribute": "place",
+      "judged_at": "2026-10-08T09:14:04Z"
+    },
+    "event:all-meeting-8d62326de8c2a6b4::cause::report:ecc7d49fc1c75975:ending the iran war;report:ecc7d49fc1c75975:ending the iran war": {
+      "verdict": "uncertain",
+      "reason": "仅一个来源给出原因，其余来源无相关表述，信息不足以判断是否一致或冲突。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-8d62326de8c2a6b4",
+      "attribute": "cause",
+      "judged_at": "2026-10-08T09:14:05Z"
+    },
+    "event:all-meeting-8d62326de8c2a6b4::manner::report:ecc7d49fc1c75975:shortly after un warning": {
+      "verdict": "uncertain",
+      "reason": "仅一个来源提及方式，且未涉及海湾阿拉伯领导人会晤，信息不足以判断一致性。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-8d62326de8c2a6b4",
+      "attribute": "manner",
+      "judged_at": "2026-10-08T09:14:05Z"
+    },
+    "event:all-meeting-8d62326de8c2a6b4::result::report:ecc7d49fc1c75975:a very good meeting": {
+      "verdict": "uncertain",
+      "reason": "仅一条来源给出模糊评价，无其他来源可比较，信息不足以判定一致性或冲突。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-8d62326de8c2a6b4",
+      "attribute": "result",
+      "judged_at": "2026-10-08T09:14:06Z"
+    },
+    "event:all-meeting-8d62326de8c2a6b4::attributed_to::report:ecc7d49fc1c75975:rubio;report:ecc7d49fc1c75975:trump": {
+      "verdict": "uncertain",
+      "reason": "仅一个来源给出消息来源为特朗普和鲁比奥，其他来源无此属性值，信息不足以判断一致性。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-8d62326de8c2a6b4",
+      "attribute": "attributed_to",
+      "judged_at": "2026-10-08T09:14:07Z"
+    },
+    "event:all-meeting-8d62326de8c2a6b4::roles::report:8d62326de8c2a6b4:person:donald-trump::participant;report:8d62326de8c2a6b4:person:gulf-arab-leaders::participant;report:b2a34902d16c613c:person:donald-trump::participant;report:b2a34902d16c613c:person:gulf-arab-leaders::participant;report:ecc7d49fc1c75975:organization:iranian-officials::participant;report:ecc7d49fc1c75975:person:donald-trump::participant;report:ecc7d49fc1c75975:person:donald-trump::participant;report:ecc7d49fc1c75975:person:gulf-arab-leaders::participant;report:ecc7d49fc1c75975:person:marco-rubio::agent;report:ecc7d49fc1c75975:person:meeting-with-masoud-pezeshkian::patient": {
+      "verdict": "consistent",
+      "reason": "各来源均指特朗普与海湾阿拉伯国家领导人会面，语义角色一致；cp24额外提及伊朗官员属补充信息，不构成矛盾。",
+      "rule_status": "overlap",
+      "event_id": "event:all-meeting-8d62326de8c2a6b4",
+      "attribute": "roles",
+      "judged_at": "2026-10-08T09:14:08Z"
+    }
+  }
+}

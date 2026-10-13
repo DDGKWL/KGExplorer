@@ -1,0 +1,637 @@
+{
+  "schema_version": "news-framing-verdicts-1",
+  "annotator": "deepseek",
+  "method": "doris-framenet",
+  "model": "deepseek-chat",
+  "prompt_version": "doris-framenet-v1",
+  "framenet_index": "scripts/framenet_index.json",
+  "generated_at": "2026-10-08T09:20:00Z",
+  "stats": {
+    "events": 5,
+    "reports_annotated": 21,
+    "annotation_cache_hits": 6,
+    "verdicts": {
+      "framing_conflict": 8
+    }
+  },
+  "verdicts": {
+    "event:all-meeting-03c45110c7f05770::attitude::report:03c45110c7f05770:neutral;report:03c45110c7f05770:neutral;report:0727d2b370c41dbe:neutral;report:0727d2b370c41dbe:neutral;report:0727d2b370c41dbe:neutral;report:331cf0c5185b0edb:neutral;report:331cf0c5185b0edb:neutral;report:331cf0c5185b0edb:neutral;report:331cf0c5185b0edb:neutral;report:98f89a64bd317099:neutral;report:98f89a64bd317099:neutral;report:98f89a64bd317099:neutral;report:b226471683dff88c:neutral;report:b226471683dff88c:neutral;report:b226471683dff88c:neutral;report:f84991fecc6541e0:neutral;report:f84991fecc6541e0:neutral;report:f84991fecc6541e0:neutral;report:febeb7bcfc18dc18:neutral;report:febeb7bcfc18dc18:neutral;report:febeb7bcfc18dc18:neutral;report:febeb7bcfc18dc18:neutral": {
+      "verdict": "framing_conflict",
+      "reason": "框架冲突: Iranian officials 在 Statement 框架中被不同来源赋予不同框架元素（Speaker vs Addressee）。",
+      "rule_status": "consensus",
+      "method": "doris-framenet",
+      "annotator": "deepseek",
+      "model": "deepseek-chat",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "attitude",
+      "entity": "organization:iranian-officials",
+      "entity_label": "Iranian officials",
+      "evidence": [
+        {
+          "report_id": "report:0727d2b370c41dbe",
+          "url_hash": "0727d2b370c41dbe",
+          "domain": "aol.com",
+          "frame": "Statement",
+          "fe": "Speaker",
+          "trigger": "said",
+          "sentence": "A senior Iranian official said Tehran could reopen the Strait of Hormuz within days if the US eased military pressure and lifted its blockade on Iranian ports."
+        },
+        {
+          "report_id": "report:f84991fecc6541e0",
+          "url_hash": "f84991fecc6541e0",
+          "domain": "aljazeera.com",
+          "frame": "Statement",
+          "fe": "Addressee",
+          "trigger": "said",
+          "sentence": "“Today, on the sidelines of the United Nations General Assembly, we engaged in lengthy talks with the Iranian delegation through the mediators, who shuttled between the two sides throughout the day,” Witkoff said in a post on X."
+        },
+        {
+          "report_id": "report:98f89a64bd317099",
+          "url_hash": "98f89a64bd317099",
+          "domain": "businesstimes.com.sg",
+          "frame": "Statement",
+          "fe": "Speaker",
+          "trigger": "told",
+          "sentence": "Iranian Foreign Ministry spokesman Esmail Baghaei told the state-run Islamic Republic News Agency that the purpose of the meetings in New York was to convey the Islamic Republic’s demands."
+        },
+        {
+          "report_id": "report:331cf0c5185b0edb",
+          "url_hash": "331cf0c5185b0edb",
+          "domain": "journalgazette.net",
+          "frame": "Meet_with",
+          "fe": "Participant_2",
+          "trigger": "",
+          "sentence": "President Donald Trump said U.S. and Iranian officials met Tuesday, an unexpected engagement that came even as he threatened in his address to the U.N. General Assembly that he may “annihilate” the Islamic Republic if a deal isn’t reached s"
+        },
+        {
+          "report_id": "report:331cf0c5185b0edb",
+          "url_hash": "331cf0c5185b0edb",
+          "domain": "journalgazette.net",
+          "frame": "Meet_with",
+          "fe": "Participant_2",
+          "trigger": "",
+          "sentence": "Trump told reporters that his chief envoys, Steve Witkoff and Jared Kushner, met with the Iranian officials on the sidelines of the annual gathering of world leaders but he offered few details about how the discussions transpired or the sub"
+        }
+      ],
+      "judged_at": "2026-10-08T03:24:38Z"
+    },
+    "event:all-meeting-03c45110c7f05770::roles::report:03c45110c7f05770:geopolitical_entity:iran::target;report:03c45110c7f05770:organization:iranian-officials::participant;report:03c45110c7f05770:organization:u-s-officials::participant;report:03c45110c7f05770:person:donald-trump::assailant;report:0727d2b370c41dbe:geopolitical_entity:iran::target;report:0727d2b370c41dbe:organization:iranian-officials::participant;report:0727d2b370c41dbe:organization:u-s-officials::participant;report:0727d2b370c41dbe:person:donald-trump::assailant;report:0727d2b370c41dbe:person:iranian-mediators::participant;report:0727d2b370c41dbe:person:steve-witkoff::participant;report:331cf0c5185b0edb:geopolitical_entity:iran::target;report:331cf0c5185b0edb:organization:iranian-officials::participant;report:331cf0c5185b0edb:organization:iranian-officials::participant;report:331cf0c5185b0edb:organization:iranian-officials::participant;report:331cf0c5185b0edb:person:donald-trump::assailant;report:331cf0c5185b0edb:person:donald-trump::participant;report:331cf0c5185b0edb:person:jared-kushner::participant;report:331cf0c5185b0edb:person:steve-witkoff::participant;report:98f89a64bd317099:organization:iranian-officials::participant;report:98f89a64bd317099:organization:u-s-officials::participant;report:98f89a64bd317099:person:iranian-mediators::participant;report:98f89a64bd317099:person:iranian-mediators::participant;report:98f89a64bd317099:person:jared-kushner::participant;report:98f89a64bd317099:person:steve-witkoff::participant;report:b226471683dff88c:organization:iranian-officials::participant;report:b226471683dff88c:organization:iranian-officials::participant;report:b226471683dff88c:organization:iranian-officials::participant;report:b226471683dff88c:organization:u-s-officials::participant;report:b226471683dff88c:person:jared-kushner::participant;report:b226471683dff88c:person:steve-witkoff::participant;report:f84991fecc6541e0:organization:iranian-officials::participant;report:f84991fecc6541e0:organization:iranian-officials::participant;report:f84991fecc6541e0:organization:iranian-officials::participant;report:f84991fecc6541e0:organization:u-s-officials::participant;report:f84991fecc6541e0:person:jared-kushner::participant;report:f84991fecc6541e0:person:steve-witkoff::participant;report:febeb7bcfc18dc18:geopolitical_entity:iran::target;report:febeb7bcfc18dc18:organization:iranian-officials::participant;report:febeb7bcfc18dc18:organization:iranian-officials::participant;report:febeb7bcfc18dc18:organization:iranian-officials::participant;report:febeb7bcfc18dc18:organization:u-s-officials::participant;report:febeb7bcfc18dc18:person:donald-trump::assailant;report:febeb7bcfc18dc18:person:jared-kushner::participant;report:febeb7bcfc18dc18:person:steve-witkoff::participant": {
+      "verdict": "framing_conflict",
+      "reason": "框架冲突: U.S. officials 在 Statement 框架中被不同来源赋予不同框架元素（Message vs Place）。",
+      "rule_status": "overlap",
+      "method": "doris-framenet",
+      "annotator": "deepseek",
+      "model": "deepseek-chat",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "roles",
+      "entity": "organization:u-s-officials",
+      "entity_label": "U.S. officials",
+      "evidence": [
+        {
+          "report_id": "report:03c45110c7f05770",
+          "url_hash": "03c45110c7f05770",
+          "domain": "2news.com",
+          "frame": "Statement",
+          "fe": "Message",
+          "trigger": "said",
+          "sentence": "“The Americans not only couldn’t achieve their objective regarding the Strait of Hormuz, but they now face a new problem called the Bab el-Mandeb Strait,” Safavi said."
+        },
+        {
+          "report_id": "report:0727d2b370c41dbe",
+          "url_hash": "0727d2b370c41dbe",
+          "domain": "aol.com",
+          "frame": "Statement",
+          "fe": "Place",
+          "trigger": "said",
+          "sentence": "\"I have a big decision to make,\" Trump said in a speech at the UN General Assembly in New York."
+        },
+        {
+          "report_id": "report:03c45110c7f05770",
+          "url_hash": "03c45110c7f05770",
+          "domain": "2news.com",
+          "frame": "Threatening",
+          "fe": "Addressee",
+          "trigger": "",
+          "sentence": "It said repeated U.S. threats showed “strategic desperation,” and warned that Iran is prepared to “inflict even more severe, crushing, and unpredictable blows” to the U.S. and Israel."
+        },
+        {
+          "report_id": "report:331cf0c5185b0edb",
+          "url_hash": "331cf0c5185b0edb",
+          "domain": "journalgazette.net",
+          "frame": "Meet_with",
+          "fe": "Participant_1",
+          "trigger": "",
+          "sentence": "President Donald Trump said U.S. and Iranian officials met Tuesday, an unexpected engagement that came even as he threatened in his address to the U.N. General Assembly that he may “annihilate” the Islamic Republic if a deal isn’t reached s"
+        },
+        {
+          "report_id": "report:98f89a64bd317099",
+          "url_hash": "98f89a64bd317099",
+          "domain": "businesstimes.com.sg",
+          "frame": "Communication",
+          "fe": "Communicator",
+          "trigger": "",
+          "sentence": "US President Donald Trump said US officials had “very good” talks with Iranian envoys in New York, reviving fragile hopes for a new diplomatic off-ramp hours after he again threatened to annihilate the country."
+        }
+      ],
+      "judged_at": "2026-10-08T03:24:38Z"
+    },
+    "event:all-meeting-03c45110c7f05770::attitude::report:03c45110c7f05770:neutral;report:03c45110c7f05770:neutral;report:0727d2b370c41dbe:neutral;report:0727d2b370c41dbe:neutral;report:0727d2b370c41dbe:neutral;report:98f89a64bd317099:neutral;report:98f89a64bd317099:neutral;report:98f89a64bd317099:neutral;report:b226471683dff88c:neutral;report:b226471683dff88c:neutral;report:b226471683dff88c:neutral;report:f84991fecc6541e0:neutral;report:f84991fecc6541e0:neutral;report:f84991fecc6541e0:neutral;report:febeb7bcfc18dc18:neutral;report:febeb7bcfc18dc18:neutral;report:febeb7bcfc18dc18:neutral;report:febeb7bcfc18dc18:neutral": {
+      "verdict": "framing_conflict",
+      "reason": "框架冲突: Iranian officials 在 Statement 框架中被不同来源赋予不同框架元素（Speaker vs Addressee）。",
+      "rule_status": "consensus",
+      "method": "doris-framenet",
+      "annotator": "deepseek",
+      "model": "deepseek-chat",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "attitude",
+      "entity": "organization:iranian-officials",
+      "entity_label": "Iranian officials",
+      "evidence": [
+        {
+          "report_id": "report:0727d2b370c41dbe",
+          "url_hash": "0727d2b370c41dbe",
+          "domain": "aol.com",
+          "frame": "Statement",
+          "fe": "Speaker",
+          "trigger": "said",
+          "sentence": "A senior Iranian official said Tehran could reopen the Strait of Hormuz within days if the US eased military pressure and lifted its blockade on Iranian ports."
+        },
+        {
+          "report_id": "report:f84991fecc6541e0",
+          "url_hash": "f84991fecc6541e0",
+          "domain": "aljazeera.com",
+          "frame": "Statement",
+          "fe": "Addressee",
+          "trigger": "said",
+          "sentence": "“Today, on the sidelines of the United Nations General Assembly, we engaged in lengthy talks with the Iranian delegation through the mediators, who shuttled between the two sides throughout the day,” Witkoff said in a post on X."
+        },
+        {
+          "report_id": "report:98f89a64bd317099",
+          "url_hash": "98f89a64bd317099",
+          "domain": "businesstimes.com.sg",
+          "frame": "Statement",
+          "fe": "Speaker",
+          "trigger": "told",
+          "sentence": "Iranian Foreign Ministry spokesman Esmail Baghaei told the state-run Islamic Republic News Agency that the purpose of the meetings in New York was to convey the Islamic Republic’s demands."
+        },
+        {
+          "report_id": "report:98f89a64bd317099",
+          "url_hash": "98f89a64bd317099",
+          "domain": "businesstimes.com.sg",
+          "frame": "Communication",
+          "fe": "Addressee",
+          "trigger": "",
+          "sentence": "US President Donald Trump said US officials had “very good” talks with Iranian envoys in New York, reviving fragile hopes for a new diplomatic off-ramp hours after he again threatened to annihilate the country."
+        },
+        {
+          "report_id": "report:b226471683dff88c",
+          "url_hash": "b226471683dff88c",
+          "domain": "economictimes.indiatimes.com",
+          "frame": "Meet_with",
+          "fe": "Participant_2",
+          "trigger": "",
+          "sentence": "President Donald Trump said U.S. and Iranian officials met Tuesday, an unexpected engagement that came even as he threatened in his address to the U.N. General Assembly that he may “annihilate” the Islamic Republic if a deal isn’t reached s"
+        }
+      ],
+      "judged_at": "2026-10-08T09:19:48Z"
+    },
+    "event:all-meeting-03c45110c7f05770::roles::report:03c45110c7f05770:geopolitical_entity:iran::target;report:03c45110c7f05770:organization:iranian-officials::participant;report:03c45110c7f05770:organization:u-s-officials::participant;report:03c45110c7f05770:person:donald-trump::assailant;report:0727d2b370c41dbe:geopolitical_entity:iran::target;report:0727d2b370c41dbe:organization:iranian-officials::participant;report:0727d2b370c41dbe:organization:iranian-officials::participant;report:0727d2b370c41dbe:organization:u-s-officials::participant;report:0727d2b370c41dbe:person:donald-trump::assailant;report:0727d2b370c41dbe:person:steve-witkoff::participant;report:98f89a64bd317099:organization:iranian-officials::participant;report:98f89a64bd317099:organization:iranian-officials::participant;report:98f89a64bd317099:organization:iranian-officials::participant;report:98f89a64bd317099:organization:u-s-officials::participant;report:98f89a64bd317099:person:jared-kushner::participant;report:98f89a64bd317099:person:steve-witkoff::participant;report:b226471683dff88c:organization:iranian-officials::participant;report:b226471683dff88c:organization:iranian-officials::participant;report:b226471683dff88c:organization:iranian-officials::participant;report:b226471683dff88c:organization:u-s-officials::participant;report:b226471683dff88c:person:jared-kushner::participant;report:b226471683dff88c:person:steve-witkoff::participant;report:f84991fecc6541e0:organization:iranian-officials::participant;report:f84991fecc6541e0:organization:iranian-officials::participant;report:f84991fecc6541e0:organization:iranian-officials::participant;report:f84991fecc6541e0:organization:u-s-officials::participant;report:f84991fecc6541e0:person:jared-kushner::participant;report:f84991fecc6541e0:person:steve-witkoff::participant;report:febeb7bcfc18dc18:geopolitical_entity:iran::target;report:febeb7bcfc18dc18:organization:iranian-officials::participant;report:febeb7bcfc18dc18:organization:iranian-officials::participant;report:febeb7bcfc18dc18:organization:iranian-officials::participant;report:febeb7bcfc18dc18:organization:u-s-officials::participant;report:febeb7bcfc18dc18:person:donald-trump::assailant;report:febeb7bcfc18dc18:person:jared-kushner::participant;report:febeb7bcfc18dc18:person:steve-witkoff::participant": {
+      "verdict": "framing_conflict",
+      "reason": "框架冲突: U.S. officials 在 Statement 框架中被不同来源赋予不同框架元素（Message vs Place）。",
+      "rule_status": "overlap",
+      "method": "doris-framenet",
+      "annotator": "deepseek",
+      "model": "deepseek-chat",
+      "event_id": "event:all-meeting-03c45110c7f05770",
+      "attribute": "roles",
+      "entity": "organization:u-s-officials",
+      "entity_label": "U.S. officials",
+      "evidence": [
+        {
+          "report_id": "report:03c45110c7f05770",
+          "url_hash": "03c45110c7f05770",
+          "domain": "2news.com",
+          "frame": "Statement",
+          "fe": "Message",
+          "trigger": "said",
+          "sentence": "“The Americans not only couldn’t achieve their objective regarding the Strait of Hormuz, but they now face a new problem called the Bab el-Mandeb Strait,” Safavi said."
+        },
+        {
+          "report_id": "report:0727d2b370c41dbe",
+          "url_hash": "0727d2b370c41dbe",
+          "domain": "aol.com",
+          "frame": "Statement",
+          "fe": "Place",
+          "trigger": "said",
+          "sentence": "\"I have a big decision to make,\" Trump said in a speech at the UN General Assembly in New York."
+        },
+        {
+          "report_id": "report:03c45110c7f05770",
+          "url_hash": "03c45110c7f05770",
+          "domain": "2news.com",
+          "frame": "Threatening",
+          "fe": "Addressee",
+          "trigger": "",
+          "sentence": "It said repeated U.S. threats showed “strategic desperation,” and warned that Iran is prepared to “inflict even more severe, crushing, and unpredictable blows” to the U.S. and Israel."
+        },
+        {
+          "report_id": "report:98f89a64bd317099",
+          "url_hash": "98f89a64bd317099",
+          "domain": "businesstimes.com.sg",
+          "frame": "Communication",
+          "fe": "Communicator",
+          "trigger": "",
+          "sentence": "US President Donald Trump said US officials had “very good” talks with Iranian envoys in New York, reviving fragile hopes for a new diplomatic off-ramp hours after he again threatened to annihilate the country."
+        },
+        {
+          "report_id": "report:b226471683dff88c",
+          "url_hash": "b226471683dff88c",
+          "domain": "economictimes.indiatimes.com",
+          "frame": "Meet_with",
+          "fe": "Participant_1",
+          "trigger": "",
+          "sentence": "President Donald Trump said U.S. and Iranian officials met Tuesday, an unexpected engagement that came even as he threatened in his address to the U.N. General Assembly that he may “annihilate” the Islamic Republic if a deal isn’t reached s"
+        }
+      ],
+      "judged_at": "2026-10-08T09:19:48Z"
+    },
+    "event:all-meeting-15d04444fe323b9b::attitude::report:15d04444fe323b9b:neutral;report:15d04444fe323b9b:neutral;report:15d04444fe323b9b:neutral;report:c6d0d22d63c3dafe:neutral;report:c6d0d22d63c3dafe:neutral": {
+      "verdict": "framing_conflict",
+      "reason": "框架冲突: Donald Trump 被不同来源框架化为不同角色（Statement/Speaker vs Meet_with/Participant_1）。",
+      "rule_status": "consensus",
+      "method": "doris-framenet",
+      "annotator": "deepseek",
+      "model": "deepseek-chat",
+      "event_id": "event:all-meeting-15d04444fe323b9b",
+      "attribute": "attitude",
+      "entity": "person:donald-trump",
+      "entity_label": "Donald Trump",
+      "evidence": [
+        {
+          "report_id": "report:15d04444fe323b9b",
+          "url_hash": "15d04444fe323b9b",
+          "domain": "kdhnews.com",
+          "frame": "Statement",
+          "fe": "Speaker",
+          "trigger": "",
+          "sentence": "President Donald Trump said U.S. and Iranian officials met Tuesday, shortly after he threatened in his address to the U.N. General Assembly that he may “annihilate” the Islamic Republic if a deal isn’t reached soon to end nearly seven-month"
+        },
+        {
+          "report_id": "report:c6d0d22d63c3dafe",
+          "url_hash": "c6d0d22d63c3dafe",
+          "domain": "mykxlg.com",
+          "frame": "Meet_with",
+          "fe": "Participant_1",
+          "trigger": "",
+          "sentence": "President Donald Trump says U.S. and Iranian officials met for about three hours Tuesday, shortly after he threatened in his address to the U.N. General Assembly that he may “annihilate” the Islamic Republic if a deal isn’t reached soon to "
+        },
+        {
+          "report_id": "report:c6d0d22d63c3dafe",
+          "url_hash": "c6d0d22d63c3dafe",
+          "domain": "mykxlg.com",
+          "frame": "Threatening",
+          "fe": "Speaker",
+          "trigger": "",
+          "sentence": "President Donald Trump says U.S. and Iranian officials met for about three hours Tuesday, shortly after he threatened in his address to the U.N. General Assembly that he may “annihilate” the Islamic Republic if a deal isn’t reached soon to "
+        },
+        {
+          "report_id": "report:15d04444fe323b9b",
+          "url_hash": "15d04444fe323b9b",
+          "domain": "kdhnews.com",
+          "frame": "Threatening",
+          "fe": "Speaker",
+          "trigger": "",
+          "sentence": "President Donald Trump said U.S. and Iranian officials met Tuesday, shortly after he threatened in his address to the U.N. General Assembly that he may “annihilate” the Islamic Republic if a deal isn’t reached soon to end nearly seven-month"
+        },
+        {
+          "report_id": "report:c6d0d22d63c3dafe",
+          "url_hash": "c6d0d22d63c3dafe",
+          "domain": "mykxlg.com",
+          "frame": "Statement",
+          "fe": "Speaker",
+          "trigger": "",
+          "sentence": "Trump says US and Iranian officials met Tuesday, shortly after warning he may 'annihilate' Iran"
+        }
+      ],
+      "judged_at": "2026-10-08T09:19:58Z"
+    },
+    "event:all-meeting-15d04444fe323b9b::roles::report:15d04444fe323b9b:organization:iranian-officials::participant;report:15d04444fe323b9b:organization:iranian-officials::participant;report:15d04444fe323b9b:organization:iranian-officials::participant;report:15d04444fe323b9b:person:donald-trump::participant;report:15d04444fe323b9b:person:jared-kushner::participant;report:15d04444fe323b9b:person:steve-witkoff::participant;report:c6d0d22d63c3dafe:geopolitical_entity:iran::target;report:c6d0d22d63c3dafe:organization:iranian-officials::participant;report:c6d0d22d63c3dafe:person:donald-trump::assailant;report:c6d0d22d63c3dafe:person:donald-trump::participant": {
+      "verdict": "framing_conflict",
+      "reason": "框架冲突: Donald Trump 被不同来源框架化为不同角色（Statement/Speaker vs Meet_with/Participant_1）。",
+      "rule_status": "overlap",
+      "method": "doris-framenet",
+      "annotator": "deepseek",
+      "model": "deepseek-chat",
+      "event_id": "event:all-meeting-15d04444fe323b9b",
+      "attribute": "roles",
+      "entity": "person:donald-trump",
+      "entity_label": "Donald Trump",
+      "evidence": [
+        {
+          "report_id": "report:15d04444fe323b9b",
+          "url_hash": "15d04444fe323b9b",
+          "domain": "kdhnews.com",
+          "frame": "Statement",
+          "fe": "Speaker",
+          "trigger": "",
+          "sentence": "President Donald Trump said U.S. and Iranian officials met Tuesday, shortly after he threatened in his address to the U.N. General Assembly that he may “annihilate” the Islamic Republic if a deal isn’t reached soon to end nearly seven-month"
+        },
+        {
+          "report_id": "report:c6d0d22d63c3dafe",
+          "url_hash": "c6d0d22d63c3dafe",
+          "domain": "mykxlg.com",
+          "frame": "Meet_with",
+          "fe": "Participant_1",
+          "trigger": "",
+          "sentence": "President Donald Trump says U.S. and Iranian officials met for about three hours Tuesday, shortly after he threatened in his address to the U.N. General Assembly that he may “annihilate” the Islamic Republic if a deal isn’t reached soon to "
+        },
+        {
+          "report_id": "report:c6d0d22d63c3dafe",
+          "url_hash": "c6d0d22d63c3dafe",
+          "domain": "mykxlg.com",
+          "frame": "Threatening",
+          "fe": "Speaker",
+          "trigger": "",
+          "sentence": "President Donald Trump says U.S. and Iranian officials met for about three hours Tuesday, shortly after he threatened in his address to the U.N. General Assembly that he may “annihilate” the Islamic Republic if a deal isn’t reached soon to "
+        },
+        {
+          "report_id": "report:15d04444fe323b9b",
+          "url_hash": "15d04444fe323b9b",
+          "domain": "kdhnews.com",
+          "frame": "Threatening",
+          "fe": "Speaker",
+          "trigger": "",
+          "sentence": "President Donald Trump said U.S. and Iranian officials met Tuesday, shortly after he threatened in his address to the U.N. General Assembly that he may “annihilate” the Islamic Republic if a deal isn’t reached soon to end nearly seven-month"
+        },
+        {
+          "report_id": "report:c6d0d22d63c3dafe",
+          "url_hash": "c6d0d22d63c3dafe",
+          "domain": "mykxlg.com",
+          "frame": "Statement",
+          "fe": "Speaker",
+          "trigger": "",
+          "sentence": "Trump says US and Iranian officials met Tuesday, shortly after warning he may 'annihilate' Iran"
+        }
+      ],
+      "judged_at": "2026-10-08T09:19:58Z"
+    },
+    "event:all-meeting-1d06b3fa33c2f12a::attitude::report:1d06b3fa33c2f12a:neutral;report:4387ef4229412af5:neutral;report:5308309fc76758b8:neutral;report:7f9175cf0b05af2d:neutral;report:a00f78b04b5275b0:neutral;report:ce511fed94afac59:neutral": {
+      "verdict": "framing_conflict",
+      "reason": "框架冲突: Xi Jinping 在 Meet_with 框架中被不同来源赋予不同框架元素（Participant_1 vs Participant_2）。",
+      "rule_status": "consensus",
+      "method": "doris-framenet",
+      "annotator": "deepseek",
+      "model": "deepseek-chat",
+      "event_id": "event:all-meeting-1d06b3fa33c2f12a",
+      "attribute": "attitude",
+      "entity": "person:xi-jinping",
+      "entity_label": "Xi Jinping",
+      "evidence": [
+        {
+          "report_id": "report:1d06b3fa33c2f12a",
+          "url_hash": "1d06b3fa33c2f12a",
+          "domain": "theglobeandmail.com",
+          "frame": "Meet_with",
+          "fe": "Participant_1",
+          "trigger": "meeting",
+          "sentence": "China’s President Xi Jinping is meeting Trump in Washington on Wednesday, yet he is skipping – some diplomats say snubbing – the UN gathering and sending a vice-president instead."
+        },
+        {
+          "report_id": "report:4387ef4229412af5",
+          "url_hash": "4387ef4229412af5",
+          "domain": "abc.net.au",
+          "frame": "Meet_with",
+          "fe": "Participant_2",
+          "trigger": "meeting",
+          "sentence": "Donald Trump and Xi Jinping will meet in Washington DC this week."
+        },
+        {
+          "report_id": "report:4387ef4229412af5",
+          "url_hash": "4387ef4229412af5",
+          "domain": "abc.net.au",
+          "frame": "Meet_with",
+          "fe": "Participant_2",
+          "trigger": "meeting",
+          "sentence": "But during this time there will be only one meeting that could determine the immediate fate of the world: that will be in Washington between US President Donald Trump and Chinese President Xi Jinping."
+        },
+        {
+          "report_id": "report:4387ef4229412af5",
+          "url_hash": "4387ef4229412af5",
+          "domain": "abc.net.au",
+          "frame": "Meet_with",
+          "fe": "Participant_2",
+          "trigger": "meeting",
+          "sentence": "So while leaders from 130 countries grapple with all of these changes, in Washington, Trump and Xi will sit down."
+        },
+        {
+          "report_id": "report:ce511fed94afac59",
+          "url_hash": "ce511fed94afac59",
+          "domain": "straitstimes.com",
+          "frame": "Meet_with",
+          "fe": "Participant_2",
+          "trigger": "meeting",
+          "sentence": "Up to four face-to-face meetings are likely between the leaders of the world’s two largest economies."
+        }
+      ],
+      "judged_at": "2026-10-08T09:19:59Z"
+    },
+    "event:all-meeting-1d06b3fa33c2f12a::roles::report:1d06b3fa33c2f12a:person:donald-trump::participant;report:1d06b3fa33c2f12a:person:xi-jinping::participant;report:4387ef4229412af5:person:donald-trump::participant;report:4387ef4229412af5:person:xi-jinping::participant;report:5308309fc76758b8:person:donald-trump::participant;report:5308309fc76758b8:person:xi-jinping::participant;report:7f9175cf0b05af2d:person:donald-trump::participant;report:7f9175cf0b05af2d:person:xi-jinping::participant;report:a00f78b04b5275b0:person:donald-trump::participant;report:a00f78b04b5275b0:person:xi-jinping::participant;report:ce511fed94afac59:person:donald-trump::participant;report:ce511fed94afac59:person:xi-jinping::participant": {
+      "verdict": "framing_conflict",
+      "reason": "框架冲突: Xi Jinping 在 Meet_with 框架中被不同来源赋予不同框架元素（Participant_1 vs Participant_2）。",
+      "rule_status": "consensus",
+      "method": "doris-framenet",
+      "annotator": "deepseek",
+      "model": "deepseek-chat",
+      "event_id": "event:all-meeting-1d06b3fa33c2f12a",
+      "attribute": "roles",
+      "entity": "person:xi-jinping",
+      "entity_label": "Xi Jinping",
+      "evidence": [
+        {
+          "report_id": "report:1d06b3fa33c2f12a",
+          "url_hash": "1d06b3fa33c2f12a",
+          "domain": "theglobeandmail.com",
+          "frame": "Meet_with",
+          "fe": "Participant_1",
+          "trigger": "meeting",
+          "sentence": "China’s President Xi Jinping is meeting Trump in Washington on Wednesday, yet he is skipping – some diplomats say snubbing – the UN gathering and sending a vice-president instead."
+        },
+        {
+          "report_id": "report:4387ef4229412af5",
+          "url_hash": "4387ef4229412af5",
+          "domain": "abc.net.au",
+          "frame": "Meet_with",
+          "fe": "Participant_2",
+          "trigger": "meeting",
+          "sentence": "Donald Trump and Xi Jinping will meet in Washington DC this week."
+        },
+        {
+          "report_id": "report:4387ef4229412af5",
+          "url_hash": "4387ef4229412af5",
+          "domain": "abc.net.au",
+          "frame": "Meet_with",
+          "fe": "Participant_2",
+          "trigger": "meeting",
+          "sentence": "But during this time there will be only one meeting that could determine the immediate fate of the world: that will be in Washington between US President Donald Trump and Chinese President Xi Jinping."
+        },
+        {
+          "report_id": "report:4387ef4229412af5",
+          "url_hash": "4387ef4229412af5",
+          "domain": "abc.net.au",
+          "frame": "Meet_with",
+          "fe": "Participant_2",
+          "trigger": "meeting",
+          "sentence": "So while leaders from 130 countries grapple with all of these changes, in Washington, Trump and Xi will sit down."
+        },
+        {
+          "report_id": "report:ce511fed94afac59",
+          "url_hash": "ce511fed94afac59",
+          "domain": "straitstimes.com",
+          "frame": "Meet_with",
+          "fe": "Participant_2",
+          "trigger": "meeting",
+          "sentence": "Up to four face-to-face meetings are likely between the leaders of the world’s two largest economies."
+        }
+      ],
+      "judged_at": "2026-10-08T09:19:59Z"
+    },
+    "event:all-meeting-8d62326de8c2a6b4::attitude::report:8d62326de8c2a6b4:neutral;report:b2a34902d16c613c:neutral;report:ecc7d49fc1c75975:neutral;report:ecc7d49fc1c75975:neutral;report:ecc7d49fc1c75975:neutral": {
+      "verdict": "framing_conflict",
+      "reason": "框架冲突: Donald Trump 在 Meet_with 框架中被不同来源赋予不同框架元素（Participant_1 vs Participant_2）。",
+      "rule_status": "consensus",
+      "method": "doris-framenet",
+      "annotator": "deepseek",
+      "model": "deepseek-chat",
+      "event_id": "event:all-meeting-8d62326de8c2a6b4",
+      "attribute": "attitude",
+      "entity": "person:donald-trump",
+      "entity_label": "Donald Trump",
+      "evidence": [
+        {
+          "report_id": "report:8d62326de8c2a6b4",
+          "url_hash": "8d62326de8c2a6b4",
+          "domain": "rappler.com",
+          "frame": "Meet_with",
+          "fe": "Participant_1",
+          "trigger": "meet",
+          "sentence": "Trump is due to meet on Tuesday with the leaders of the six Gulf Arab states: Bahrain, Kuwait, Qatar, Oman, Saudi Arabia and the United Arab Emirates."
+        },
+        {
+          "report_id": "report:ecc7d49fc1c75975",
+          "url_hash": "ecc7d49fc1c75975",
+          "domain": "cp24.com",
+          "frame": "Meet_with",
+          "fe": "Participant_2",
+          "trigger": "meet",
+          "sentence": "Netanyahu is not expected to meet with Trump while in New York"
+        },
+        {
+          "report_id": "report:8d62326de8c2a6b4",
+          "url_hash": "8d62326de8c2a6b4",
+          "domain": "rappler.com",
+          "frame": "Meet_with",
+          "fe": "Participant_2",
+          "trigger": "meeting",
+          "sentence": "On the table at the Gulf states’ meeting with Trump is a Qatari proposal for a framework to bring Iran and the Arab Gulf states into a common security architecture, regional sources said."
+        },
+        {
+          "report_id": "report:ecc7d49fc1c75975",
+          "url_hash": "ecc7d49fc1c75975",
+          "domain": "cp24.com",
+          "frame": "Meet_with",
+          "fe": "Participant_1",
+          "trigger": "meeting",
+          "sentence": "U.S. President Donald Trump, who has struggled to find an endgame to the Iran war after more than six months, is set to meet with Gulf Arab leaders but not with Israel’s prime minister."
+        },
+        {
+          "report_id": "report:ecc7d49fc1c75975",
+          "url_hash": "ecc7d49fc1c75975",
+          "domain": "cp24.com",
+          "frame": "Meet_with",
+          "fe": "Participant_1",
+          "trigger": "meeting",
+          "sentence": "Trump said U.S. and Iranian officials met shortly after he warned in his U.N. address that he may “annihilate” the Islamic Republic if a deal isn’t reached soon to end the war."
+        },
+        {
+          "report_id": "report:ecc7d49fc1c75975",
+          "url_hash": "ecc7d49fc1c75975",
+          "domain": "cp24.com",
+          "frame": "Meet_with",
+          "fe": "Participant_1",
+          "trigger": "meeting",
+          "sentence": "Separately, Secretary of State Marco Rubio said Trump is open to meeting with Iran’s president, Masoud Pezeshkian, while he’s in New York for the General Assembly."
+        }
+      ],
+      "judged_at": "2026-10-08T09:20:00Z"
+    },
+    "event:all-meeting-8d62326de8c2a6b4::roles::report:8d62326de8c2a6b4:person:donald-trump::participant;report:8d62326de8c2a6b4:person:gulf-arab-leaders::participant;report:b2a34902d16c613c:person:donald-trump::participant;report:b2a34902d16c613c:person:gulf-arab-leaders::participant;report:ecc7d49fc1c75975:organization:iranian-officials::participant;report:ecc7d49fc1c75975:person:donald-trump::participant;report:ecc7d49fc1c75975:person:donald-trump::participant;report:ecc7d49fc1c75975:person:gulf-arab-leaders::participant;report:ecc7d49fc1c75975:person:marco-rubio::agent;report:ecc7d49fc1c75975:person:meeting-with-masoud-pezeshkian::patient": {
+      "verdict": "framing_conflict",
+      "reason": "框架冲突: Donald Trump 在 Meet_with 框架中被不同来源赋予不同框架元素（Participant_1 vs Participant_2）。",
+      "rule_status": "overlap",
+      "method": "doris-framenet",
+      "annotator": "deepseek",
+      "model": "deepseek-chat",
+      "event_id": "event:all-meeting-8d62326de8c2a6b4",
+      "attribute": "roles",
+      "entity": "person:donald-trump",
+      "entity_label": "Donald Trump",
+      "evidence": [
+        {
+          "report_id": "report:8d62326de8c2a6b4",
+          "url_hash": "8d62326de8c2a6b4",
+          "domain": "rappler.com",
+          "frame": "Meet_with",
+          "fe": "Participant_1",
+          "trigger": "meet",
+          "sentence": "Trump is due to meet on Tuesday with the leaders of the six Gulf Arab states: Bahrain, Kuwait, Qatar, Oman, Saudi Arabia and the United Arab Emirates."
+        },
+        {
+          "report_id": "report:ecc7d49fc1c75975",
+          "url_hash": "ecc7d49fc1c75975",
+          "domain": "cp24.com",
+          "frame": "Meet_with",
+          "fe": "Participant_2",
+          "trigger": "meet",
+          "sentence": "Netanyahu is not expected to meet with Trump while in New York"
+        },
+        {
+          "report_id": "report:8d62326de8c2a6b4",
+          "url_hash": "8d62326de8c2a6b4",
+          "domain": "rappler.com",
+          "frame": "Meet_with",
+          "fe": "Participant_2",
+          "trigger": "meeting",
+          "sentence": "On the table at the Gulf states’ meeting with Trump is a Qatari proposal for a framework to bring Iran and the Arab Gulf states into a common security architecture, regional sources said."
+        },
+        {
+          "report_id": "report:ecc7d49fc1c75975",
+          "url_hash": "ecc7d49fc1c75975",
+          "domain": "cp24.com",
+          "frame": "Meet_with",
+          "fe": "Participant_1",
+          "trigger": "meeting",
+          "sentence": "U.S. President Donald Trump, who has struggled to find an endgame to the Iran war after more than six months, is set to meet with Gulf Arab leaders but not with Israel’s prime minister."
+        },
+        {
+          "report_id": "report:ecc7d49fc1c75975",
+          "url_hash": "ecc7d49fc1c75975",
+          "domain": "cp24.com",
+          "frame": "Meet_with",
+          "fe": "Participant_1",
+          "trigger": "meeting",
+          "sentence": "Trump said U.S. and Iranian officials met shortly after he warned in his U.N. address that he may “annihilate” the Islamic Republic if a deal isn’t reached soon to end the war."
+        },
+        {
+          "report_id": "report:ecc7d49fc1c75975",
+          "url_hash": "ecc7d49fc1c75975",
+          "domain": "cp24.com",
+          "frame": "Meet_with",
+          "fe": "Participant_1",
+          "trigger": "meeting",
+          "sentence": "Separately, Secretary of State Marco Rubio said Trump is open to meeting with Iran’s president, Masoud Pezeshkian, while he’s in New York for the General Assembly."
+        }
+      ],
+      "judged_at": "2026-10-08T09:20:00Z"
+    }
+  }
+}
