@@ -10,9 +10,46 @@ CORS(app)
 
 DATA = Path(__file__).resolve().parent / "data"
 PROCESSED = DATA / "processed" / "case1_guqin.json"
+GUQIN_UMAP = DATA / "processed" / "case1_umap.json"
 GUQIN_CURATED = DATA / "curated" / "guqin" / "explorer.json"
 IMAGE_ROOT = DATA / "raw" / "image"
 TEXT_ROOT = DATA / "raw" / "text"
+ASTRO_PROCESSED = DATA / "astro" / "processed" / "case2_astro.json"
+ASTRO_UMAP = DATA / "astro" / "processed" / "case2_umap.json"
+ASTRO_IMAGE_ROOT = DATA / "astro" / "raw" / "images"
+NEWS_PROCESSED = DATA / "news" / "processed" / "case3_news.json"
+NEWS_UMAP = DATA / "news" / "processed" / "case3_umap.json"
+NEWS_REPORTS = DATA / "news" / "reports"
+# NEWS_V6_ROOT = DATA / "news" / "v6"
+# NEWS_V6_GRAPH = NEWS_V6_ROOT / "processed" / "v6all_news_graph.json"
+# NEWS_V6_COMPARISONS = NEWS_V6_ROOT / "processed" / "v6all_event_comparisons.json"
+NEWS_V6_ROOT = DATA / "news" / "v7"
+NEWS_V6_GRAPH = NEWS_V6_ROOT / "processed" / "v6all_news_graph.json"
+NEWS_V6_COMPARISONS = NEWS_V6_ROOT / "processed" / "v6all_event_comparisons.json"
+NEWS_V6_REPORTS = NEWS_V6_ROOT / "reports"
+# DeepSeek semantic verdicts sidecar (written by scripts/run_llm_judge_news.py).
+NEWS_LLM_VERDICTS = NEWS_V6_ROOT / "processed" / "llm_verdicts.json"
+# DORIS/FrameNet framing verdicts sidecar (written by scripts/run_doris_framing.py).
+NEWS_FRAMING_VERDICTS = NEWS_V6_ROOT / "processed" / "framing_verdicts.json"
+
+
+def attach_projection(data, projection_path):
+    """Join precomputed Lens coordinates onto artifacts without altering source JSON."""
+    if not projection_path.exists():
+        data["projection"] = {"ready": False, "methods": {}}
+        return data
+    payload = json.loads(projection_path.read_text(encoding="utf-8"))
+    points = payload.get("points") or {}
+    for artifact in data.get("artifacts") or []:
+        artifact["projection"] = points.get(artifact.get("artifact_id"))
+    data["projection"] = {
+        "ready": True,
+        "methods": payload.get("methods") or {},
+        "n_neighbors": payload.get("n_neighbors"),
+        "attribute_slots": payload.get("attribute_slots") or [],
+        "point_count": len(points),
+    }
+    return data
 
 
 @app.get("/api/health")
@@ -103,13 +140,58 @@ def guqin_data():
         "title": "Guqin Heritage Knowledge Revision",
         "note": "Four scanned guqin books with OCR, extracted attributes, and instrument images.",
     }
-    return data
+    return attach_projection(data, GUQIN_UMAP)
 
 
 def curated_guqin_data():
     if not GUQIN_CURATED.exists():
         abort(404)
     return json.loads(GUQIN_CURATED.read_text(encoding="utf-8"))
+
+
+def astro_data():
+    """Case 2 catalog JSON. Separate from Guqin processed files."""
+    if not ASTRO_PROCESSED.exists():
+        abort(404)
+    return attach_projection(json.loads(ASTRO_PROCESSED.read_text(encoding="utf-8")), ASTRO_UMAP)
+
+
+def news_data():
+    """Case 3 article JSON. Evidence files stay under data/news/reports."""
+    if not NEWS_PROCESSED.exists():
+        abort(404)
+    return attach_projection(json.loads(NEWS_PROCESSED.read_text(encoding="utf-8")), NEWS_UMAP)
+
+
+def news_v6_json(path):
+    if not path.exists():
+        abort(404)
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def news_v6_comparisons():
+    """Return project-local evidence URLs instead of source-machine paths."""
+    data = news_v6_json(NEWS_V6_COMPARISONS)
+    for event in data.get("events", []):
+        for report in event.get("reports", []):
+            url_hash = report.get("url_hash", "")
+            folder = NEWS_V6_REPORTS / url_hash
+            image_dir = folder / "images"
+            images = (
+                sorted(
+                    path.name
+                    for path in image_dir.iterdir()
+                    if path.is_file() and path.suffix.lower() in {".jpg", ".jpeg", ".png", ".gif", ".webp"}
+                )
+                if image_dir.is_dir()
+                else []
+            )
+            report["text_url"] = f"/api/news/v6/text/{url_hash}"
+            report["image_paths"] = [
+                f"/api/news/v6/image/{url_hash}/{filename}" for filename in images
+            ]
+            report.pop("clean_body_path", None)
+    return data
 
 
 @app.get("/api/contested-kg")
@@ -121,7 +203,86 @@ def contested_kg():
 def case_data(case_id):
     if case_id == "guqin":
         return jsonify(guqin_data())
+    if case_id == "astro":
+        return jsonify(astro_data())
+    if case_id == "news":
+        return jsonify(news_data())
     return jsonify({"error": "unknown case"}), 404
+
+
+@app.get("/api/news/v6/graph")
+def news_v6_graph():
+    return jsonify(news_v6_json(NEWS_V6_GRAPH))
+
+
+@app.get("/api/news/v6/comparisons")
+def news_v6_comparison_data():
+    return jsonify(news_v6_comparisons())
+
+
+@app.get("/api/news/v6/text/<url_hash>")
+def news_v6_text(url_hash):
+    target = NEWS_V6_REPORTS / url_hash / "full.txt"
+    if not target.is_file():
+        abort(404)
+    return target.read_text(encoding="utf-8", errors="replace"), 200, {"Content-Type": "text/plain; charset=utf-8"}
+
+
+@app.get("/api/news/v6/image/<url_hash>/<path:filename>")
+def news_v6_image(url_hash, filename):
+    image_dir = NEWS_V6_REPORTS / url_hash / "images"
+    target = image_dir / Path(filename).name
+    if not target.is_file():
+        abort(404)
+    return send_from_directory(image_dir, target.name)
+
+
+@app.get("/api/news/llm-verdicts")
+def news_llm_verdicts():
+    """Case 3 sidecar LLM verdicts; empty payload until the batch script runs."""
+    if not NEWS_LLM_VERDICTS.exists():
+        return jsonify({"schema_version": "news-llm-verdicts-1", "model": None, "verdicts": {}})
+    return jsonify(json.loads(NEWS_LLM_VERDICTS.read_text(encoding="utf-8")))
+
+
+@app.get("/api/news/framing-verdicts")
+def news_framing_verdicts():
+    """Case 3 DORIS/FrameNet framing sidecar (third judgment method).
+
+    Written by scripts/run_doris_framing.py. Same additive contract as the LLM
+    sidecar: an empty payload until the batch script runs, never a 404, so the
+    frontend can treat it as optional.
+    """
+    if not NEWS_FRAMING_VERDICTS.exists():
+        return jsonify({
+            "schema_version": "news-framing-verdicts-1",
+            "annotator": None,
+            "model": None,
+            "verdicts": {},
+        })
+    return jsonify(json.loads(NEWS_FRAMING_VERDICTS.read_text(encoding="utf-8")))
+
+
+@app.post("/api/llm/judge")
+def llm_judge_slot():
+    """Online single-slot judgment (fallback when the sidecar lacks a key).
+
+    Body: {entity, attribute_label, entries: [{source, values, evidence}],
+    missing_sources}. Degrades to verdict "uncertain" when the module, key, or
+    call fails, so the frontend always gets a well-formed answer.
+    """
+    try:
+        from llm_judge import judge_consistency  # optional dependency, lazy import
+    except ImportError:
+        return jsonify({"verdict": "uncertain", "reason": "llm_judge 模块不可用", "model": None})
+    payload = request.get_json(silent=True) or {}
+    result = judge_consistency(
+        payload.get("entity") or "",
+        payload.get("attribute_label") or payload.get("attribute") or "",
+        payload.get("entries") or [],
+        payload.get("missing_sources") or [],
+    )
+    return jsonify(result)
 
 
 @app.get("/api/guqin/explorer")
@@ -222,6 +383,58 @@ def artifact_image(record_id, filename):
         return jsonify({"error": "no images for record"}), 404
     image_folder = folder / "images" if (folder / "images").exists() else folder
     return send_from_directory(image_folder, filename)
+
+
+@app.get("/api/astro/image/<star>/<path:filename>")
+def astro_image(star, filename):
+    """Serve Case 2 cutouts from data/astro/raw/images/<star>/."""
+    folder = ASTRO_IMAGE_ROOT / Path(star).name
+    target = folder / Path(filename).name
+    if not folder.is_dir() or not target.is_file():
+        abort(404)
+    return send_from_directory(folder, target.name)
+
+
+@app.get("/api/astro/images/<star>")
+def astro_image_list(star):
+    folder = ASTRO_IMAGE_ROOT / Path(star).name
+    if not folder.is_dir():
+        return jsonify([])
+    return jsonify(sorted(path.name for path in folder.glob("*.jpg")))
+
+
+def news_article_dir(url_hash, event_id=None):
+    """Flat reports/<hash>/ is the current layout; event/hash remains for older cases."""
+    url_hash = Path(url_hash).name
+    flat = NEWS_REPORTS / url_hash
+    if (flat / "full.txt").is_file() or (flat / "images").is_dir():
+        return flat
+    if event_id:
+        nested = NEWS_REPORTS / Path(event_id).name / url_hash
+        if nested.is_dir():
+            return nested
+    return None
+
+
+@app.get("/api/news/image/<url_hash>/<path:filename>")
+def news_image(url_hash, filename):
+    """Serve Case 3 article images from data/news/reports/<hash>/images/."""
+    folder = news_article_dir(url_hash)
+    image_dir = folder / "images" if folder else None
+    target = image_dir / Path(filename).name if image_dir else None
+    if not image_dir or not image_dir.is_dir() or not target or not target.is_file():
+        abort(404)
+    return send_from_directory(image_dir, target.name)
+
+
+@app.get("/api/news/text/<url_hash>")
+def news_text(url_hash):
+    """Serve the fetched article body for a Case 3 source record."""
+    folder = news_article_dir(url_hash)
+    target = folder / "full.txt" if folder else None
+    if not target or not target.is_file():
+        abort(404)
+    return send_from_directory(folder, "full.txt", mimetype="text/plain")
 
 
 @app.get("/api/text/<record_id>")

@@ -1,25 +1,86 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import KnowledgeGraphView from './components/KnowledgeGraphView.vue';
+import NewsMergeDialog from './components/NewsMergeDialog.vue';
+import NewsSplitDialog from './components/NewsSplitDialog.vue';
+import ProjectionView from './components/ProjectionView.vue';
+import NewsFramingView from './components/NewsFramingView.vue';
 import AdjudicationPanel from './components/AdjudicationPanel.vue';
-import { store, loadStore, CLASS_COLORS } from './data/store.js';
+import {
+  store,
+  loadStore,
+  CLASS_COLORS,
+  CASES,
+  applyDecision,
+  isOpenConflict,
+  DECISION_LABELS,
+  refreshArtifactsFromNewsV6,
+} from './data/store.js';
+import { newsV6Store, openNewsMergeDialog, openNewsSplitDialog, undoLastAction, selectNewsEvent } from './data/newsV6Store.js';
 
-async function loadCaseIntoView() {
-  await loadStore();
-  const preferred = store.artifacts
-    .flatMap((artifact) => artifact.slots.map((slot) => ({ artifact, slot })))
-    .find(({ slot }) => slot.reviewReadiness === 'P1_expert_review')
-    || store.artifacts
-      .flatMap((artifact) => artifact.slots.map((slot) => ({ artifact, slot })))
-      .find(({ slot }) => ['A', 'B', 'C'].includes(slot.cls));
-  const first = preferred?.artifact || store.artifacts[0];
-  selectedArtifactId.value = first?.id || null;
-  selectedSlotId.value = preferred?.slot.id || first?.slots[0]?.id || null;
+const TREE_LIST_CAP = 48;
+const selectedCaseId = ref('guqin');
+const loadingCase = ref(false);
+const selectedArtifactId = ref(null);
+const selectedSlotId = ref(null);
+const lensMode = ref('conflict');
+const lensBrushedIds = ref([]);
+// Case 3 · News: event nodes multi-selected in the graph via Ctrl/Cmd/Shift+
+// click, feeding the merge/split/undo graph-correction toolbar.
+const graphSelectionIds = ref([]);
+
+function rankArtifact(artifact) {
+  let score = 0;
+  if (artifact.id === selectedArtifactId.value) score += 8;
+  if (artifact.featured) score += 4;
+  if (Object.keys(artifact.imagesByBook || {}).length) score += 2;
+  return score;
 }
 
-onMounted(loadCaseIntoView);
+async function loadCaseIntoView(caseId = selectedCaseId.value) {
+  selectedCaseId.value = caseId;
+  loadingCase.value = true;
+  viewerImage.value = null;
+  viewerText.value = null;
+  pinned.value = [];
+  ledger.value = [];
+  dockImageChoice.value = {};
+  lensBrushedIds.value = [];
+  graphSelectionIds.value = [];
+  resetExplorerFilters();
+  try {
+    await loadStore(caseId);
+    const featured = store.artifacts.filter((artifact) => artifact.featured);
+    const pool = featured.length ? featured : store.artifacts;
+    const preferred = pool
+      .flatMap((artifact) => artifact.slots.map((slot) => ({ artifact, slot })))
+      .find(({ slot }) => slot.reviewReadiness === 'P1_expert_review')
+      || pool
+        .flatMap((artifact) => artifact.slots.map((slot) => ({ artifact, slot })))
+      .find(({ slot }) => ['A', 'B', 'C'].includes(slot.cls) && isOpenConflict(slot));
+    const first = preferred?.artifact || pool[0] || store.artifacts[0];
+    selectedArtifactId.value = first?.id || null;
+    selectedSlotId.value = preferred?.slot.id || first?.slots[0]?.id || null;
+  } finally {
+    loadingCase.value = false;
+  }
+}
+
+onMounted(() => loadCaseIntoView('guqin'));
 
 const SOURCES = computed(() => store.sources);
+
+// Case 3 · News: slots carrying a DeepSeek semantic verdict (toggle hint).
+const llmVerdictCount = computed(() => store.artifacts.reduce(
+  (total, artifact) => total + artifact.slots.filter((slot) => slot.llmVerdict).length,
+  0,
+));
+
+// Case 3 · News: slots carrying a DORIS framing verdict (toggle hint).
+const framingVerdictCount = computed(() => store.artifacts.reduce(
+  (total, artifact) => total + artifact.slots.filter((slot) => slot.framingVerdict).length,
+  0,
+));
 const CLS_ORDER = { A: 0, C: 1, B: 2 };
 const READINESS_LABELS = {
   P1_expert_review: 'Ready for expert review',
@@ -67,6 +128,25 @@ const visibleArtifacts = computed(() => {
 
 const visibleArtifactIds = computed(() => visibleArtifacts.value.map((artifact) => artifact.id));
 
+const graphArtifactIds = computed(() => {
+  if (!lensBrushedIds.value.length) return visibleArtifactIds.value;
+  const allowed = new Set(visibleArtifactIds.value);
+  const brushed = lensBrushedIds.value.filter((id) => allowed.has(id));
+  return brushed.length ? brushed : visibleArtifactIds.value;
+});
+
+function onLensBrush(ids) {
+  lensBrushedIds.value = ids;
+  if (!ids.length) return;
+  if (!ids.includes(selectedArtifactId.value)) {
+    selectedArtifactId.value = ids[0];
+    const artifact = store.artifacts.find((item) => item.id === ids[0]);
+    selectedSlotId.value = artifact?.slots.find((slot) => isOpenConflict(slot))?.id
+      || artifact?.slots[0]?.id
+      || null;
+  }
+}
+
 function resetExplorerFilters() {
   searchText.value = '';
   sourceFilter.value = 'all';
@@ -77,7 +157,7 @@ function resetExplorerFilters() {
 const worklist = computed(() =>
   visibleArtifacts.value
     .flatMap((a) => a.slots.map((s) => ({ artifact: a, slot: s })))
-    .filter((x) => ['A', 'B', 'C'].includes(x.slot.cls))
+    .filter((x) => isOpenConflict(x.slot))
     .filter(
       (x) => readinessFilter.value === 'all'
         || x.slot.reviewReadiness === readinessFilter.value,
@@ -101,33 +181,67 @@ const attrFacets = computed(() => {
 });
 
 const entityGroups = computed(() => {
-  const specs = [
-    {
-      name: '形制',
-      slots: ['form'],
-      accept: (value) => /式(?:变体)?$/.test(value),
-      normalize: (value) => value,
-    },
-    {
-      name: '年代',
-      slots: ['dating', 'dating_assessment'],
-      accept: (value) => /唐|宋|元|明|清|民国|五代|年/.test(value),
-      normalize: (value) => value
-        .replace(/\([^)]*\)/g, '')
-        .replace(/^(唐|宋|元|明|清)$/, '$1代'),
-    },
-    {
-      name: '馆藏',
-      slots: ['current_holder'],
-      accept: (value) => /博物馆|博物院|艺术研究院/.test(value),
-      normalize: (value) => value,
-    },
-  ];
+  const specs = store.caseId === 'news'
+    ? [
+      {
+        name: 'Relations',
+        slotPrefix: 'rel-',
+        accept: (value) => !!value,
+        normalize: (value) => value,
+        limit: 24,
+      },
+      {
+        name: 'Statements',
+        slotPrefix: 'attr-',
+        accept: (value) => !!value,
+        normalize: (value) => value,
+        limit: 16,
+      },
+    ]
+    : store.caseId === 'astro'
+    ? [
+      {
+        name: '光谱型',
+        slots: ['spectral_type'],
+        accept: (value) => !!value,
+        normalize: (value) => value,
+        limit: 24,
+      },
+      {
+        name: '距离',
+        slots: ['distance'],
+        accept: (value) => !!value,
+        normalize: (value) => value,
+        limit: 16,
+      },
+    ]
+    : [
+      {
+        name: '形制',
+        slots: ['form'],
+        accept: (value) => /式(?:变体)?$/.test(value),
+        normalize: (value) => value,
+      },
+      {
+        name: '年代',
+        slots: ['dating', 'dating_assessment'],
+        accept: (value) => /唐|宋|元|明|清|民国|五代|年/.test(value),
+        normalize: (value) => value
+          .replace(/\([^)]*\)/g, '')
+          .replace(/^(唐|宋|元|明|清)$/, '$1代'),
+      },
+      {
+        name: '馆藏',
+        slots: ['current_holder'],
+        accept: (value) => /博物馆|博物院|艺术研究院/.test(value),
+        normalize: (value) => value,
+      },
+    ];
   return specs.map((spec) => {
     const values = new Map();
     visibleArtifacts.value.forEach((artifact) => {
       artifact.slots
-        .filter((slot) => spec.slots.includes(slot.id))
+        .filter((slot) => (spec.slotPrefix ? slot.id.startsWith(spec.slotPrefix) : spec.slots.includes(slot.id)))
         .flatMap((slot) => slot.assertions.flatMap((assertion) => assertion.normalizedValues))
         .forEach((value) => {
           if (!value || !spec.accept(value)) return;
@@ -137,11 +251,13 @@ const entityGroups = computed(() => {
           values.set(normalized, artifacts);
         });
     });
+    const items = [...values.entries()]
+      .map(([name, artifacts]) => ({ name, artifacts }))
+      .sort((a, b) => b.artifacts.length - a.artifacts.length);
     return {
       name: spec.name,
-      items: [...values.entries()]
-        .map(([name, artifacts]) => ({ name, artifacts }))
-        .sort((a, b) => b.artifacts.length - a.artifacts.length),
+      items: spec.limit ? items.slice(0, spec.limit) : items,
+      hiddenCount: spec.limit ? Math.max(0, items.length - spec.limit) : 0,
     };
   });
 });
@@ -208,17 +324,30 @@ function endDrag() {
 
 const corpusStats = computed(() => ({
   sources: store.stats.records ? Object.keys(store.sources).length : 0,
-  sourceLabel: 'books',
+  sourceLabel: store.caseId === 'astro' ? 'catalogs' : store.caseId === 'news' ? 'sources' : 'books',
   artifacts: store.stats.artifacts || 0,
   contested: (store.stats.differ || 0) + (store.stats.overlap || 0),
-  unresolved: (store.stats.differ || 0) + (store.stats.overlap || 0),
+  unresolved: worklist.value.length,
 }));
 
+function sourceFolderLabel(source) {
+  return store.caseId === 'guqin' ? `《${source.title}》` : source.title;
+}
+
+const largeCorpus = computed(() => store.artifacts.length > 200);
+
 const sourceHierarchy = computed(() =>
-  Object.values(store.sources).map((source) => ({
-    ...source,
-    artifacts: visibleArtifacts.value.filter((artifact) => artifact.sources.includes(source.id)),
-  })),
+  Object.values(store.sources).map((source) => {
+    const artifacts = visibleArtifacts.value
+      .filter((artifact) => artifact.sources.includes(source.id))
+      .sort((a, b) => rankArtifact(b) - rankArtifact(a) || a.name.localeCompare(b.name, 'zh-CN'));
+    const cap = largeCorpus.value ? TREE_LIST_CAP : artifacts.length;
+    return {
+      ...source,
+      artifacts: artifacts.slice(0, cap),
+      hiddenCount: Math.max(0, artifacts.length - cap),
+    };
+  }),
 );
 
 const artifactHierarchy = computed(() => entityGroups.value);
@@ -228,17 +357,35 @@ const conflictHierarchy = computed(() =>
     { cls: 'A', name: '记载不一致', desc: '各来源取值不同,待考订' },
     { cls: 'B', name: '部分重叠', desc: '取值有交集,疑详略差异' },
     { cls: 'C', name: '疑似讹误', desc: '规则触发(待接入)' },
-  ].map((group) => ({
-    ...group,
-    slots: worklist.value.filter((w) => w.slot.cls === group.cls),
-  })),
+  ].map((group) => {
+    const slots = worklist.value
+      .filter((w) => w.slot.cls === group.cls)
+      .sort((x, y) => rankArtifact(y.artifact) - rankArtifact(x.artifact)
+        || x.artifact.name.localeCompare(y.artifact.name, 'zh-CN'));
+    return {
+      ...group,
+      total: slots.length,
+      slots: largeCorpus.value ? slots.slice(0, TREE_LIST_CAP) : slots,
+    };
+  }),
 );
 
-const selectedArtifactId = ref(null);
-const selectedSlotId = ref(null);
+const listedWorklist = computed(() => {
+  if (!largeCorpus.value || worklist.value.length <= TREE_LIST_CAP) return worklist.value;
+  return [...worklist.value]
+    .sort((x, y) => rankArtifact(y.artifact) - rankArtifact(x.artifact)
+      || x.artifact.name.localeCompare(y.artifact.name, 'zh-CN'))
+    .slice(0, TREE_LIST_CAP);
+});
 
 function onSelectArtifact(id) {
+  graphSelectionIds.value = []; // plain click = single-select focus, drop multi-selection
   selectedArtifactId.value = id;
+  // News workspace: artifact ids are event ids, so keep the framing view's
+  // event in sync with Global KG / lens selections (bidirectional linkage).
+  if (store.caseId === 'news' && newsV6Store.comparisons.events.some((event) => event.event_id === id)) {
+    selectNewsEvent(id);
+  }
   const artifact = store.artifacts.find((x) => x.id === id);
   selectedSlotId.value = artifact?.slots[0]?.id || null;
   activeStage.value = 'focus';
@@ -255,9 +402,66 @@ function selectCandidate(artifactId, slotId) {
   activeStage.value = 'evidence';
 }
 
+// ---------------------------------------------------------------------------
+// Case 3 · News manual graph corrections (merge/split/undo)
+// ---------------------------------------------------------------------------
+function onToggleGraphSelection(artifactId) {
+  const index = graphSelectionIds.value.indexOf(artifactId);
+  if (index >= 0) graphSelectionIds.value.splice(index, 1);
+  else graphSelectionIds.value.push(artifactId);
+}
+
+const canMergeSelection = computed(() => graphSelectionIds.value.length >= 2);
+const canSplitSelection = computed(() => graphSelectionIds.value.length === 1);
+const canUndoGraphOp = computed(() => newsV6Store.undoStack.length > 0);
+
+function openMergeDialogFromGraph() {
+  if (!canMergeSelection.value) return;
+  newsV6Store.selectionIds = [...graphSelectionIds.value];
+  openNewsMergeDialog();
+}
+
+function openSplitDialogFromGraph() {
+  if (!canSplitSelection.value) return;
+  newsV6Store.selectionIds = [...graphSelectionIds.value];
+  openNewsSplitDialog();
+}
+
+function undoGraphOp() {
+  undoLastAction(); // newsV6Store.graph reference change drives the refresh watcher below
+}
+
+function clearGraphSelection() {
+  graphSelectionIds.value = [];
+}
+
+// News toolbar "Framing": jump to the DORIS framing view for the currently
+// selected event (news artifact ids are event ids in the workspace store).
+function openFramingView() {
+  const current = selectedArtifactId.value;
+  if (current && newsV6Store.comparisons.events.some((event) => event.event_id === current)) {
+    selectNewsEvent(current);
+  }
+  activateTab(globalTabs, 'framing');
+}
+
+// Any merge/split/undo rewrites newsV6Store.graph; mirror the corrected event
+// set into the generic workspace and drop selections/pins that no longer exist.
+watch(
+  () => newsV6Store.graph,
+  () => {
+    if (store.caseId !== 'news' || !newsV6Store.loaded) return;
+    refreshArtifactsFromNewsV6();
+    const alive = new Set(store.artifacts.map((artifact) => artifact.id));
+    graphSelectionIds.value = graphSelectionIds.value.filter((id) => alive.has(id));
+    pinned.value = pinned.value.filter((pin) => alive.has(pin.artifactId));
+  },
+);
+
 const globalTabs = ref([
   { id: 'global', title: 'Global KG', active: true },
   { id: 'lens', title: 'Lens View', active: false },
+  { id: 'framing', title: 'Framing View', active: false }, // news case only (filtered by centerTabs)
 ]);
 
 const derivedTabs = ref([
@@ -265,6 +469,13 @@ const derivedTabs = ref([
   { id: 'edit', title: 'Editing', active: false },
   { id: 'ledger', title: 'Ledger', active: false },
 ]);
+
+// The DORIS framing tab exists only in the news workspace; other cases never see it.
+const centerTabs = computed(() => (
+  store.caseId === 'news'
+    ? globalTabs.value
+    : globalTabs.value.filter((tab) => tab.id !== 'framing')
+));
 
 const dockSlot = computed(() => {
   const a = store.artifacts.find((x) => x.id === selectedArtifactId.value);
@@ -285,17 +496,109 @@ const PART_PREFS = {
   craft: ['qimian', 'qintou'],
 };
 
-function dockImage(assertion) {
-  if (assertion.imagePath) return assertion.imagePath;
-  if (!dockSlot.value || !assertion.recordId) return null;
-  const files = dockSlot.value.artifact.imagesByBook[assertion.source] || [];
-  if (!files.length) return null;
-  const prefs = PART_PREFS[dockSlot.value.slot.id] || [];
-  for (const pref of prefs) {
-    const hit = files.find((f) => f.startsWith(pref));
-    if (hit) return `/api/image/${assertion.recordId}/${hit}`;
+const dockImageChoice = ref({});
+
+watch([selectedArtifactId, selectedSlotId], () => {
+  dockImageChoice.value = {};
+});
+
+function dockImageKey(assertion) {
+  return `${assertion.source}:${assertion.recordId || assertion.source}`;
+}
+
+function dockImageLabel(file) {
+  const base = String(file || '').replace(/\.[^.]+$/, '');
+  return base.replace(/^(nasa|simbad|gaia)_/i, '') || base || 'image';
+}
+
+function astroImageFolder(assertion) {
+  const path = assertion.imagePath || '';
+  const match = path.match(/^\/api\/astro\/image\/([^/]+)\//);
+  if (match) return decodeURIComponent(match[1]);
+  return (dockSlot.value?.artifact.name || '')
+    .replace(/\s+/g, '_')
+    .replace(/'/g, '_');
+}
+
+function dockImageList(assertion) {
+  if (!assertion) return [];
+  const files = assertion.metadata?.image_files
+    || assertion.metadata?.imageFiles
+    || dockSlot.value?.artifact.imagesByBook?.[assertion.source]
+    || [];
+  const paths = assertion.metadata?.image_paths || assertion.metadata?.imagePaths || [];
+  if (paths.length) {
+    return paths.map((src, index) => {
+      const file = files[index] || String(src).split('/').pop();
+      return { src, file, label: dockImageLabel(file) };
+    });
   }
-  return `/api/image/${assertion.recordId}/${files[0]}`;
+  if (!files.length) {
+    if (!assertion.imagePath) return [];
+    const file = String(assertion.imagePath).split('/').pop();
+    return [{ src: assertion.imagePath, file, label: dockImageLabel(file) }];
+  }
+  if (store.caseId === 'astro') {
+    const host = astroImageFolder(assertion);
+    return files.map((file) => ({
+      src: `/api/astro/image/${host}/${file}`,
+      file,
+      label: dockImageLabel(file),
+    }));
+  }
+  if (!assertion.recordId) {
+    if (!assertion.imagePath) return [];
+    const file = String(assertion.imagePath).split('/').pop();
+    return [{ src: assertion.imagePath, file, label: dockImageLabel(file) }];
+  }
+  return files.map((file) => ({
+    src: `/api/image/${assertion.recordId}/${file}`,
+    file,
+    label: dockImageLabel(file),
+  }));
+}
+
+function defaultDockImageSrc(assertion) {
+  const list = dockImageList(assertion);
+  if (!list.length) return null;
+  if (assertion.imagePath) {
+    const preferred = list.find((item) => (
+      item.src === assertion.imagePath || assertion.imagePath.endsWith(`/${item.file}`)
+    ));
+    if (preferred) return preferred.src;
+  }
+  if (store.caseId === 'astro') {
+    for (const token of ['dss2', '2mass', 'ps1']) {
+      const hit = list.find((item) => item.file.toLowerCase().includes(token));
+      if (hit) return hit.src;
+    }
+    return list[0].src;
+  }
+  const prefs = PART_PREFS[dockSlot.value?.slot.id] || [];
+  for (const pref of prefs) {
+    const hit = list.find((item) => item.file.toLowerCase().startsWith(pref));
+    if (hit) return hit.src;
+  }
+  return list[0].src;
+}
+
+function dockImage(assertion) {
+  const chosen = dockImageChoice.value[dockImageKey(assertion)];
+  if (chosen) return chosen;
+  return defaultDockImageSrc(assertion);
+}
+
+function dockImageCurrentLabel(assertion) {
+  const src = dockImage(assertion);
+  const item = dockImageList(assertion).find((entry) => entry.src === src);
+  return item?.label || '';
+}
+
+function selectDockImage(assertion, src) {
+  dockImageChoice.value = {
+    ...dockImageChoice.value,
+    [dockImageKey(assertion)]: src,
+  };
 }
 
 function imageEvidenceLabel(assertion) {
@@ -324,18 +627,25 @@ function closeEvidenceImage() {
   viewerImage.value = null;
 }
 
+function evidenceTextUrl(assertion) {
+  return assertion.metadata?.text_url
+    || assertion.metadata?.textUrl
+    || (store.caseId === 'guqin' && assertion.recordId ? `/api/text/${assertion.recordId}` : null);
+}
+
 async function openEvidenceText(assertion) {
-  if (!assertion.recordId) return;
+  const url = evidenceTextUrl(assertion);
+  if (!url) return;
   viewerText.value = {
     title: `${SOURCES.value[assertion.source]?.title || assertion.source} · ${assertion.recordId}`,
-    text: 'Loading OCR text…',
+    text: 'Loading article text…',
   };
   try {
-    const response = await fetch(`/api/text/${assertion.recordId}`);
+    const response = await fetch(url);
     if (!response.ok) throw new Error(`API ${response.status}`);
     viewerText.value.text = await response.text();
   } catch (error) {
-    viewerText.value.text = `Unable to load OCR text: ${error}`;
+    viewerText.value.text = `Unable to load article text: ${error}`;
   }
 }
 
@@ -427,7 +737,15 @@ const ledger = ref([]);
 
 function onAdjudicated(payload) {
   const a = store.artifacts.find((x) => x.id === selectedArtifactId.value);
-  const s = a?.slots.find((x) => x.id === payload.slotId);
+  const s = applyDecision(selectedArtifactId.value, payload.slotId, {
+    action: payload.action,
+    value: payload.value || null,
+    sources: payload.sources || [],
+    text: payload.text,
+    time: new Date().toISOString(),
+    artifactId: selectedArtifactId.value,
+    slotId: payload.slotId,
+  }) || a?.slots.find((x) => x.id === payload.slotId);
   ledger.value.unshift({
     id: `adj-${ledger.value.length + 1}`,
     time: new Date().toLocaleString(),
@@ -435,6 +753,7 @@ function onAdjudicated(payload) {
     slot: s?.label || '',
     cls: s?.cls,
     action: payload.action,
+    value: payload.value || '',
     text: payload.text,
     evidence: pinned.value.map((p) => p.label),
     supersedes:
@@ -449,12 +768,27 @@ function onAdjudicated(payload) {
     <header class="topbar">
       <h1>KGExplorer: Knowledge Graph Visual Analytics System</h1>
       <div class="case-switcher">
-        <span>Case</span>
-        <strong>Case 1 · Guqin</strong>
+        <label for="case-select">Case</label>
+        <select
+          id="case-select"
+          v-model="selectedCaseId"
+          :disabled="loadingCase"
+          @change="loadCaseIntoView(selectedCaseId)"
+        >
+          <option v-for="item in CASES" :key="item.id" :value="item.id">{{ item.label }}</option>
+        </select>
       </div>
     </header>
 
+    <!-- Case 3 · News uses this same generic workspace. Event-node
+         merge/split/undo corrections live in the graph toolbar above
+         (Ctrl/Cmd/Shift+click to multi-select); the dedicated NewsCaseView
+         has been retired. -->
     <section class="workspace" aria-label="Main workspace">
+      <div v-if="loadingCase || store.error" class="workspace-mask">
+        <span v-if="loadingCase">Loading {{ CASES.find((item) => item.id === selectedCaseId)?.label || 'case' }}…</span>
+        <span v-else>Failed to load case: {{ store.error }}</span>
+      </div>
       <aside class="panel left-panel" aria-label="Workspace panel">
         <header class="panel-title">KG Workspace</header>
 
@@ -483,7 +817,11 @@ function onAdjudicated(payload) {
                   {{ slot.label }}
                 </option>
               </select>
-              <select v-model="readinessFilter" aria-label="Filter by audit readiness">
+              <select
+                v-if="store.caseId === 'guqin'"
+                v-model="readinessFilter"
+                aria-label="Filter by audit readiness"
+              >
                 <option value="all">All audit states</option>
                 <option v-for="(label, id) in READINESS_LABELS" :key="id" :value="id">
                   {{ label }}
@@ -492,7 +830,10 @@ function onAdjudicated(payload) {
             </div>
             <div class="explorer-result">
               <strong>{{ visibleArtifacts.length }}</strong> / {{ store.artifacts.length }} objects
-              <span v-if="store.caseId === 'guqin'">· {{ worklist.length }} conflict candidates</span>
+              <span>· {{ worklist.length }} conflict candidates</span>
+              <span v-if="listedWorklist.length < worklist.length">
+                · listing {{ listedWorklist.length }}
+              </span>
             </div>
           </section>
 
@@ -504,7 +845,7 @@ function onAdjudicated(payload) {
               <div><b>{{ corpusStats.sources }}</b><span>{{ corpusStats.sourceLabel }}</span></div>
               <div><b>{{ corpusStats.artifacts }}</b><span>artifacts</span></div>
               <div><b>{{ corpusStats.contested }}</b><span>contested</span></div>
-              <div><b>{{ corpusStats.unresolved - ledger.length >= 0 ? corpusStats.unresolved - ledger.length : 0 }}</b><span>open</span></div>
+              <div><b>{{ corpusStats.unresolved }}</b><span>open</span></div>
             </div>
             <div
               v-if="store.caseId === 'guqin' && store.evidenceAudit.ready_for_expert_review !== undefined"
@@ -523,7 +864,7 @@ function onAdjudicated(payload) {
                 <h3>Sources</h3>
                 <ul class="folder-tree">
                   <li v-for="source in sourceHierarchy" :key="source.id" class="open">
-                    <span class="folder-name" :style="{ color: source.color }">《{{ source.title }}》</span>
+                    <span class="folder-name" :style="{ color: source.color }">{{ sourceFolderLabel(source) }}</span>
                     <ul>
                       <li
                         v-for="artifact in source.artifacts"
@@ -531,6 +872,9 @@ function onAdjudicated(payload) {
                         :class="{ 'tree-active': artifact.id === selectedArtifactId }"
                       >
                         <span class="tree-artifact" @click="onSelectArtifact(artifact.id)">{{ artifact.name }}</span>
+                      </li>
+                      <li v-if="source.hiddenCount" class="tree-more">
+                        +{{ source.hiddenCount }} more · search to browse
                       </li>
                     </ul>
                   </li>
@@ -545,6 +889,9 @@ function onAdjudicated(payload) {
                       <li v-for="item in group.items" :key="item.name" class="open">
                         <span>{{ item.name }}<i class="tree-badge">{{ item.artifacts.length }}</i></span>
                       </li>
+                      <li v-if="group.hiddenCount" class="tree-more">
+                        +{{ group.hiddenCount }} more values
+                      </li>
                     </ul>
                   </li>
                 </ul>
@@ -556,7 +903,7 @@ function onAdjudicated(payload) {
                     <span>
                       <i class="chip-dot" :data-cls="group.cls"></i>
                       {{ group.cls }} · {{ group.name }}
-                      <i class="tree-badge">{{ group.slots.length }}</i>
+                      <i class="tree-badge">{{ group.total }}</i>
                     </span>
                     <ul>
                       <li
@@ -569,6 +916,9 @@ function onAdjudicated(payload) {
                           @click="selectCandidate(w.artifact.id, w.slot.id)"
                         >{{ w.artifact.name }} · {{ w.slot.label }}</span>
                       </li>
+                      <li v-if="group.total > group.slots.length" class="tree-more">
+                        +{{ group.total - group.slots.length }} more · search to browse
+                      </li>
                     </ul>
                   </li>
                 </ul>
@@ -578,9 +928,12 @@ function onAdjudicated(payload) {
 
           <section class="control-card worklist-card" aria-label="Conflict worklist">
             <h2>Candidate Queue</h2>
+            <p v-if="listedWorklist.length < worklist.length" class="explorer-result">
+              Showing featured / selected first
+            </p>
             <ul class="worklist">
               <li
-                v-for="w in worklist"
+                v-for="w in listedWorklist"
                 :key="w.artifact.id + w.slot.id"
                 :class="{ active: w.artifact.id === selectedArtifactId && w.slot.id === selectedSlotId }"
                 @click="selectCandidate(w.artifact.id, w.slot.id)"
@@ -588,7 +941,11 @@ function onAdjudicated(payload) {
                 <i class="chip-dot" :data-cls="w.slot.cls"></i>
                 <span class="wl-name">{{ w.artifact.name }} · {{ w.slot.label }}</span>
                 <em
-                  v-if="w.slot.reviewReadiness"
+                  v-if="w.slot.decision?.action === 'keep_open'"
+                  class="readiness-tag"
+                >{{ DECISION_LABELS.keep_open }}</em>
+                <em
+                  v-else-if="w.slot.reviewReadiness"
                   class="readiness-tag"
                   :data-state="w.slot.reviewReadiness"
                 >
@@ -618,13 +975,83 @@ function onAdjudicated(payload) {
             <span><i :style="{ background: CLASS_COLORS.B }"></i>B</span>
             <span><i :style="{ background: CLASS_COLORS.consensus }"></i>OK</span>
           </div>
-          <button class="save-button" type="button">Save</button>
+          <div v-if="store.caseId === 'news'" class="judge-mode-switch" role="group" aria-label="判定方法">
+            <span class="judge-mode-label">判定方法</span>
+            <button
+              type="button"
+              class="judge-mode-btn"
+              :class="{ active: store.judgeMode === 'rule' }"
+              @click="store.judgeMode = 'rule'"
+            >规则</button>
+            <button
+              type="button"
+              class="judge-mode-btn"
+              :class="{ active: store.judgeMode === 'llm' }"
+              :title="llmVerdictCount ? `${llmVerdictCount} 个槽位有大模型判定` : '暂无大模型判定结果，颜色与规则一致'"
+              @click="store.judgeMode = 'llm'"
+            >大模型</button>
+            <button
+              type="button"
+              class="judge-mode-btn"
+              :class="{ active: store.judgeMode === 'framing' }"
+              :title="framingVerdictCount ? `${framingVerdictCount} 个槽位有框架冲突判定` : '暂无框架判定结果，颜色与规则一致'"
+              @click="store.judgeMode = 'framing'"
+            >框架冲突</button>
+          </div>
+          <div class="toolbar-actions">
+            <template v-if="store.caseId === 'news'">
+              <span class="graph-ops-count" :data-active="graphSelectionIds.length > 0">
+                {{ graphSelectionIds.length }} selected
+              </span>
+              <button
+                type="button"
+                class="graph-op"
+                :disabled="!canMergeSelection"
+                title="Merge the selected event nodes into one (Ctrl+Click to select ≥ 2)"
+                @click="openMergeDialogFromGraph"
+              >Merge</button>
+              <button
+                type="button"
+                class="graph-op"
+                :disabled="!canSplitSelection"
+                title="Split the selected event node into two (select exactly 1)"
+                @click="openSplitDialogFromGraph"
+              >Split</button>
+              <button
+                type="button"
+                class="graph-op"
+                :disabled="!canUndoGraphOp"
+                title="Undo the last merge/split correction"
+                @click="undoGraphOp"
+              >Undo</button>
+              <button
+                v-if="graphSelectionIds.length"
+                type="button"
+                class="graph-op"
+                title="Clear the multi-selection"
+                @click="clearGraphSelection"
+              >Clear</button>
+              <button
+                type="button"
+                class="graph-op"
+                title="Open the DORIS framing view for the selected event"
+                @click="openFramingView"
+              >Framing</button>
+            </template>
+            <button
+              v-if="lensBrushedIds.length"
+              class="save-button"
+              type="button"
+              @click="lensBrushedIds = []"
+            >Clear lens ({{ lensBrushedIds.length }})</button>
+            <button class="save-button" type="button">Save</button>
+          </div>
         </header>
         <div class="graph-workbench">
           <section class="graph-pane" aria-label="Global knowledge graph">
             <div class="browser-tabs">
               <button
-                v-for="tab in globalTabs"
+                v-for="tab in centerTabs"
                 :key="tab.id"
                 :class="['browser-tab', { active: tab.active }]"
                 type="button"
@@ -640,13 +1067,49 @@ function onAdjudicated(payload) {
               variant="global"
               :selected-artifact-id="selectedArtifactId"
               :selected-slot-id="selectedSlotId"
-              :visible-artifact-ids="visibleArtifactIds"
+              :visible-artifact-ids="graphArtifactIds"
+              :selected-artifact-ids="graphSelectionIds"
               @select-artifact="onSelectArtifact"
               @select-slot="onSelectSlot"
               @pin-artifact="pinArtifact"
+              @toggle-select="onToggleGraphSelection"
+            />
+            <span
+              v-show="store.caseId === 'news' && newsV6Store.lastAction"
+              class="graph-op-toast"
+              role="status"
+            >{{ newsV6Store.lastAction }}</span>
+            <div v-if="activeTabId(globalTabs) === 'lens'" class="lens-pane">
+              <div class="lens-toolbar">
+                <span>Cluster by</span>
+                <button
+                  type="button"
+                  :class="{ active: lensMode === 'conflict' }"
+                  @click="lensMode = 'conflict'"
+                >Conflict pattern</button>
+                <button
+                  type="button"
+                  :class="{ active: lensMode === 'attribute' }"
+                  @click="lensMode = 'attribute'"
+                >Catalogue attributes</button>
+                <em v-if="store.projection?.ready">
+                  {{ store.projection.point_count || store.artifacts.length }} objects
+                </em>
+              </div>
+              <ProjectionView
+                :mode="lensMode"
+                :selected-artifact-id="selectedArtifactId"
+                :visible-artifact-ids="visibleArtifactIds"
+                :brushed-artifact-ids="lensBrushedIds"
+                @select-artifact="onSelectArtifact"
+                @brush-artifacts="onLensBrush"
+              />
+            </div>
+            <NewsFramingView
+              v-else-if="store.caseId === 'news' && activeTabId(globalTabs) === 'framing'"
             />
             <div v-else class="tab-placeholder">
-              Lens controls
+              Empty view
             </div>
           </section>
 
@@ -678,10 +1141,11 @@ function onAdjudicated(payload) {
                 <header>
                   <i class="chip-dot" :data-cls="e.cls"></i>
                   <strong>{{ e.artifact }} · {{ e.slot }}</strong>
-                  <span class="ledger-action">{{ e.action }}</span>
+                  <span class="ledger-action">{{ DECISION_LABELS[e.action] || e.action }}</span>
                   <span class="ledger-time">{{ e.time }}</span>
                 </header>
                 <p class="ledger-text">{{ e.text }}</p>
+                <p v-if="e.value" class="ledger-evidence">Selected value: {{ e.value }}</p>
                 <p v-if="e.evidence.length" class="ledger-evidence">Evidence cited: {{ e.evidence.join(' / ') }}</p>
                 <p v-if="e.supersedes" class="ledger-supersedes">supersedes {{ e.supersedes }}</p>
               </article>
@@ -713,29 +1177,61 @@ function onAdjudicated(payload) {
               class="dock-card"
               :class="{ silent: !a.raw }"
             >
-              <header :style="{ color: SOURCES[a.source]?.color }">{{ SOURCES[a.source]?.title }}</header>
+              <header :style="{ color: SOURCES[a.source]?.color }">
+                {{ SOURCES[a.source]?.title }}
+                <small v-if="a.metadata?.outlet"> · {{ a.metadata.outlet }}</small>
+              </header>
               <img
                 v-if="dockImage(a)"
                 class="dock-photo"
                 :src="dockImage(a)"
-                :alt="`${SOURCES[a.source]?.title} · ${dockSlot.slot.label}`"
+                :alt="`${SOURCES[a.source]?.title} · ${dockImageCurrentLabel(a) || dockSlot.slot.label}`"
                 loading="lazy"
                 title="Open full-size evidence image"
-                @click="openEvidenceImage(dockImage(a), `${SOURCES[a.source]?.title} · ${dockSlot.slot.label}`)"
+                @click="openEvidenceImage(dockImage(a), `${SOURCES[a.source]?.title} · ${dockImageCurrentLabel(a) || dockSlot.slot.label}`)"
               />
               <div v-else class="dock-thumb part" :data-kind="a.raw ? 'part' : 'none'">
                 <span v-if="a.raw">no image evidence for this record</span>
                 <span v-else>not recorded</span>
               </div>
-              <small v-if="a.raw" class="dock-image-status" :data-kind="imageEvidenceLabel(a)">{{ imageEvidenceLabel(a) }}</small>
+              <div
+                v-if="dockImageList(a).length > 1"
+                class="dock-thumbs"
+                role="listbox"
+                :aria-label="`${SOURCES[a.source]?.title} images`"
+              >
+                <button
+                  v-for="item in dockImageList(a)"
+                  :key="item.src"
+                  type="button"
+                  class="dock-thumb-btn"
+                  role="option"
+                  :class="{ active: dockImage(a) === item.src }"
+                  :aria-selected="dockImage(a) === item.src"
+                  :title="item.file"
+                  @click="selectDockImage(a, item.src)"
+                >
+                  <img :src="item.src" :alt="item.label" />
+                  <span>{{ item.label }}</span>
+                </button>
+              </div>
+              <small v-if="a.raw" class="dock-image-status" :data-kind="imageEvidenceLabel(a)">
+                {{ dockImageCurrentLabel(a) || imageEvidenceLabel(a) }}
+              </small>
               <div v-if="a.audit" class="dock-audit">
                 <span :data-state="a.audit.text_support">{{ a.audit.text_support }}</span>
                 <span :data-state="a.audit.image_support">{{ a.audit.image_support }}</span>
               </div>
-              <p class="dock-raw">{{ a.raw || '该书未记载' }}</p>
+              <p class="dock-raw">{{ a.raw || (store.caseId === 'guqin' ? '该书未记载' : 'not recorded in this report') }}</p>
+              <p
+                v-if="store.caseId === 'news' && a.metadata?.evidence_sentences?.length"
+                class="dock-snippet"
+              >{{ a.metadata.evidence_sentences[0] }}</p>
               <p v-if="a.audit?.text_snippet" class="dock-snippet">{{ a.audit.text_snippet }}</p>
               <div v-if="a.raw" class="dock-card-actions">
-                <button type="button" @click="openEvidenceText(a)">OCR text</button>
+                <button v-if="evidenceTextUrl(a)" type="button" @click="openEvidenceText(a)">
+                  {{ store.caseId === 'guqin' ? 'OCR text' : 'Article text' }}
+                </button>
                 <button type="button" @click="pinSlot(dockSlot.artifact.id, dockSlot.slot.id)">Pin evidence</button>
               </div>
             </article>
@@ -782,5 +1278,10 @@ function onAdjudicated(payload) {
         </div>
       </div>
     </Teleport>
+
+    <!-- Case 3 · News manual graph-correction dialogs (rendered over the
+         generic workspace; state lives in newsV6Store) -->
+    <NewsMergeDialog v-if="store.caseId === 'news' && newsV6Store.mergeDialogOpen" />
+    <NewsSplitDialog v-if="store.caseId === 'news' && newsV6Store.splitTargetId" />
   </main>
 </template>

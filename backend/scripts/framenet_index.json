@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "version": "doris-framenet-1",
+    "description": "Curated FrameNet vocabulary for DORIS framing annotation in KGExplorer Case 3 (News). Frame and FE names follow FrameNet (framenet.icsi.berkeley.edu); the lists are trimmed to news-relevant core frame elements and serve as the constrained vocabulary for DeepSeek annotation plus downstream validation - they are not linguistic ground truth.",
+    "normalization": "DeepSeek output is matched against these names case-insensitively, then fuzzily (difflib, cutoff 0.8). Unknown frames or FEs are dropped, and a frame with no resolvable entity element is dropped."
+  },
+  "frames": {
+    "Communication": ["Addressee", "Communicator", "Message", "Topic", "Means", "Manner", "Medium", "Place", "Time"],
+    "Meet_with": ["Participant_1", "Participant_2", "Occasion", "Topic", "Purpose", "Place", "Time", "Manner"],
+    "Statement": ["Speaker", "Message", "Topic", "Addressee", "Place", "Time", "Manner"],
+    "Threatening": ["Speaker", "Addressee", "Content", "Consequence", "Place", "Time", "Manner"],
+    "Attack": ["Assailant", "Victim", "Target", "Weapon", "Instrument", "Means", "Manner", "Place", "Time", "Purpose", "Result"],
+    "Kill": ["Killer", "Victim", "Instrument", "Means", "Manner", "Place", "Time", "Cause"],
+    "Arrest": ["Authorities", "Offender", "Offense", "Charge", "Place", "Time", "Manner", "Means"],
+    "Deny_or_refuse_claim": ["Speaker", "Message", "Addressee", "Topic", "Place", "Time"],
+    "Sign_agreement": ["Signatory", "Agreement", "Counterpart", "Place", "Time"],
+    "Reporting": ["Reporter", "Message", "Topic", "Place", "Time"]
+  }
+}

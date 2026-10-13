@@ -1,6 +1,8 @@
 # KGExplorer Data
 
-Raw OCR, triplet, and image evidence are stored under `backend/data/raw`.
+Guqin (Case 1) raw OCR, triplet, and image evidence live under `backend/data/raw`.
+Astronomy (Case 2) tables and cutouts live under `backend/data/astro/` and must
+stay separate; see `backend/data/astro/README.md`.
 
 ## Layout
 

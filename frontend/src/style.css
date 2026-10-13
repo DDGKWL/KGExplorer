@@ -64,15 +64,15 @@ p {
   font-weight: 700;
 }
 
-.case-switcher strong {
-  min-width: 132px;
+.case-switcher select {
+  min-width: 168px;
   border: 1px solid rgba(255,255,255,.55);
   border-radius: 4px;
   background: rgba(255,255,255,.96);
   color: #3d454e;
   padding: 6px 8px;
   font-size: 12px;
-  text-align: left;
+  font-weight: 700;
 }
 
 .legend-object,
@@ -107,11 +107,25 @@ p {
 }
 
 .workspace {
+  position: relative;
   display: grid;
   grid-template-columns: 300px minmax(540px, 1fr) 270px;
   gap: 8px;
   min-height: 0;
   padding: 0 8px 8px;
+}
+
+.workspace-mask {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(243, 244, 246, 0.78);
+  color: #4a3625;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .panel {
@@ -144,7 +158,7 @@ p {
 
 .panel-toolbar {
   display: grid;
-  grid-template-columns: 150px minmax(0, 1fr) auto;
+  grid-template-columns: 150px minmax(0, 1fr) repeat(2, auto);
   gap: 8px;
   width: 100%;
   overflow: hidden;
@@ -398,6 +412,12 @@ p {
   line-height: 14px;
 }
 
+.tree-more {
+  color: #8a949b;
+  font-size: 10px;
+  font-style: italic;
+}
+
 .adjudication-body {
   min-height: 0;
   overflow-y: auto;
@@ -442,9 +462,13 @@ p {
   cursor: pointer;
 }
 
-.adj-slot-list li.active {
-  border-color: #b9a687;
-  background: #faf7f1;
+.adj-slot-list li.decided {
+  border-color: #c5d6d0;
+  background: #f4f8f6;
+}
+
+.adj-slot-list li.decided em {
+  color: #2f7268;
 }
 
 .adj-slot-list li i {
@@ -568,6 +592,104 @@ p {
   font-size: 9px;
 }
 
+/* Case 3 · News DeepSeek semantic verdict card */
+.adj-llm-card {
+  margin-top: 6px;
+  padding: 7px 8px;
+  border: 1px solid #d9d3ea;
+  border-left: 3px solid #6b4e9b;
+  border-radius: 5px;
+  background: #f6f4fa;
+}
+
+.adj-llm-card[data-verdict='conflict'] {
+  border-color: #ead3c8;
+  border-left-color: #9f4328;
+  background: #fbf3ef;
+}
+
+.adj-llm-card[data-verdict='consistent'] {
+  border-color: #cfe3df;
+  border-left-color: #2f7268;
+  background: #f0f7f5;
+}
+
+.adj-llm-card header {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: #46545d;
+  font-size: 10.5px;
+}
+
+.adj-llm-card p {
+  margin: 5px 0 0;
+  color: #66737c;
+  font-size: 10.5px;
+  line-height: 1.4;
+}
+
+/* Case 3 · News: DORIS/FrameNet framing verdict card (third judgment method). */
+.adj-framing-card {
+  margin-top: 6px;
+  padding: 7px 8px;
+  border: 1px solid #e3d6c8;
+  border-left: 3px solid #b86f3d;
+  border-radius: 5px;
+  background: #faf6f1;
+}
+
+.adj-framing-card[data-verdict='framing_conflict'] {
+  border-color: #ead3c8;
+  border-left-color: #9f4328;
+  background: #fbf3ef;
+}
+
+.adj-framing-card[data-verdict='framing_consistent'] {
+  border-color: #cfe3df;
+  border-left-color: #2f7268;
+  background: #f0f7f5;
+}
+
+.adj-framing-card[data-verdict='insufficient'] {
+  border-color: #dde2e5;
+  border-left-color: #aab4ba;
+  background: #f5f7f8;
+}
+
+.adj-framing-card header {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: #46545d;
+  font-size: 10.5px;
+}
+
+.adj-framing-card p {
+  margin: 5px 0 0;
+  color: #66737c;
+  font-size: 10.5px;
+  line-height: 1.4;
+}
+
+.adj-framing-evidence {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.adj-framing-evidence li {
+  margin-top: 4px;
+  color: #9f4328;
+  font-size: 10.5px;
+}
+
+.adj-framing-evidence small {
+  display: block;
+  color: #718087;
+  font-size: 10px;
+}
+
 .adj-value-groups {
   display: grid;
   gap: 5px;
@@ -581,6 +703,63 @@ p {
   border: 1px solid #e4e8ed;
   border-radius: 6px;
   background: #ffffff;
+  cursor: pointer;
+}
+
+.adj-value-groups li.selected {
+  border-color: #5d8c82;
+  background: #f3f8f6;
+  box-shadow: 0 0 0 1px #5d8c82;
+}
+
+.adj-select-hint {
+  margin: 0 0 6px;
+  color: #8a949b;
+  font-size: 10.5px;
+  line-height: 1.4;
+}
+
+.adj-decision-banner {
+  margin: 0 0 8px;
+  padding: 7px 8px;
+  border: 1px solid #c5d6d0;
+  border-radius: 6px;
+  background: #f4f8f6;
+}
+
+.adj-decision-banner strong,
+.adj-decision-banner span {
+  display: block;
+}
+
+.adj-decision-banner strong {
+  color: #2f7268;
+  font-size: 11px;
+}
+
+.adj-decision-banner span {
+  margin-top: 3px;
+  color: #4a5058;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.adj-decision-banner[data-action='keep_open'] {
+  border-color: #e4d7be;
+  background: #faf7f1;
+}
+
+.adj-decision-banner[data-action='keep_open'] strong {
+  color: #8f6b2f;
+}
+
+.adj-decision-banner[data-action='flag_error'] {
+  border-color: #e4c8c0;
+  background: #fbf4f1;
+}
+
+.adj-decision-banner[data-action='flag_error'] strong {
+  color: #9f4328;
 }
 
 .adj-value-groups strong,
@@ -1091,6 +1270,49 @@ p {
   cursor: zoom-in;
 }
 
+.dock-thumbs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  margin: 0 0 6px;
+  padding-bottom: 2px;
+}
+
+.dock-thumb-btn {
+  flex: 0 0 auto;
+  width: 56px;
+  padding: 0;
+  border: 1px solid #d8dee4;
+  border-radius: 5px;
+  background: #ffffff;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.dock-thumb-btn.active {
+  border-color: #294e6b;
+  box-shadow: 0 0 0 1px #294e6b;
+}
+
+.dock-thumb-btn img {
+  display: block;
+  width: 56px;
+  height: 36px;
+  object-fit: cover;
+}
+
+.dock-thumb-btn span {
+  display: block;
+  max-width: 56px;
+  padding: 1px 3px;
+  font-size: 8.5px;
+  color: #5b6770;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .evidence-lightbox {
   position: fixed;
   inset: 0;
@@ -1395,6 +1617,47 @@ p {
   font-size: 13px;
 }
 
+.lens-pane {
+  display: grid;
+  grid-template-rows: 34px minmax(0, 1fr);
+  min-height: 0;
+  height: 100%;
+}
+
+.lens-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  border-bottom: 1px solid #e6eaef;
+  color: #6d7480;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.lens-toolbar button {
+  height: 22px;
+  border: 1px solid #d5dbe3;
+  border-radius: 11px;
+  background: #ffffff;
+  color: #52606c;
+  font-size: 11px;
+  padding: 0 9px;
+}
+
+.lens-toolbar button.active {
+  border-color: #365c78;
+  background: #365c78;
+  color: #ffffff;
+}
+
+.lens-toolbar em {
+  margin-left: auto;
+  font-style: normal;
+  font-weight: 600;
+  color: #8a949b;
+}
+
 .graph-workbench {
   display: grid;
   grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.7fr);
@@ -1405,6 +1668,7 @@ p {
 }
 
 .graph-pane {
+  position: relative;
   display: grid;
   grid-template-rows: 36px 1fr;
   min-width: 0;
@@ -1416,6 +1680,112 @@ p {
   box-shadow:
     0 1px 2px rgba(31, 41, 55, 0.16),
     inset 0 0 0 1px rgba(255, 255, 255, 0.72);
+}
+
+/* Case 3 · News manual graph corrections (merge/split/undo) */
+.toolbar-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-self: end;
+  min-width: 0;
+}
+
+.graph-ops-count {
+  padding: 3px 9px;
+  border: 1px solid #dde2e6;
+  border-radius: 11px;
+  background: #f2f4f6;
+  color: #8a949b;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.graph-ops-count[data-active='true'] {
+  border-color: #d9a441;
+  background: #f6ead0;
+  color: #7c5d10;
+}
+
+.graph-op {
+  height: 26px;
+  padding: 0 11px;
+  border: 1px solid #cbb27f;
+  border-radius: 18px;
+  background: #fdf8ec;
+  color: #6e5335;
+  font-size: 12px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.graph-op:hover:not(:disabled) {
+  background: #f6ead0;
+}
+
+.graph-op:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* Case 3 · News rule/LLM judgment mode switch */
+.judge-mode-switch {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 4px;
+  justify-self: end;
+  margin-right: 6px;
+}
+
+.judge-mode-label {
+  color: #8a949b;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.judge-mode-btn {
+  height: 24px;
+  padding: 0 10px;
+  border: 1px solid #dde2e6;
+  border-radius: 12px;
+  background: #f2f4f6;
+  color: #6d7a83;
+  font-size: 11px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.judge-mode-btn:hover {
+  background: #e9edef;
+}
+
+.judge-mode-btn.active {
+  border-color: #365c78;
+  background: #365c78;
+  color: #ffffff;
+}
+
+.graph-op-toast {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  max-width: 90%;
+  padding: 6px 14px;
+  border-radius: 14px;
+  background: #29353a;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  box-shadow: 0 4px 14px rgba(31, 41, 55, 0.25);
 }
 
 .browser-tabs {
@@ -1500,6 +1870,36 @@ p {
 
 .knowledge-graph-canvas svg g {
   user-select: none;
+}
+
+/* Case 3 / News: the derived Attribute Matrix keeps minimum row/column sizes,
+   so an event merged from six reports (six source columns) plus its attribute
+   rows can exceed the pane. Let that canvas scroll instead of silently
+   clipping the outer rows/columns; the global graph still pans via d3.zoom. */
+.knowledge-graph-canvas.scrollable-canvas {
+  overflow: auto;
+  background-attachment: local;
+  scrollbar-color: #b9c3cb #f2f4f6;
+}
+
+.knowledge-graph-canvas.scrollable-canvas::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.knowledge-graph-canvas.scrollable-canvas::-webkit-scrollbar-thumb {
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  background: #c3ccd4;
+}
+
+.knowledge-graph-canvas.scrollable-canvas::-webkit-scrollbar-thumb:hover {
+  background: #a7b3bd;
+}
+
+.knowledge-graph-canvas.scrollable-canvas::-webkit-scrollbar-track,
+.knowledge-graph-canvas.scrollable-canvas::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 .dock-image-status {

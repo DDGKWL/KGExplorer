@@ -28,6 +28,16 @@ class GuqinExplorerApiTest(unittest.TestCase):
         ]
         self.assertEqual(len(audited_slots), 74)
 
+    def test_case_data_includes_lens_projection(self):
+        response = self.client.get("/api/case-data/guqin")
+        self.assertEqual(response.status_code, 200)
+        data = response.get_json()
+        self.assertTrue(data["projection"]["ready"])
+        self.assertEqual(data["projection"]["point_count"], len(data["artifacts"]))
+        sample = next(item for item in data["artifacts"] if item.get("projection"))
+        self.assertIn("x", sample["projection"]["conflict"])
+        self.assertIn("y", sample["projection"]["attribute"])
+
     def test_explorer_filters_ready_gq_evidence(self):
         response = self.client.get(
             "/api/guqin/explorer?readiness=P1_expert_review&source=Gq"

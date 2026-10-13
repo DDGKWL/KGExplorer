@@ -112,3 +112,115 @@ Design intent:
 5. Provenance ledger:
    - Store decisions with cited evidence and supersession links.
    - Move ledger into a secondary tab, not the primary adjudication interface.
+
+## Case 3 · News Framing View (implemented)
+
+The news workspace adds a third center tab, `Framing View`
+(`frontend/src/components/NewsFramingView.vue`), rendering the DORIS-paper
+Figure-2 style narrative conflict graph for the selected multi-report event.
+
+Layout decision (entity-centric, deterministic SVG flowchart): Figure 2 in the
+DORIS paper is two vertical decode chains converging on a shared conceptual
+entity node, and the final conflict result lives not in the figure but in
+Query 2 / Table 2 (the cross-document `(Frame, FE)` comparison). The view
+therefore renders one section per shared entity as a deterministic layered DAG
+(not force-directed): a pure-JS layout function (`layoutSectionSvg`) emits
+hand-written SVG path strings — one 116px column per report, a per-chain y
+cursor with fixed row steps (doc → trigger → frame → FE; the full evidence
+sentence lives in the tooltip instead of its own row; multi-segment chains
+stack downward), then orthogonal convergence (per-column
+main line → full-span rail at the deepest column's bottom → centered drop with
+an arrowhead) onto the entity line. No d3 is required (d3 ^7.9.0 remains only
+for `KnowledgeGraphView`). The earlier property×report matrix rows were
+dropped, as were the former CSS convergence rail and text-heavy report bands.
+
+Structure per section:
+
+- One chain per report with evidence, drawn as SVG shapes on a vertical main
+  line: a 2-letter domain color badge (colorblind-safe Okabe-Ito/Tol `DOMAIN_PALETTE`,
+  hashed from the domain so one outlet keeps one color across the whole view;
+  hover shows outlet + full title, click opens the article via
+  `/api/news/text/<url_hash>`) → trigger as a dashed diamond with the word
+  beside it → `Frame` as a white capsule outlined in the faction color with a small color tab on its left edge (journal-figure low-saturation style) → `FE` as a hollow dot. Columns are sorted
+  by dominant frame (`chainFrameKey`: most frequent frame per chain,
+  lowercase-normalized, reportId tie-break, frameless chains last) so
+  same-faction chains sit adjacent before converging, and both the main line
+  and the Frame capsules carry the chain's faction color from a separate
+  `FRAME_PALETTE` hash (Okabe-Ito colorblind-safe academic palette; same frame → same color across the whole view;
+  frameless chains fall back to the section's neutral tone) — the convergence
+  rail stays neutral, so it reads as several colors merging. Node shape
+  encodes the ontology type, so the edge labels
+  (`contains` / `mentions` / `evokes` / `hasFE`) were dropped entirely. A
+  chain can hold several decode segments (one report may carry multiple
+  frames; sentences are deduped).
+- Long text hides behind one mouse-following tooltip: the full evidence
+  sentence (no longer a dedicated row — it rides on the trigger/Frame/FE
+  tooltips), the article title, the DORIS reason line, and the Table-2-style
+  `(Frame · FE)` comparison deduped per attribute and labeled by outlet
+  domain. Only short words (trigger, frame names, entity name) stay as node
+  labels. Hovering a Frame capsule lights every same-frame capsule and chain
+  across all sections while fading the rest (cross-section faction
+  highlight).
+- The shared entity line under the drop carries the conclusion: a text verdict
+  badge (`CONFLICT` vermillion / `CONSISTENT` bluish-green / `INSUFFICIENT`
+  grey — 10px uppercase, letter-spaced, outlined in the tone color; no emoji
+  anywhere in the view), the `RULE NOTE` cross-note tag ("rule consensus
+  but framing conflict" — the Figure-2 point that surface agreement can hide
+  narrative divergence), and a per-report dot matrix that replaces the former
+  comparison text chips (green = follows the majority `(Frame·FE)`, amber =
+  same frame different FE, red-orange = frame divergence, hollow = missing).
+- Verdicts (`/api/news/framing-verdicts`, looked up via `framingVerdictFor`)
+  are grouped by `verdict.entity` across attributes: one entity holding both
+  an attitude and a roles verdict renders as a single section with
+  per-attribute segment tooltips; the section tone is the worst verdict
+  present.
+- Comparisons without a sidecar verdict degrade to rule sections: attribute
+  line instead of the entity line, per-report extracted values as value
+  capsules, rule status tones (`different` / `overlap` / `partial_overlap` /
+  `missing_in_some_reports` / `consensus`). Rule sections start collapsed to
+  a single entity-line bar (a CSS-triangle caret; click to expand/collapse, state resets
+  on event switch) while framing sections always render their graph.
+  Degradation is a view feature, not a data gap: the sidecar only annotates
+  slots where frame signals exist.
+- Navigation and motion: the header carries a mini-map (one tone-colored dot
+  per section, native tooltip with entity + verdict, smooth-scroll on click)
+  so the conflict map and section count are readable at a glance; on entry,
+  chains draw first, then the rail and drop (normalized `pathLength` +
+  stroke-dashoffset), with nodes fading in staggered per column — fully
+  disabled under `prefers-reduced-motion`.
+- The former legend paragraphs and per-section band notes were replaced by a
+  compact figure-caption-style legend row in the header (FIG · LEGEND, color dots instead of emoji); section focus toggling, event
+  pills, conflict count, and the article-reader modal are unchanged.
+- Academic look-and-feel pass (the system targets a paper demo, not a flashy
+  dashboard): both palettes were switched to the Okabe-Ito / Paul Tol
+  colorblind-safe academic set and the semantic verdict colors follow it
+  (conflict #D55E00 vermillion, consistent #009E73 bluish-green, rule tones
+  desaturated); capsules and dots are white-filled with colored strokes
+  instead of solid fills; every section opens with an overline header
+  (01 - FRAMING · NARRATIVE DECODE / RULE · EXTRACTED VALUES, monospace index
+  plus letter-spaced small caps) above the entity name and a hairline;
+  tooltips are white key-value cards (grey label column, hairline under the
+  title) instead of a dark text dump; the section index and short codes use
+  monospace.
+- Paper-figure export: each expanded section header carries an SVG export
+  button (visible while hovering the section) that serializes that
+  section's SVG with all computed styles inlined (scoped CSS and CSS
+  variables do not survive serialization), forces stroke-dasharray: none so
+  the entry animation can never ship a half-drawn line, clears the faction
+  highlight first, and downloads an SVG file named after the entity on a
+  white background — one section, one figure, ready for LaTeX/slides.
+
+Wiring:
+
+- Tab strip: news-only third tab via the `centerTabs` computed in `App.vue`
+  (other cases never see it); `NewsFramingView` renders in the graph pane as a
+  `v-else-if` branch next to the lens pane.
+- Toolbar: the news "Framing" button jumps to the tab for the currently
+  selected event; `onSelectArtifact` syncs `newsV6Store.selectedEventId`, so
+  Global KG / lens selections drive the framing canvas bidirectionally.
+- The view follows `newsV6Store.selectedEventId` with a built-in switcher over
+  the multi-report events; single-report events show an explanatory empty state.
+- The graph-op toast became `v-show` so it no longer participates in the
+  pane's `v-if` chain (previously a merge/split toast could unmount the lens
+  pane for 4 seconds; the same wart would have unmounted the framing view).
+
